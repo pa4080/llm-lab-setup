@@ -1,5 +1,16 @@
 # LLM Home Lab with
 
+##  Engine/Services Comparison table
+
+| Feature               | LM Studio               | Ollama                 | llama.cpp           | **SGLang**                            |
+| :-------------------- | :---------------------- | :--------------------- | :------------------ | :------------------------------------ |
+| **Primary Interface** | Desktop GUI             | CLI + Daemon           | CLI + Library       | Python API + Server                   |
+| **Best For**          | Beginners, Desktop Chat | Developers, Automation | Experts, Embedded   | Production, Agents, Structured Output |
+| **Concurrency**       | Low (Single User)       | Low/Medium             | Low                 | Very High (Continuous Batching)       |
+| **Model Format**      | GGUF                    | GGUF                   | GGUF                | Safetensors (Primary), GGUF (Limited) |
+| **OS Support**        | Win/Mac/Linux           | Win/Mac/Linux          | Everywhere (C++)    | Linux (CUDA/ROCm)                     |
+| **Key Advantage**     | Ease of Use             | Ecosystem/API          | Portability/Control | Throughput & Structured Generation    |
+
 ## Hardware
 
 - GPU: Nvidia RTX 3090 24GB

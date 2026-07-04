@@ -1,15 +1,17 @@
 # SGLang Router Docker Configuration
 
+Compose `router.ini` file and run the Docker container to serve the LLaMA models.
+
+```bash
+./serve
+```
+
 ## Helper commands
 
 ### Docker
 
 ```bash
 docker compose down && docker compose up -d && docker logs -f llama-cpp
-```
-
-```bash
-docker compose down && docker compose up -d && docker logs -f llama-cpp 2>&1 | grep -i "context_length\|rope"
 ```
 
 ```bash
@@ -21,8 +23,6 @@ docker logs -f llama-cpp
 ```bash
 docker run --rm ghcr.io/ggml-org/llama.cpp:server-cuda --help
 ```
-
-
 
 ### Power limit
 
