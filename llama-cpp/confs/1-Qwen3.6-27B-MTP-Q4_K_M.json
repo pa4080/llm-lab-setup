@@ -1,0 +1,513 @@
+{
+	"name": "LLaMA.cpp Local 1-Qwen3.6-27B-MTP-Q4_K_M",
+	"vendor": "customendpoint",
+	"apiKey": "${input:chat.lm.secret.-4b1abccd}",
+	"models": [
+		{
+			"id": "Qwen3.6-27B-Q4KM-256K-Q8-MTP2",
+			"name": "Qwen3.6-27B-Q4KM-256K-Q8-MTP2",
+			"url": "http://172.16.1.110:10005/v1/chat/completions",
+			"toolCalling": true,
+			"vision": false,
+			"streaming": true,
+			"apiType": "chat-completions",
+			"editTools": [
+				"apply-patch",
+				"code-rewrite",
+				"find-replace",
+				"multi-find-replace"
+			],
+			"thinking": true,
+			"supportsReasoningEffort": [
+				"low",
+				"medium",
+				"high"
+			],
+			"reasoningEffortFormat": "chat-completions",
+			"zeroDataRetentionEnabled": false,
+			"maxInputTokens": 196608,
+			"maxOutputTokens": 65536
+		},
+		{
+			"id": "Qwen3.6-27B-Q4KM-256K-Q8-MTP2-Vision",
+			"name": "Qwen3.6-27B-Q4KM-256K-Q8-MTP2-Vision",
+			"url": "http://172.16.1.110:10005/v1/chat/completions",
+			"toolCalling": true,
+			"vision": true,
+			"streaming": true,
+			"apiType": "chat-completions",
+			"editTools": [
+				"apply-patch",
+				"code-rewrite",
+				"find-replace",
+				"multi-find-replace"
+			],
+			"thinking": true,
+			"supportsReasoningEffort": [
+				"low",
+				"medium",
+				"high"
+			],
+			"reasoningEffortFormat": "chat-completions",
+			"zeroDataRetentionEnabled": false,
+			"maxInputTokens": 196608,
+			"maxOutputTokens": 65536
+		},
+		{
+			"id": "Qwen3.6-27B-Q4KM-122K-Q8-MTP2",
+			"name": "Qwen3.6-27B-Q4KM-122K-Q8-MTP2",
+			"url": "http://172.16.1.110:10005/v1/chat/completions",
+			"toolCalling": true,
+			"vision": false,
+			"streaming": true,
+			"apiType": "chat-completions",
+			"editTools": [
+				"apply-patch",
+				"code-rewrite",
+				"find-replace",
+				"multi-find-replace"
+			],
+			"thinking": true,
+			"supportsReasoningEffort": [
+				"low",
+				"medium",
+				"high"
+			],
+			"reasoningEffortFormat": "chat-completions",
+			"zeroDataRetentionEnabled": false,
+			"maxInputTokens": 98304,
+			"maxOutputTokens": 32768
+		},
+		{
+			"id": "Qwen3.6-27B-Q4KM-122K-Q8-MTP2-Vision",
+			"name": "Qwen3.6-27B-Q4KM-122K-Q8-MTP2-Vision",
+			"url": "http://172.16.1.110:10005/v1/chat/completions",
+			"toolCalling": true,
+			"vision": true,
+			"streaming": true,
+			"apiType": "chat-completions",
+			"editTools": [
+				"apply-patch",
+				"code-rewrite",
+				"find-replace",
+				"multi-find-replace"
+			],
+			"thinking": true,
+			"supportsReasoningEffort": [
+				"low",
+				"medium",
+				"high"
+			],
+			"reasoningEffortFormat": "chat-completions",
+			"zeroDataRetentionEnabled": false,
+			"maxInputTokens": 98304,
+			"maxOutputTokens": 32768
+		},
+		{
+			"id": "Qwen3.6-27B-Q4KM-64K-Q8-MTP2",
+			"name": "Qwen3.6-27B-Q4KM-64K-Q8-MTP2",
+			"url": "http://172.16.1.110:10005/v1/chat/completions",
+			"toolCalling": true,
+			"vision": false,
+			"streaming": true,
+			"apiType": "chat-completions",
+			"editTools": [
+				"apply-patch",
+				"code-rewrite",
+				"find-replace",
+				"multi-find-replace"
+			],
+			"thinking": true,
+			"supportsReasoningEffort": [
+				"low",
+				"medium",
+				"high"
+			],
+			"reasoningEffortFormat": "chat-completions",
+			"zeroDataRetentionEnabled": false,
+			"maxInputTokens": 49152,
+			"maxOutputTokens": 16384
+		},
+		{
+			"id": "Qwen3.6-27B-Q4KM-64K-Q8-MTP2-Vision",
+			"name": "Qwen3.6-27B-Q4KM-64K-Q8-MTP2-Vision",
+			"url": "http://172.16.1.110:10005/v1/chat/completions",
+			"toolCalling": true,
+			"vision": true,
+			"streaming": true,
+			"apiType": "chat-completions",
+			"editTools": [
+				"apply-patch",
+				"code-rewrite",
+				"find-replace",
+				"multi-find-replace"
+			],
+			"thinking": true,
+			"supportsReasoningEffort": [
+				"low",
+				"medium",
+				"high"
+			],
+			"reasoningEffortFormat": "chat-completions",
+			"zeroDataRetentionEnabled": false,
+			"maxInputTokens": 49152,
+			"maxOutputTokens": 16384
+		},
+		{
+			"id": "Qwen3.6-27B-Q4KM-32K-Q8-MTP2",
+			"name": "Qwen3.6-27B-Q4KM-32K-Q8-MTP2",
+			"url": "http://172.16.1.110:10005/v1/chat/completions",
+			"toolCalling": true,
+			"vision": false,
+			"streaming": true,
+			"apiType": "chat-completions",
+			"editTools": [
+				"apply-patch",
+				"code-rewrite",
+				"find-replace",
+				"multi-find-replace"
+			],
+			"thinking": true,
+			"supportsReasoningEffort": [
+				"low",
+				"medium",
+				"high"
+			],
+			"reasoningEffortFormat": "chat-completions",
+			"zeroDataRetentionEnabled": false,
+			"maxInputTokens": 24576,
+			"maxOutputTokens": 8192
+		},
+		{
+			"id": "Qwen3.6-27B-Q4KM-32K-Q8-MTP2-Vision",
+			"name": "Qwen3.6-27B-Q4KM-32K-Q8-MTP2-Vision",
+			"url": "http://172.16.1.110:10005/v1/chat/completions",
+			"toolCalling": true,
+			"vision": true,
+			"streaming": true,
+			"apiType": "chat-completions",
+			"editTools": [
+				"apply-patch",
+				"code-rewrite",
+				"find-replace",
+				"multi-find-replace"
+			],
+			"thinking": true,
+			"supportsReasoningEffort": [
+				"low",
+				"medium",
+				"high"
+			],
+			"reasoningEffortFormat": "chat-completions",
+			"zeroDataRetentionEnabled": false,
+			"maxInputTokens": 24576,
+			"maxOutputTokens": 8192
+		},
+		{
+			"id": "Qwen3.6-27B-Q4KM-256K-Q4-MTP2",
+			"name": "Qwen3.6-27B-Q4KM-256K-Q4-MTP2",
+			"url": "http://172.16.1.110:10005/v1/chat/completions",
+			"toolCalling": true,
+			"vision": false,
+			"streaming": true,
+			"apiType": "chat-completions",
+			"editTools": [
+				"apply-patch",
+				"code-rewrite",
+				"find-replace",
+				"multi-find-replace"
+			],
+			"thinking": true,
+			"supportsReasoningEffort": [
+				"low",
+				"medium",
+				"high"
+			],
+			"reasoningEffortFormat": "chat-completions",
+			"zeroDataRetentionEnabled": false,
+			"maxInputTokens": 196608,
+			"maxOutputTokens": 65536
+		},
+		{
+			"id": "Qwen3.6-27B-Q4KM-122K-Q4-MTP2",
+			"name": "Qwen3.6-27B-Q4KM-122K-Q4-MTP2",
+			"url": "http://172.16.1.110:10005/v1/chat/completions",
+			"toolCalling": true,
+			"vision": false,
+			"streaming": true,
+			"apiType": "chat-completions",
+			"editTools": [
+				"apply-patch",
+				"code-rewrite",
+				"find-replace",
+				"multi-find-replace"
+			],
+			"thinking": true,
+			"supportsReasoningEffort": [
+				"low",
+				"medium",
+				"high"
+			],
+			"reasoningEffortFormat": "chat-completions",
+			"zeroDataRetentionEnabled": false,
+			"maxInputTokens": 98304,
+			"maxOutputTokens": 32768
+		},
+		{
+			"id": "Qwen3.6-27B-Q4KM-64K-Q4-MTP2",
+			"name": "Qwen3.6-27B-Q4KM-64K-Q4-MTP2",
+			"url": "http://172.16.1.110:10005/v1/chat/completions",
+			"toolCalling": true,
+			"vision": false,
+			"streaming": true,
+			"apiType": "chat-completions",
+			"editTools": [
+				"apply-patch",
+				"code-rewrite",
+				"find-replace",
+				"multi-find-replace"
+			],
+			"thinking": true,
+			"supportsReasoningEffort": [
+				"low",
+				"medium",
+				"high"
+			],
+			"reasoningEffortFormat": "chat-completions",
+			"zeroDataRetentionEnabled": false,
+			"maxInputTokens": 49152,
+			"maxOutputTokens": 16384
+		},
+		{
+			"id": "Qwen3.6-27B-Q4KM-32K-Q4-MTP2",
+			"name": "Qwen3.6-27B-Q4KM-32K-Q4-MTP2",
+			"url": "http://172.16.1.110:10005/v1/chat/completions",
+			"toolCalling": true,
+			"vision": false,
+			"streaming": true,
+			"apiType": "chat-completions",
+			"editTools": [
+				"apply-patch",
+				"code-rewrite",
+				"find-replace",
+				"multi-find-replace"
+			],
+			"thinking": true,
+			"supportsReasoningEffort": [
+				"low",
+				"medium",
+				"high"
+			],
+			"reasoningEffortFormat": "chat-completions",
+			"zeroDataRetentionEnabled": false,
+			"maxInputTokens": 24576,
+			"maxOutputTokens": 8192
+		},
+		{
+			"id": "Qwen3.6-27B-Q4KM-256K-Q8-MTP3",
+			"name": "Qwen3.6-27B-Q4KM-256K-Q8-MTP3",
+			"url": "http://172.16.1.110:10005/v1/chat/completions",
+			"toolCalling": true,
+			"vision": false,
+			"streaming": true,
+			"apiType": "chat-completions",
+			"editTools": [
+				"apply-patch",
+				"code-rewrite",
+				"find-replace",
+				"multi-find-replace"
+			],
+			"thinking": true,
+			"supportsReasoningEffort": [
+				"low",
+				"medium",
+				"high"
+			],
+			"reasoningEffortFormat": "chat-completions",
+			"zeroDataRetentionEnabled": false,
+			"maxInputTokens": 196608,
+			"maxOutputTokens": 65536
+		},
+		{
+			"id": "Qwen3.6-27B-Q4KM-122K-Q8-MTP3",
+			"name": "Qwen3.6-27B-Q4KM-122K-Q8-MTP3",
+			"url": "http://172.16.1.110:10005/v1/chat/completions",
+			"toolCalling": true,
+			"vision": false,
+			"streaming": true,
+			"apiType": "chat-completions",
+			"editTools": [
+				"apply-patch",
+				"code-rewrite",
+				"find-replace",
+				"multi-find-replace"
+			],
+			"thinking": true,
+			"supportsReasoningEffort": [
+				"low",
+				"medium",
+				"high"
+			],
+			"reasoningEffortFormat": "chat-completions",
+			"zeroDataRetentionEnabled": false,
+			"maxInputTokens": 98304,
+			"maxOutputTokens": 32768
+		},
+		{
+			"id": "Qwen3.6-27B-Q4KM-256K-Q8-NoMTP",
+			"name": "Qwen3.6-27B-Q4KM-256K-Q8-NoMTP",
+			"url": "http://172.16.1.110:10005/v1/chat/completions",
+			"toolCalling": true,
+			"vision": false,
+			"streaming": true,
+			"apiType": "chat-completions",
+			"editTools": [
+				"apply-patch",
+				"code-rewrite",
+				"find-replace",
+				"multi-find-replace"
+			],
+			"thinking": true,
+			"supportsReasoningEffort": [
+				"low",
+				"medium",
+				"high"
+			],
+			"reasoningEffortFormat": "chat-completions",
+			"zeroDataRetentionEnabled": false,
+			"maxInputTokens": 196608,
+			"maxOutputTokens": 65536
+		},
+		{
+			"id": "Qwen3.6-27B-Q4KM-122K-Q8-NoMTP",
+			"name": "Qwen3.6-27B-Q4KM-122K-Q8-NoMTP",
+			"url": "http://172.16.1.110:10005/v1/chat/completions",
+			"toolCalling": true,
+			"vision": false,
+			"streaming": true,
+			"apiType": "chat-completions",
+			"editTools": [
+				"apply-patch",
+				"code-rewrite",
+				"find-replace",
+				"multi-find-replace"
+			],
+			"thinking": true,
+			"supportsReasoningEffort": [
+				"low",
+				"medium",
+				"high"
+			],
+			"reasoningEffortFormat": "chat-completions",
+			"zeroDataRetentionEnabled": false,
+			"maxInputTokens": 98304,
+			"maxOutputTokens": 32768
+		},
+		{
+			"id": "Qwen3.6-27B-Q4KM-64K-Q8-NoMTP",
+			"name": "Qwen3.6-27B-Q4KM-64K-Q8-NoMTP",
+			"url": "http://172.16.1.110:10005/v1/chat/completions",
+			"toolCalling": true,
+			"vision": false,
+			"streaming": true,
+			"apiType": "chat-completions",
+			"editTools": [
+				"apply-patch",
+				"code-rewrite",
+				"find-replace",
+				"multi-find-replace"
+			],
+			"thinking": true,
+			"supportsReasoningEffort": [
+				"low",
+				"medium",
+				"high"
+			],
+			"reasoningEffortFormat": "chat-completions",
+			"zeroDataRetentionEnabled": false,
+			"maxInputTokens": 49152,
+			"maxOutputTokens": 16384
+		},
+		{
+			"id": "Qwen3.6-27B-Q4KM-32K-Q8-NoMTP",
+			"name": "Qwen3.6-27B-Q4KM-32K-Q8-NoMTP",
+			"url": "http://172.16.1.110:10005/v1/chat/completions",
+			"toolCalling": true,
+			"vision": false,
+			"streaming": true,
+			"apiType": "chat-completions",
+			"editTools": [
+				"apply-patch",
+				"code-rewrite",
+				"find-replace",
+				"multi-find-replace"
+			],
+			"thinking": true,
+			"supportsReasoningEffort": [
+				"low",
+				"medium",
+				"high"
+			],
+			"reasoningEffortFormat": "chat-completions",
+			"zeroDataRetentionEnabled": false,
+			"maxInputTokens": 24576,
+			"maxOutputTokens": 8192
+		}
+	],
+	"settings": {
+			"Qwen3.6-27B-Q4KM-256K-Q8-MTP2": {
+				"reasoningEffort": "high"
+			},
+			"Qwen3.6-27B-Q4KM-256K-Q8-MTP2-Vision": {
+				"reasoningEffort": "high"
+			},
+			"Qwen3.6-27B-Q4KM-122K-Q8-MTP2": {
+				"reasoningEffort": "high"
+			},
+			"Qwen3.6-27B-Q4KM-122K-Q8-MTP2-Vision": {
+				"reasoningEffort": "high"
+			},
+			"Qwen3.6-27B-Q4KM-64K-Q8-MTP2": {
+				"reasoningEffort": "high"
+			},
+			"Qwen3.6-27B-Q4KM-64K-Q8-MTP2-Vision": {
+				"reasoningEffort": "high"
+			},
+			"Qwen3.6-27B-Q4KM-32K-Q8-MTP2": {
+				"reasoningEffort": "high"
+			},
+			"Qwen3.6-27B-Q4KM-32K-Q8-MTP2-Vision": {
+				"reasoningEffort": "high"
+			},
+			"Qwen3.6-27B-Q4KM-256K-Q4-MTP2": {
+				"reasoningEffort": "high"
+			},
+			"Qwen3.6-27B-Q4KM-122K-Q4-MTP2": {
+				"reasoningEffort": "high"
+			},
+			"Qwen3.6-27B-Q4KM-64K-Q4-MTP2": {
+				"reasoningEffort": "high"
+			},
+			"Qwen3.6-27B-Q4KM-32K-Q4-MTP2": {
+				"reasoningEffort": "high"
+			},
+			"Qwen3.6-27B-Q4KM-256K-Q8-MTP3": {
+				"reasoningEffort": "high"
+			},
+			"Qwen3.6-27B-Q4KM-122K-Q8-MTP3": {
+				"reasoningEffort": "high"
+			},
+			"Qwen3.6-27B-Q4KM-256K-Q8-NoMTP": {
+				"reasoningEffort": "high"
+			},
+			"Qwen3.6-27B-Q4KM-122K-Q8-NoMTP": {
+				"reasoningEffort": "high"
+			},
+			"Qwen3.6-27B-Q4KM-64K-Q8-NoMTP": {
+				"reasoningEffort": "high"
+			},
+			"Qwen3.6-27B-Q4KM-32K-Q8-NoMTP": {
+				"reasoningEffort": "high"
+			}
+	}
+}

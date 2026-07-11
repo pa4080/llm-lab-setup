@@ -5,3 +5,5 @@ huggingface/
 serve.log
 .venv*
 nohup.out
+tmp/*
+*.public.json
