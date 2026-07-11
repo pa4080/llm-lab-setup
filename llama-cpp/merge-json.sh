@@ -8,14 +8,7 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 CONFS_DIR="${1:-$SCRIPT_DIR/confs}"
 
 # ── Load env vars (safe parser — no `source` to avoid ${input:...} errors) ─
-ENV_FILE="$SCRIPT_DIR/../.env"
-[[ -f "$ENV_FILE" ]] || { echo "ERROR: $ENV_FILE not found" >&2; exit 1; }
-
-get_env() {
-	grep -m1 "^${1}=" "$ENV_FILE" | sed "s/^${1}=//" | tr -d '\r' \
-		| sed "s/^[[:space:]]*//;s/[[:space:]]*$//" \
-		| sed 's/^"//;s/",$//;s/"$//' | sed 's/,$//'
-}
+source "$SCRIPT_DIR/env-helper.sh"
 
 LOCAL_SERVER_NAME="$(get_env LOCAL_SERVER_NAME)"
 LOCAL_API_KEY="$(get_env LOCAL_API_KEY)"

@@ -29,6 +29,81 @@
       "maxOutputTokens": 32768
     },
     {
+      "id": "*Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3-q2.5",
+      "name": "*Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3-q2.5",
+      "url": "http://172.16.1.110:10005/v1/chat/completions",
+      "toolCalling": true,
+      "vision": false,
+      "streaming": true,
+      "apiType": "chat-completions",
+      "editTools": [
+        "apply-patch",
+        "code-rewrite",
+        "find-replace",
+        "multi-find-replace"
+      ],
+      "thinking": true,
+      "supportsReasoningEffort": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoningEffortFormat": "chat-completions",
+      "zeroDataRetentionEnabled": false,
+      "maxInputTokens": 98304,
+      "maxOutputTokens": 32768
+    },
+    {
+      "id": "*Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3-buun",
+      "name": "*Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3-buun",
+      "url": "http://172.16.1.110:10005/v1/chat/completions",
+      "toolCalling": true,
+      "vision": false,
+      "streaming": true,
+      "apiType": "chat-completions",
+      "editTools": [
+        "apply-patch",
+        "code-rewrite",
+        "find-replace",
+        "multi-find-replace"
+      ],
+      "thinking": true,
+      "supportsReasoningEffort": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoningEffortFormat": "chat-completions",
+      "zeroDataRetentionEnabled": false,
+      "maxInputTokens": 98304,
+      "maxOutputTokens": 32768
+    },
+    {
+      "id": "*Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3-moore",
+      "name": "*Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3-moore",
+      "url": "http://172.16.1.110:10005/v1/chat/completions",
+      "toolCalling": true,
+      "vision": false,
+      "streaming": true,
+      "apiType": "chat-completions",
+      "editTools": [
+        "apply-patch",
+        "code-rewrite",
+        "find-replace",
+        "multi-find-replace"
+      ],
+      "thinking": true,
+      "supportsReasoningEffort": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoningEffortFormat": "chat-completions",
+      "zeroDataRetentionEnabled": false,
+      "maxInputTokens": 98304,
+      "maxOutputTokens": 32768
+    },
+    {
       "id": "Qwen3.6-27B-AR-Q4KM-126K-Q8-MTP2",
       "name": "Qwen3.6-27B-AR-Q4KM-126K-Q8-MTP2",
       "url": "http://172.16.1.110:10005/v1/chat/completions",
@@ -54,8 +129,8 @@
       "maxOutputTokens": 32256
     },
     {
-      "id": "Qwen3.6-27B-AR-Q4KM-126K-Q4-MTP3-Vision",
-      "name": "Qwen3.6-27B-AR-Q4KM-126K-Q4-MTP3-Vision",
+      "id": "Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3-Vision",
+      "name": "Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3-Vision",
       "url": "http://172.16.1.110:10005/v1/chat/completions",
       "toolCalling": true,
       "vision": true,
@@ -75,18 +150,27 @@
       ],
       "reasoningEffortFormat": "chat-completions",
       "zeroDataRetentionEnabled": false,
-      "maxInputTokens": 96768,
-      "maxOutputTokens": 32256
+      "maxInputTokens": 98304,
+      "maxOutputTokens": 32768
     }
   ],
   "settings": {
     "*Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3": {
       "reasoningEffort": "high"
     },
+    "*Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3-q2.5": {
+      "reasoningEffort": "high"
+    },
+    "*Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3-buun": {
+      "reasoningEffort": "high"
+    },
+    "*Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3-moore": {
+      "reasoningEffort": "high"
+    },
     "Qwen3.6-27B-AR-Q4KM-126K-Q8-MTP2": {
       "reasoningEffort": "high"
     },
-    "Qwen3.6-27B-AR-Q4KM-126K-Q4-MTP3-Vision": {
+    "Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3-Vision": {
       "reasoningEffort": "high"
     }
   }

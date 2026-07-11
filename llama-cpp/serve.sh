@@ -20,6 +20,9 @@ if [[ -n "$PUBLIC_URL" && -n "$PUBLIC_SERVER_NAME" && -n "$PUBLIC_API_KEY" ]]; t
 	  ../confs/chatLanguageModels.public.json
 fi
 
+# Swap LOCAL config into VS Code settings
+bash "$SCRIPT_DIR/config-swap.sh"
+
 docker compose down
 cat ./router/* > router.ini
 docker compose up -d

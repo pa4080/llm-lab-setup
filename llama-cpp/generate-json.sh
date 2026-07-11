@@ -13,15 +13,8 @@ OUT_DIR="${2:-$(dirname "$INI_FILE")}"
 OUT_FILE="${OUT_DIR}/$(basename "${INI_FILE%.ini}.json")"
 
 # ── Load env vars (safe parser — no `source` to avoid ${input:...} errors) ─
-ENV_FILE="$(cd "$(dirname "$0")/.." && pwd)/.env"
-[[ -f "$ENV_FILE" ]] || { echo "ERROR: $ENV_FILE not found" >&2; exit 1; }
-
-get_env() {
-	grep -m1 "^${1}=" "$ENV_FILE" \
-		| sed "s/^${1}=//" | tr -d '\r' \
-		| sed "s/^[[:space:]]*//;s/[[:space:]]*$//" \
-		| sed 's/^"//;s/",$//;s/"$//' | sed 's/,$//'
-}
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+source "$SCRIPT_DIR/env-helper.sh"
 
 LOCAL_URL="$(get_env LOCAL_URL)"
 LOCAL_SERVER_NAME="$(get_env LOCAL_SERVER_NAME)"
