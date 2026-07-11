@@ -2,7 +2,7 @@
 # Generate chatLanguageModels JSON from a router INI file.
 # Usage: ./generate-json.sh <ini-file> [output-dir]
 #
-# Reads LOCAL_URL from project root .env (../.env).
+# Reads LOCAL_URL, LOCAL_SERVER_NAME, LOCAL_API_KEY from .env.
 # Outputs <ini-file>.json in <output-dir> (defaults to same dir as INI).
 
 set -euo pipefail
@@ -11,21 +11,16 @@ INI_FILE="${1:?Usage: $0 <router.ini> [output-dir]}"
 INI_FILE="$(realpath "$INI_FILE")"
 OUT_DIR="${2:-$(dirname "$INI_FILE")}"
 OUT_FILE="${OUT_DIR}/$(basename "${INI_FILE%.ini}.json")"
-PROJECT_ROOT="$(cd "$(dirname "$INI_FILE")/.." && pwd)"
 
-# ── Load env vars from .env (parse without source to avoid
-#      ${input:...} VS Code variable expansion errors) ───────────
-if [[ -f "$PROJECT_ROOT/.env" ]]; then
-	ENV_FILE="$PROJECT_ROOT/.env"
-elif [[ -f "$(dirname "$INI_FILE")/.env" ]]; then
-	ENV_FILE="$(dirname "$INI_FILE")/.env"
-else
-	echo "ERROR: No .env found near $INI_FILE" >&2
-	exit 1
-fi
+# ── Load env vars (safe parser — no `source` to avoid ${input:...} errors) ─
+ENV_FILE="$(cd "$(dirname "$0")/.." && pwd)/.env"
+[[ -f "$ENV_FILE" ]] || { echo "ERROR: $ENV_FILE not found" >&2; exit 1; }
 
 get_env() {
-	grep -m1 "^${1}=" "$ENV_FILE" | sed "s/^${1}=//" | tr -d '\r' | sed "s/^[[:space:]]*//;s/[[:space:]]*$//" | sed 's/^"//;s/",$//;s/"$//' | sed 's/,$//'
+	grep -m1 "^${1}=" "$ENV_FILE" \
+		| sed "s/^${1}=//" | tr -d '\r' \
+		| sed "s/^[[:space:]]*//;s/[[:space:]]*$//" \
+		| sed 's/^"//;s/",$//;s/"$//' | sed 's/,$//'
 }
 
 LOCAL_URL="$(get_env LOCAL_URL)"
@@ -36,111 +31,99 @@ LOCAL_API_KEY="$(get_env LOCAL_API_KEY)"
 : "${LOCAL_SERVER_NAME:?LOCAL_SERVER_NAME not set in .env}"
 : "${LOCAL_API_KEY:?LOCAL_API_KEY not set in .env}"
 
-# Strip trailing comma if present (e.g. "LLaMA.cpp Local",)
-LOCAL_SERVER_NAME="${LOCAL_SERVER_NAME%,}"
-
-# ── Parse INI & emit JSON via awk ──────────────────────────────────
 INI_BASENAME="$(basename "${INI_FILE%.ini}")"
-awk -v url="$LOCAL_URL" -v server_name="$LOCAL_SERVER_NAME $INI_BASENAME" -v api_key="$LOCAL_API_KEY" '
-BEGIN {
-	n = 0
+SERVER_NAME="$LOCAL_SERVER_NAME $INI_BASENAME"
+
+# ── Parse INI into JSONL (one JSON object per section) ─────────────
+# Each line: { "id": "<section>", "ctxSize": <number>, "hasMmproj": <bool> }
+parse_ini() {
+	local sec="" ctx_size=0 has_mmproj=false
+
+	while IFS= read -r line; do
+		line="${line//$'\r'/}"                     # strip \r
+		[[ "$line" =~ ^[[:space:]]*\; ]] && continue  # comment
+		[[ "$line" =~ ^[[:space:]]*$ ]] && continue   # blank
+
+		# Section header [Name]
+		if [[ "$line" =~ ^\[([^\]]+)\]$ ]]; then
+			local new_sec="${BASH_REMATCH[1]}"
+			new_sec="${new_sec#"${new_sec%%[![:space:]]*}"}"   # trim leading
+			new_sec="${new_sec%"${new_sec##*[![:space:]]}"}"   # trim trailing
+			[[ "$new_sec" == "*" ]] && continue           # skip [*] defaults
+			# Emit previous section (if any)
+			if [[ -n "$sec" ]]; then
+				printf '{"id":"%s","ctxSize":%d,"hasMmproj":%s}\n' \
+					"$sec" "$ctx_size" "$has_mmproj"
+			fi
+			sec="$new_sec"
+			ctx_size=0
+			has_mmproj=false
+			continue
+		fi
+
+		# Key = value
+		if [[ "$line" == *=* ]]; then
+			key="${line%%=*}"
+			val="${line#*=}"
+			key="${key#"${key%%[![:space:]]*}"}"
+			key="${key%"${key##*[![:space:]]}"}"
+			val="${val#"${val%%[![:space:]]*}"}"
+			val="${val%"${val##*[![:space:]]}"}"
+			val="${val%%\;*}"                      # strip inline comment
+			val="${val%"${val##*[![:space:]]}"}"   # trim trailing
+
+			case "$key" in
+				ctx-size) ctx_size="${val:-0}" ;;
+				mmproj)   has_mmproj=true ;;
+			esac
+		fi
+	done < "$INI_FILE"
+
+	# Emit last section
+	if [[ -n "$sec" ]]; then
+		printf '{"id":"%s","ctxSize":%d,"hasMmproj":%s}\n' \
+			"$sec" "$ctx_size" "$has_mmproj"
+	fi
 }
 
-# Skip comments and blank lines
-/^[[:space:]]*;/ { next }
-/^[[:space:]]*$/ { next }
-
-# Section header — skip [*] (global defaults)
-/^\[.*\]$/ {
-	sec = $0
-	gsub(/[\[\]]/, "", sec)
-	gsub(/^[[:space:]]+|[[:space:]]+$/, "", sec)
-	if (sec == "*") next
-	sections[n] = sec
-	ctx[sec] = ""
-	has_mmproj[sec] = 0
-	n++
-	next
-}
-
-# Key = value
-/=/ {
-	idx = index($0, "=")
-	key = substr($0, 1, idx - 1)
-	val = substr($0, idx + 1)
-	gsub(/^[[:space:]]+|[[:space:]]+$/, "", key)
-	gsub(/^[[:space:]]+|[[:space:]]+$/, "", val)
-	# strip inline comments
-	sub(/;.*$/, "", val)
-	gsub(/[[:space:]]+$/, "", val)
-
-	if (key == "ctx-size") ctx[sec] = val + 0
-	if (key == "mmproj")   has_mmproj[sec] = 1
-}
-
-END {
-	# ── Build JSON ──
-	printf "{\n"
-	printf "\t\"name\": \"%s\",\n", server_name
-	printf "\t\"vendor\": \"customendpoint\",\n"
-	printf "\t\"apiKey\": \"%s\",\n", api_key
-	printf "\t\"models\": [\n"
-
-	for (i = 0; i < n; i++) {
-		s = sections[i]
-		vision = has_mmproj[s] ? "true" : "false"
-
-		max_ctx  = ctx[s] + 0
-		max_in   = int(max_ctx * 3 / 4)
-		max_out  = int(max_ctx * 1 / 4)
-
-		printf "\t\t{\n"
-		printf "\t\t\t\"id\": \"%s\",\n", s
-		printf "\t\t\t\"name\": \"%s\",\n", s
-		printf "\t\t\t\"url\": \"%s\",\n", url
-		printf "\t\t\t\"toolCalling\": true,\n"
-		printf "\t\t\t\"vision\": %s,\n", vision
-		printf "\t\t\t\"streaming\": true,\n"
-		printf "\t\t\t\"apiType\": \"chat-completions\",\n"
-		printf "\t\t\t\"editTools\": [\n"
-		printf "\t\t\t\t\"apply-patch\",\n"
-		printf "\t\t\t\t\"code-rewrite\",\n"
-		printf "\t\t\t\t\"find-replace\",\n"
-		printf "\t\t\t\t\"multi-find-replace\"\n"
-		printf "\t\t\t],\n"
-		printf "\t\t\t\"thinking\": true,\n"
-		printf "\t\t\t\"supportsReasoningEffort\": [\n"
-		printf "\t\t\t\t\"low\",\n"
-		printf "\t\t\t\t\"medium\",\n"
-		printf "\t\t\t\t\"high\"\n"
-		printf "\t\t\t],\n"
-		printf "\t\t\t\"reasoningEffortFormat\": \"chat-completions\",\n"
-		printf "\t\t\t\"zeroDataRetentionEnabled\": false,\n"
-		printf "\t\t\t\"maxInputTokens\": %d,\n", max_in
-		printf "\t\t\t\"maxOutputTokens\": %d\n", max_out
-		if (i < n - 1)
-			printf "\t\t},\n"
-		else
-			printf "\t\t}\n"
+# ── Build final JSON with jq ───────────────────────────────────────
+parse_ini | jq -s \
+	--arg name       "$SERVER_NAME" \
+	--arg vendor     "customendpoint" \
+	--arg apiKey     "$LOCAL_API_KEY" \
+	--arg url        "$LOCAL_URL" \
+	'
+	{
+		name:   $name,
+		vendor: $vendor,
+		apiKey: $apiKey,
+		models: [
+			.[] | {
+				id:                    .id,
+				name:                  .id,
+				url:                   $url,
+				toolCalling:           true,
+				vision:                .hasMmproj,
+				streaming:             true,
+				apiType:               "chat-completions",
+				editTools:             [
+					"apply-patch",
+					"code-rewrite",
+					"find-replace",
+					"multi-find-replace"
+				],
+				thinking:              true,
+				supportsReasoningEffort: ["low", "medium", "high"],
+				reasoningEffortFormat: "chat-completions",
+				zeroDataRetentionEnabled: false,
+				maxInputTokens:        (.ctxSize * 3 / 4 | floor),
+				maxOutputTokens:       (.ctxSize * 1 / 4 | floor)
+			}
+		],
+		settings: (
+			[ .[] | { (.id): { reasoningEffort: "high" } } ] | add // {}
+		)
 	}
-
-	printf "\t],\n"
-	printf "\t\"settings\": {\n"
-
-	for (i = 0; i < n; i++) {
-		s = sections[i]
-		printf "\t\t\t\"%s\": {\n", s
-		printf "\t\t\t\t\"reasoningEffort\": \"high\"\n"
-		printf "\t\t\t}"
-		if (i < n - 1)
-			printf ",\n"
-		else
-			printf "\n"
-	}
-
-	printf "\t}\n"
-	printf "}\n"
-}
-' "$INI_FILE" > "$OUT_FILE"
+	' > "$OUT_FILE"
 
 echo "✓  $OUT_FILE"

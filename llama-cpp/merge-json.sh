@@ -7,18 +7,14 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 CONFS_DIR="${1:-$SCRIPT_DIR/confs}"
 
-# ── Load env vars (same safe parser as generate-json.sh) ──────────
-if [[ -f "$SCRIPT_DIR/../.env" ]]; then
-	ENV_FILE="$SCRIPT_DIR/../.env"
-elif [[ -f "$SCRIPT_DIR/.env" ]]; then
-	ENV_FILE="$SCRIPT_DIR/.env"
-else
-	echo "ERROR: No .env found" >&2
-	exit 1
-fi
+# ── Load env vars (safe parser — no `source` to avoid ${input:...} errors) ─
+ENV_FILE="$SCRIPT_DIR/../.env"
+[[ -f "$ENV_FILE" ]] || { echo "ERROR: $ENV_FILE not found" >&2; exit 1; }
 
 get_env() {
-	grep -m1 "^${1}=" "$ENV_FILE" | sed "s/^${1}=//" | tr -d '\r' | sed "s/^[[:space:]]*//;s/[[:space:]]*$//" | sed 's/^"//;s/",$//;s/"$//' | sed 's/,$//'
+	grep -m1 "^${1}=" "$ENV_FILE" | sed "s/^${1}=//" | tr -d '\r' \
+		| sed "s/^[[:space:]]*//;s/[[:space:]]*$//" \
+		| sed 's/^"//;s/",$//;s/"$//' | sed 's/,$//'
 }
 
 LOCAL_SERVER_NAME="$(get_env LOCAL_SERVER_NAME)"

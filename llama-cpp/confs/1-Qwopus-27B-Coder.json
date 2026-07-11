@@ -1,205 +1,205 @@
 {
-	"name": "LLaMA.cpp Local 1-Qwopus-27B-Coder",
-	"vendor": "customendpoint",
-	"apiKey": "${input:chat.lm.secret.-4b1abccd}",
-	"models": [
-		{
-			"id": "Qwopus-27B-Coder-256K-Q4",
-			"name": "Qwopus-27B-Coder-256K-Q4",
-			"url": "http://172.16.1.110:10005/v1/chat/completions",
-			"toolCalling": true,
-			"vision": false,
-			"streaming": true,
-			"apiType": "chat-completions",
-			"editTools": [
-				"apply-patch",
-				"code-rewrite",
-				"find-replace",
-				"multi-find-replace"
-			],
-			"thinking": true,
-			"supportsReasoningEffort": [
-				"low",
-				"medium",
-				"high"
-			],
-			"reasoningEffortFormat": "chat-completions",
-			"zeroDataRetentionEnabled": false,
-			"maxInputTokens": 196608,
-			"maxOutputTokens": 65536
-		},
-		{
-			"id": "Qwopus-27B-Coder-256K-Q4-temp-1",
-			"name": "Qwopus-27B-Coder-256K-Q4-temp-1",
-			"url": "http://172.16.1.110:10005/v1/chat/completions",
-			"toolCalling": true,
-			"vision": false,
-			"streaming": true,
-			"apiType": "chat-completions",
-			"editTools": [
-				"apply-patch",
-				"code-rewrite",
-				"find-replace",
-				"multi-find-replace"
-			],
-			"thinking": true,
-			"supportsReasoningEffort": [
-				"low",
-				"medium",
-				"high"
-			],
-			"reasoningEffortFormat": "chat-completions",
-			"zeroDataRetentionEnabled": false,
-			"maxInputTokens": 196608,
-			"maxOutputTokens": 65536
-		},
-		{
-			"id": "Qwopus-27B-Coder-256K-Q4-Vision",
-			"name": "Qwopus-27B-Coder-256K-Q4-Vision",
-			"url": "http://172.16.1.110:10005/v1/chat/completions",
-			"toolCalling": true,
-			"vision": true,
-			"streaming": true,
-			"apiType": "chat-completions",
-			"editTools": [
-				"apply-patch",
-				"code-rewrite",
-				"find-replace",
-				"multi-find-replace"
-			],
-			"thinking": true,
-			"supportsReasoningEffort": [
-				"low",
-				"medium",
-				"high"
-			],
-			"reasoningEffortFormat": "chat-completions",
-			"zeroDataRetentionEnabled": false,
-			"maxInputTokens": 196608,
-			"maxOutputTokens": 65536
-		},
-		{
-			"id": "Qwopus-27B-Coder-160K-Q4-MTP2",
-			"name": "Qwopus-27B-Coder-160K-Q4-MTP2",
-			"url": "http://172.16.1.110:10005/v1/chat/completions",
-			"toolCalling": true,
-			"vision": false,
-			"streaming": true,
-			"apiType": "chat-completions",
-			"editTools": [
-				"apply-patch",
-				"code-rewrite",
-				"find-replace",
-				"multi-find-replace"
-			],
-			"thinking": true,
-			"supportsReasoningEffort": [
-				"low",
-				"medium",
-				"high"
-			],
-			"reasoningEffortFormat": "chat-completions",
-			"zeroDataRetentionEnabled": false,
-			"maxInputTokens": 122880,
-			"maxOutputTokens": 40960
-		},
-		{
-			"id": "Qwopus-27B-Coder-122K-Q8-MTP3",
-			"name": "Qwopus-27B-Coder-122K-Q8-MTP3",
-			"url": "http://172.16.1.110:10005/v1/chat/completions",
-			"toolCalling": true,
-			"vision": false,
-			"streaming": true,
-			"apiType": "chat-completions",
-			"editTools": [
-				"apply-patch",
-				"code-rewrite",
-				"find-replace",
-				"multi-find-replace"
-			],
-			"thinking": true,
-			"supportsReasoningEffort": [
-				"low",
-				"medium",
-				"high"
-			],
-			"reasoningEffortFormat": "chat-completions",
-			"zeroDataRetentionEnabled": false,
-			"maxInputTokens": 98304,
-			"maxOutputTokens": 32768
-		},
-		{
-			"id": "Qwopus-27B-Coder-160K-Q8-Vision",
-			"name": "Qwopus-27B-Coder-160K-Q8-Vision",
-			"url": "http://172.16.1.110:10005/v1/chat/completions",
-			"toolCalling": true,
-			"vision": true,
-			"streaming": true,
-			"apiType": "chat-completions",
-			"editTools": [
-				"apply-patch",
-				"code-rewrite",
-				"find-replace",
-				"multi-find-replace"
-			],
-			"thinking": true,
-			"supportsReasoningEffort": [
-				"low",
-				"medium",
-				"high"
-			],
-			"reasoningEffortFormat": "chat-completions",
-			"zeroDataRetentionEnabled": false,
-			"maxInputTokens": 122880,
-			"maxOutputTokens": 40960
-		},
-		{
-			"id": "Qwopus-27B-Coder-128K-Q8-MTP2-Vision",
-			"name": "Qwopus-27B-Coder-128K-Q8-MTP2-Vision",
-			"url": "http://172.16.1.110:10005/v1/chat/completions",
-			"toolCalling": true,
-			"vision": true,
-			"streaming": true,
-			"apiType": "chat-completions",
-			"editTools": [
-				"apply-patch",
-				"code-rewrite",
-				"find-replace",
-				"multi-find-replace"
-			],
-			"thinking": true,
-			"supportsReasoningEffort": [
-				"low",
-				"medium",
-				"high"
-			],
-			"reasoningEffortFormat": "chat-completions",
-			"zeroDataRetentionEnabled": false,
-			"maxInputTokens": 98304,
-			"maxOutputTokens": 32768
-		}
-	],
-	"settings": {
-			"Qwopus-27B-Coder-256K-Q4": {
-				"reasoningEffort": "high"
-			},
-			"Qwopus-27B-Coder-256K-Q4-temp-1": {
-				"reasoningEffort": "high"
-			},
-			"Qwopus-27B-Coder-256K-Q4-Vision": {
-				"reasoningEffort": "high"
-			},
-			"Qwopus-27B-Coder-160K-Q4-MTP2": {
-				"reasoningEffort": "high"
-			},
-			"Qwopus-27B-Coder-122K-Q8-MTP3": {
-				"reasoningEffort": "high"
-			},
-			"Qwopus-27B-Coder-160K-Q8-Vision": {
-				"reasoningEffort": "high"
-			},
-			"Qwopus-27B-Coder-128K-Q8-MTP2-Vision": {
-				"reasoningEffort": "high"
-			}
-	}
+  "name": "LLaMA.cpp Local 1-Qwopus-27B-Coder",
+  "vendor": "customendpoint",
+  "apiKey": "${input:chat.lm.secret.-4b1abccd}",
+  "models": [
+    {
+      "id": "Qwopus-27B-Coder-256K-Q4",
+      "name": "Qwopus-27B-Coder-256K-Q4",
+      "url": "http://172.16.1.110:10005/v1/chat/completions",
+      "toolCalling": true,
+      "vision": false,
+      "streaming": true,
+      "apiType": "chat-completions",
+      "editTools": [
+        "apply-patch",
+        "code-rewrite",
+        "find-replace",
+        "multi-find-replace"
+      ],
+      "thinking": true,
+      "supportsReasoningEffort": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoningEffortFormat": "chat-completions",
+      "zeroDataRetentionEnabled": false,
+      "maxInputTokens": 196608,
+      "maxOutputTokens": 65536
+    },
+    {
+      "id": "Qwopus-27B-Coder-256K-Q4-temp-1",
+      "name": "Qwopus-27B-Coder-256K-Q4-temp-1",
+      "url": "http://172.16.1.110:10005/v1/chat/completions",
+      "toolCalling": true,
+      "vision": false,
+      "streaming": true,
+      "apiType": "chat-completions",
+      "editTools": [
+        "apply-patch",
+        "code-rewrite",
+        "find-replace",
+        "multi-find-replace"
+      ],
+      "thinking": true,
+      "supportsReasoningEffort": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoningEffortFormat": "chat-completions",
+      "zeroDataRetentionEnabled": false,
+      "maxInputTokens": 196608,
+      "maxOutputTokens": 65536
+    },
+    {
+      "id": "Qwopus-27B-Coder-256K-Q4-Vision",
+      "name": "Qwopus-27B-Coder-256K-Q4-Vision",
+      "url": "http://172.16.1.110:10005/v1/chat/completions",
+      "toolCalling": true,
+      "vision": true,
+      "streaming": true,
+      "apiType": "chat-completions",
+      "editTools": [
+        "apply-patch",
+        "code-rewrite",
+        "find-replace",
+        "multi-find-replace"
+      ],
+      "thinking": true,
+      "supportsReasoningEffort": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoningEffortFormat": "chat-completions",
+      "zeroDataRetentionEnabled": false,
+      "maxInputTokens": 196608,
+      "maxOutputTokens": 65536
+    },
+    {
+      "id": "Qwopus-27B-Coder-160K-Q4-MTP2",
+      "name": "Qwopus-27B-Coder-160K-Q4-MTP2",
+      "url": "http://172.16.1.110:10005/v1/chat/completions",
+      "toolCalling": true,
+      "vision": false,
+      "streaming": true,
+      "apiType": "chat-completions",
+      "editTools": [
+        "apply-patch",
+        "code-rewrite",
+        "find-replace",
+        "multi-find-replace"
+      ],
+      "thinking": true,
+      "supportsReasoningEffort": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoningEffortFormat": "chat-completions",
+      "zeroDataRetentionEnabled": false,
+      "maxInputTokens": 122880,
+      "maxOutputTokens": 40960
+    },
+    {
+      "id": "Qwopus-27B-Coder-122K-Q8-MTP3",
+      "name": "Qwopus-27B-Coder-122K-Q8-MTP3",
+      "url": "http://172.16.1.110:10005/v1/chat/completions",
+      "toolCalling": true,
+      "vision": false,
+      "streaming": true,
+      "apiType": "chat-completions",
+      "editTools": [
+        "apply-patch",
+        "code-rewrite",
+        "find-replace",
+        "multi-find-replace"
+      ],
+      "thinking": true,
+      "supportsReasoningEffort": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoningEffortFormat": "chat-completions",
+      "zeroDataRetentionEnabled": false,
+      "maxInputTokens": 98304,
+      "maxOutputTokens": 32768
+    },
+    {
+      "id": "Qwopus-27B-Coder-160K-Q8-Vision",
+      "name": "Qwopus-27B-Coder-160K-Q8-Vision",
+      "url": "http://172.16.1.110:10005/v1/chat/completions",
+      "toolCalling": true,
+      "vision": true,
+      "streaming": true,
+      "apiType": "chat-completions",
+      "editTools": [
+        "apply-patch",
+        "code-rewrite",
+        "find-replace",
+        "multi-find-replace"
+      ],
+      "thinking": true,
+      "supportsReasoningEffort": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoningEffortFormat": "chat-completions",
+      "zeroDataRetentionEnabled": false,
+      "maxInputTokens": 122880,
+      "maxOutputTokens": 40960
+    },
+    {
+      "id": "Qwopus-27B-Coder-128K-Q8-MTP2-Vision",
+      "name": "Qwopus-27B-Coder-128K-Q8-MTP2-Vision",
+      "url": "http://172.16.1.110:10005/v1/chat/completions",
+      "toolCalling": true,
+      "vision": true,
+      "streaming": true,
+      "apiType": "chat-completions",
+      "editTools": [
+        "apply-patch",
+        "code-rewrite",
+        "find-replace",
+        "multi-find-replace"
+      ],
+      "thinking": true,
+      "supportsReasoningEffort": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoningEffortFormat": "chat-completions",
+      "zeroDataRetentionEnabled": false,
+      "maxInputTokens": 98304,
+      "maxOutputTokens": 32768
+    }
+  ],
+  "settings": {
+    "Qwopus-27B-Coder-256K-Q4": {
+      "reasoningEffort": "high"
+    },
+    "Qwopus-27B-Coder-256K-Q4-temp-1": {
+      "reasoningEffort": "high"
+    },
+    "Qwopus-27B-Coder-256K-Q4-Vision": {
+      "reasoningEffort": "high"
+    },
+    "Qwopus-27B-Coder-160K-Q4-MTP2": {
+      "reasoningEffort": "high"
+    },
+    "Qwopus-27B-Coder-122K-Q8-MTP3": {
+      "reasoningEffort": "high"
+    },
+    "Qwopus-27B-Coder-160K-Q8-Vision": {
+      "reasoningEffort": "high"
+    },
+    "Qwopus-27B-Coder-128K-Q8-MTP2-Vision": {
+      "reasoningEffort": "high"
+    }
+  }
 }

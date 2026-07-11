@@ -28,7 +28,7 @@ Context limits measured on **RTX 3090 (24 GB)** with llama.cpp, `n-gpu-layers=99
 | `*Qwen3.6-35B-A3B-256K-Q8-Vision`                 | ~156K          | 22.385Gi |
 | `*Ornith-1.0-35B-156K-Q8-MTP2-Vision-Compact-all` | ~156K          | 21.335Gi |
 | ------------------------------------------------- | -------------- | -------- |
-| `Qwen3.6-27B-AR-Q4KM-156K-Q4-MTP3`                | ~156K          | 23.182Gi |
+| `*Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3`               | ~128K          | 23.182Gi |
 | `Qwen3.6-27B-AR-Q4KM-126K-Q8-MTP2`                | ~126K          | 23.774Gi |
 
 ## 📋 Agent Skill [`/add-model-to-llm-lab`](.agents/skills/add-model-to-llm-lab/SKILL.md)
