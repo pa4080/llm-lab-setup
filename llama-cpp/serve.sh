@@ -2,13 +2,15 @@
 
 source ../.env
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)/../scripts"
+LLAMA_CPP_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # Generate JSON configs from router INI files
-bash "$SCRIPT_DIR/generate-config-json.sh"
+# Pass paths relative to caller (llama-cpp/) so scripts don't use their own location
+bash "$SCRIPT_DIR/generate-config-json.sh" "$LLAMA_CPP_DIR/router" "$LLAMA_CPP_DIR/confs"
 
 # Copy generated config to project-level confs
-cp "$SCRIPT_DIR/confs/0-chatLanguageModels.json" "../confs/chatLanguageModels.json"
+cp "$LLAMA_CPP_DIR/confs/0-chatLanguageModels.json" "../confs/chatLanguageModels.json"
 
 # Generate public config with PUBLIC env vars (only if PUBLIC_* are set)
 if [[ -n "$PUBLIC_URL" && -n "$PUBLIC_SERVER_NAME" && -n "$PUBLIC_API_KEY" ]]; then

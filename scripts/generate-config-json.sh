@@ -1,16 +1,25 @@
 #!/bin/bash
+# Generate JSON configs from router INI files.
+# Usage: ./generate-config-json.sh [router-dir] [confs-dir]
+#
+# Both paths are resolved from the caller's working directory (not from this script's location).
+# Defaults: ./router  ./confs
+
+set -euo pipefail
 
 source ../.env
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+ROUTER_DIR="${1:-router}"
+CONFS_DIR="${2:-confs}"
 
 # Generate JSON config for every router INI file into confs/
 # Skip files that are shared defaults (start with 0, or contain default/common)
-rm -rf "$SCRIPT_DIR/confs"
-mkdir -p "$SCRIPT_DIR/confs"
+rm -rf "$CONFS_DIR"
+mkdir -p "$CONFS_DIR"
 
 # Loop through all INI files in router/ and generate JSON for each
-for ini in "$SCRIPT_DIR/router"/*.ini; do
+for ini in "$ROUTER_DIR"/*.ini; do
 	[[ -f "$ini" ]] || continue
 	bname="$(basename "$ini")"
 	# Skip 0-prefixed files
@@ -18,8 +27,8 @@ for ini in "$SCRIPT_DIR/router"/*.ini; do
 	# Skip files with "default" or "common" in the name (case-insensitive)
 	[[ "${bname,,}" == *default* ]] && continue
 	[[ "${bname,,}" == *common* ]] && continue
-	bash "$SCRIPT_DIR/generate-json.sh" "$ini" "$SCRIPT_DIR/confs"
+	bash "$SCRIPT_DIR/generate-json.sh" "$ini" "$CONFS_DIR"
 done
 
 # Merge all individual JSONs into a single 0-chatLanguageModels.json
-bash "$SCRIPT_DIR/merge-json.sh" "$SCRIPT_DIR/confs"
+bash "$SCRIPT_DIR/merge-json.sh" "$CONFS_DIR"

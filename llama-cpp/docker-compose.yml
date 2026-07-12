@@ -24,8 +24,8 @@ services:
       --models-max 1
       --no-warmup
       --context-shift
-      --ctx-checkpoints 2
-      --swa-checkpoints 2
+      --ctx-checkpoints 4
+      --swa-checkpoints 4
       --cache-ram 10240
       --cache-reuse 4096
 
