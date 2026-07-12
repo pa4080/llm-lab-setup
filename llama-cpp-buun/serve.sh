@@ -27,5 +27,5 @@ bash "$SCRIPT_DIR/config-swap.sh"
 
 docker compose down
 cat ./router/* > router.ini
-docker compose up -d
-docker logs -f llama-cpp
+docker compose up -d --build
+docker logs -f buun-llama-cpp

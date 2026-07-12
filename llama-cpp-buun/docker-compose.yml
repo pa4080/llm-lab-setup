@@ -1,7 +1,18 @@
 services:
+  # Builds spiritbuun/buun-llama-cpp from source (VBR, TurboQuant/TCQ KV cache,
+  # --mmproj-gpu-swap). There is no runnable upstream image for this fork on
+  # ghcr.io (only Docker buildcache layers), so it must be compiled locally.
+  # See buun-llama-cpp.cuda.Dockerfile for the build-arg deltas vs. the fork's
+  # own .devops/cuda.Dockerfile (GGML_CUDA_FA_ALL_QUANTS=ON, arch pinned to sm_86).
   buun-llama-cpp:
     container_name: buun-llama-cpp
-    image: ghcr.io/ggml-org/llama.cpp:server-cuda13
+    build:
+      context: ./buun-llama-cpp
+      dockerfile: ../buun-llama-cpp.cuda.Dockerfile
+      target: server
+      args:
+        CUDA_VERSION: ${CUDA_VERSION:-13.0.1}
+        CUDA_DOCKER_ARCH: ${CUDA_DOCKER_ARCH:-86}
     network_mode: host
     restart: unless-stopped
     volumes:
@@ -22,9 +33,9 @@ services:
       --models-preset /app/router.ini
       --models-max 1
       --no-warmup
-      --flash-attn
+      --flash-attn on
       --context-shift
-      --ctx-checkpoints 2
-      --swa-checkpoints 2
-      --cache-ram 10240
+      --ctx-checkpoints 4
+      --swa-checkpoints 4
+      --cache-ram 16384
       --cache-reuse 4096

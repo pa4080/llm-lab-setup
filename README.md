@@ -68,7 +68,14 @@ nvtop
 
 ### Hugging Face
 
+Download model:
+
 ```bash
 hf download  deepreinforce-ai/Ornith-1.0-9B-GGUF --local-dir deepreinforce-ai/Ornith-1.0-9B-GGUF  --include "**"
 ```
 
+Download dataset:
+
+```bash
+hf download --repo-type dataset spiritbuun/turboquant-tcq-kv-cache --local-dir spiritbuun/turboquant-tcq-kv-cache
+```

@@ -29,11 +29,24 @@ SERVER_NAME="$LOCAL_SERVER_NAME $INI_BASENAME"
 
 # ── Parse INI into JSONL (one JSON object per section) ─────────────
 # Each line: { "id": "<section>", "ctxSize": <number>, "hasMmproj": <bool> }
+#
+# A commented-out `; dummy-ctx-size = N` acts as a fallback ctx-size used only
+# for JSON generation (maxInputTokens/maxOutputTokens), for presets that have
+# no real ctx-size because --fit auto-sizes it at runtime (e.g. VBR "MAXCTX"
+# presets). It is never passed to llama-server (stays commented in router.ini).
 parse_ini() {
-	local sec="" ctx_size=0 has_mmproj=false
+	local sec="" ctx_size=0 dummy_ctx_size=0 has_mmproj=false
 
 	while IFS= read -r line; do
 		line="${line//$'\r'/}"                     # strip \r
+
+		# Commented-out dummy-ctx-size fallback hint (checked before the
+		# generic comment-skip below).
+		if [[ "$line" =~ ^[[:space:]]*\;[[:space:]]*dummy-ctx-size[[:space:]]*=[[:space:]]*([0-9]+) ]]; then
+			dummy_ctx_size="${BASH_REMATCH[1]}"
+			continue
+		fi
+
 		[[ "$line" =~ ^[[:space:]]*\; ]] && continue  # comment
 		[[ "$line" =~ ^[[:space:]]*$ ]] && continue   # blank
 
@@ -46,10 +59,11 @@ parse_ini() {
 			# Emit previous section (if any)
 			if [[ -n "$sec" ]]; then
 				printf '{"id":"%s","ctxSize":%d,"hasMmproj":%s}\n' \
-					"$sec" "$ctx_size" "$has_mmproj"
+					"$sec" "$(( ctx_size > 0 ? ctx_size : dummy_ctx_size ))" "$has_mmproj"
 			fi
 			sec="$new_sec"
 			ctx_size=0
+			dummy_ctx_size=0
 			has_mmproj=false
 			continue
 		fi
@@ -75,7 +89,7 @@ parse_ini() {
 	# Emit last section
 	if [[ -n "$sec" ]]; then
 		printf '{"id":"%s","ctxSize":%d,"hasMmproj":%s}\n' \
-			"$sec" "$ctx_size" "$has_mmproj"
+			"$sec" "$(( ctx_size > 0 ? ctx_size : dummy_ctx_size ))" "$has_mmproj"
 	fi
 }
 

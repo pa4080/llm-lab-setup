@@ -1,6 +1,7 @@
 .env*
 !.env.example
 huggingface/
+llama-cpp-buun/buun-llama-cpp/
 .server.pid
 serve.log
 .venv*
