@@ -1,7 +1,7 @@
 services:
-  llama-cpp:
-    container_name: llama-cpp
-    image: ghcr.io/ggml-org/llama.cpp:server-cuda
+  buun-llama-cpp:
+    container_name: buun-llama-cpp
+    image: ghcr.io/ggml-org/llama.cpp:server-cuda13
     network_mode: host
     restart: unless-stopped
     volumes:
@@ -22,9 +22,9 @@ services:
       --models-preset /app/router.ini
       --models-max 1
       --no-warmup
+      --flash-attn
       --context-shift
-      --ctx-checkpoints 4
-      --swa-checkpoints 4
+      --ctx-checkpoints 2
+      --swa-checkpoints 2
       --cache-ram 10240
       --cache-reuse 4096
-

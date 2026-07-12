@@ -1,13 +1,13 @@
-# LLaMA Router Docker Configuration
+# LLaMA.Cpp Router Docker Configuration
 
-Compose `router.ini` file and run the Docker container to serve the LLaMA models.
+Compose `router.ini` file and run the Docker container to serve the LLaMA.Cpp models.
 
 ## Quick Start
 
 ```bash
+# ln -s ../.env .env
 ./serve.sh
 ```
-
 This will:
 
 1. Source `../.env` for environment variables.
@@ -26,8 +26,6 @@ This will:
 | `generate-json.sh`        | Parses a single INI file and generates a JSON config for VS Code Chat Language Models.           |
 | `merge-json.sh`           | Merges all individual JSON configs into a single `0-chatLanguageModels.json`.                    |
 
-## Independent Usage
-
 ```bash
 # Generate JSON for a single INI file
 ./generate-json.sh router/1-Qwen3.6-27B-AutoRound-Q4_K_M.ini ./confs
@@ -37,46 +35,6 @@ This will:
 
 # Generate all configs without touching Docker
 ./generate-config-json.sh
-```
-
-## Helper commands
-
-### Docker
-
-```bash
-docker compose down && docker compose up -d && docker logs -f llama-cpp
-```
-
-```bash
-docker compose down
-docker compose up -d
-docker logs -f llama-cpp
-```
-
-```bash
-docker run --rm ghcr.io/ggml-org/llama.cpp:server-cuda --help
-```
-
-### Power limit
-
-```bash
-sudo nvidia-smi -i 0 -pl 300
-```
-
-### Monitoring
-
-```bash
-watch nvidia-smi -i 0
-```
-
-```bash
-nvtop
-```
-
-### Hugging Face
-
-```bash
-hf download  deepreinforce-ai/Ornith-1.0-9B-GGUF --local-dir deepreinforce-ai/Ornith-1.0-9B-GGUF  --include "**"
 ```
 
 ## Refs

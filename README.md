@@ -16,6 +16,7 @@
 - GPU: Nvidia RTX 3090 24GB
 - CPU: AMD Ryzen 9 5900
 - RAM: 64GB DDR4
+- ProxMox VM with Ubuntu 24.04
 
 ## 📊 Benchmarks
 
@@ -31,33 +32,43 @@ Context limits measured on **RTX 3090 (24 GB)** with llama.cpp, `n-gpu-layers=99
 | `*Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3`               | ~128K          | 21.331Gi |
 | `Qwen3.6-27B-AR-Q4KM-126K-Q8-MTP2`                | ~126K          | 23.774Gi |
 
-## 📋 Agent Skill [`/add-model-to-llm-lab`](.agents/skills/add-model-to-llm-lab/SKILL.md)
+## 📋 Helper commands
 
-Full pipeline for adding new models to your LLM Home Lab
+### Docker
 
-| Step                           | What it does                                                     |
-| ------------------------------ | ---------------------------------------------------------------- |
-| **1. Research**                | Searches HF discussions, Reddit, Discord for optimal params      |
-| **2. Download**                | `hf download` to `huggingface/<org>/<repo>/`                     |
-| **3. router.ini**              | Adds model entry with correct paths, KV cache, MTP, vision, YaRN |
-| **4. chatLanguageModels.json** | Syncs model ID, token limits, vision flag, reasoning effort      |
-| **5. Verify**                  | Restart Docker and test                                          |
+```bash
+docker compose down && docker compose up -d && docker logs -f llama-cpp
+```
 
-### 🔑 Key Conventions Encoded
+```bash
+docker compose down
+docker compose up -d
+docker logs -f llama-cpp
+```
 
-- **Path mapping**: `huggingface/org/repo/file.gguf` → `/models/org/repo/file.gguf`
-- **Gemma = f16 KV cache** (q8_0 causes loops)
-- **Ornith-35B = min-p 0.0** (prevents truncation)
-- **MTP = spec-draft-n-max 2/3/4**
-- **YaRN scaling** for extending context beyond training
-- **Token limits** mapped from ctx-size to maxInputTokens/maxOutputTokens
+```bash
+docker run --rm ghcr.io/ggml-org/llama.cpp:server-cuda --help
+```
 
-### 🚀 Try It
+### Power limit
 
-You can now say things like:
+```bash
+sudo nvidia-smi -i 0 -pl 300
+```
 
-- "Add `unsloth/gemma-4-31B-it-qat-GGUF` to my lab"
-- "Research and add the latest Ornith-1.0-35B fine-tune"
-- "What's the best config for a 7B model on my 3090?"
+### Monitoring
 
-The skill will guide me through the full setup automatically!
+```bash
+watch nvidia-smi -i 0
+```
+
+```bash
+nvtop
+```
+
+### Hugging Face
+
+```bash
+hf download  deepreinforce-ai/Ornith-1.0-9B-GGUF --local-dir deepreinforce-ai/Ornith-1.0-9B-GGUF  --include "**"
+```
+
