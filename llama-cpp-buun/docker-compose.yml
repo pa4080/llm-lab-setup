@@ -35,7 +35,8 @@ services:
       --no-warmup
       --flash-attn on
       --context-shift
-      --ctx-checkpoints 4
-      --swa-checkpoints 4
+      --ctx-checkpoints 8
+      --swa-checkpoints 8
       --cache-ram 16384
       --cache-reuse 4096
+      --parallel 3

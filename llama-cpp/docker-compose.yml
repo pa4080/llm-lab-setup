@@ -21,10 +21,10 @@ services:
       --port 10005
       --models-preset /app/router.ini
       --models-max 1
+      --threads 16
       --no-warmup
       --context-shift
       --ctx-checkpoints 4
       --swa-checkpoints 4
-      --cache-ram 10240
+      --cache-ram 16384
       --cache-reuse 4096
-

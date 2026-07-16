@@ -5,8 +5,8 @@
     "apiKey": "${input:chat.lm.secret.-4b1abccd}",
     "models": [
       {
-        "id": "*Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3",
-        "name": "*Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3",
+        "id": "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP4_Coder",
+        "name": "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP4_Coder",
         "url": "http://172.16.1.110:10005/v1/chat/completions",
         "toolCalling": true,
         "vision": false,
@@ -30,8 +30,8 @@
         "maxOutputTokens": 32768
       },
       {
-        "id": "*Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3-tuned",
-        "name": "*Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3-tuned",
+        "id": "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP4_Strict",
+        "name": "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP4_Strict",
         "url": "http://172.16.1.110:10005/v1/chat/completions",
         "toolCalling": true,
         "vision": false,
@@ -55,58 +55,8 @@
         "maxOutputTokens": 32768
       },
       {
-        "id": "Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3-buun",
-        "name": "Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3-buun",
-        "url": "http://172.16.1.110:10005/v1/chat/completions",
-        "toolCalling": true,
-        "vision": false,
-        "streaming": true,
-        "apiType": "chat-completions",
-        "editTools": [
-          "apply-patch",
-          "code-rewrite",
-          "find-replace",
-          "multi-find-replace"
-        ],
-        "thinking": true,
-        "supportsReasoningEffort": [
-          "low",
-          "medium",
-          "high"
-        ],
-        "reasoningEffortFormat": "chat-completions",
-        "zeroDataRetentionEnabled": false,
-        "maxInputTokens": 98304,
-        "maxOutputTokens": 32768
-      },
-      {
-        "id": "Qwen3.6-27B-AR-Q4KM-126K-Q8-MTP2",
-        "name": "Qwen3.6-27B-AR-Q4KM-126K-Q8-MTP2",
-        "url": "http://172.16.1.110:10005/v1/chat/completions",
-        "toolCalling": true,
-        "vision": false,
-        "streaming": true,
-        "apiType": "chat-completions",
-        "editTools": [
-          "apply-patch",
-          "code-rewrite",
-          "find-replace",
-          "multi-find-replace"
-        ],
-        "thinking": true,
-        "supportsReasoningEffort": [
-          "low",
-          "medium",
-          "high"
-        ],
-        "reasoningEffortFormat": "chat-completions",
-        "zeroDataRetentionEnabled": false,
-        "maxInputTokens": 96768,
-        "maxOutputTokens": 32256
-      },
-      {
-        "id": "Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3-Vision",
-        "name": "Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3-Vision",
+        "id": "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP2_Vision",
+        "name": "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP2_Vision",
         "url": "http://172.16.1.110:10005/v1/chat/completions",
         "toolCalling": true,
         "vision": true,
@@ -130,58 +80,8 @@
         "maxOutputTokens": 32768
       },
       {
-        "id": "*Qwen3.6-35B-A3B-156K-Q8-MTP2",
-        "name": "*Qwen3.6-35B-A3B-156K-Q8-MTP2",
-        "url": "http://172.16.1.110:10005/v1/chat/completions",
-        "toolCalling": true,
-        "vision": false,
-        "streaming": true,
-        "apiType": "chat-completions",
-        "editTools": [
-          "apply-patch",
-          "code-rewrite",
-          "find-replace",
-          "multi-find-replace"
-        ],
-        "thinking": true,
-        "supportsReasoningEffort": [
-          "low",
-          "medium",
-          "high"
-        ],
-        "reasoningEffortFormat": "chat-completions",
-        "zeroDataRetentionEnabled": false,
-        "maxInputTokens": 119808,
-        "maxOutputTokens": 39936
-      },
-      {
-        "id": "*Qwen3.6-35B-A3B-156K-Q8-MTP2-Vision",
-        "name": "*Qwen3.6-35B-A3B-156K-Q8-MTP2-Vision",
-        "url": "http://172.16.1.110:10005/v1/chat/completions",
-        "toolCalling": true,
-        "vision": true,
-        "streaming": true,
-        "apiType": "chat-completions",
-        "editTools": [
-          "apply-patch",
-          "code-rewrite",
-          "find-replace",
-          "multi-find-replace"
-        ],
-        "thinking": true,
-        "supportsReasoningEffort": [
-          "low",
-          "medium",
-          "high"
-        ],
-        "reasoningEffortFormat": "chat-completions",
-        "zeroDataRetentionEnabled": false,
-        "maxInputTokens": 119808,
-        "maxOutputTokens": 39936
-      },
-      {
-        "id": "*Qwen3.6-35B-A3B-256K-Q8-Vision",
-        "name": "*Qwen3.6-35B-A3B-256K-Q8-Vision",
+        "id": "Qwen3.6_35B-A3B-256K-Q8_Coder_Vision",
+        "name": "Qwen3.6_35B-A3B-256K-Q8_Coder_Vision",
         "url": "http://172.16.1.110:10005/v1/chat/completions",
         "toolCalling": true,
         "vision": true,
@@ -706,28 +606,16 @@
       }
     ],
     "settings": {
-      "*Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3": {
+      "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP4_Coder": {
         "reasoningEffort": "high"
       },
-      "*Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3-tuned": {
+      "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP4_Strict": {
         "reasoningEffort": "high"
       },
-      "Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3-buun": {
+      "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP2_Vision": {
         "reasoningEffort": "high"
       },
-      "Qwen3.6-27B-AR-Q4KM-126K-Q8-MTP2": {
-        "reasoningEffort": "high"
-      },
-      "Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3-Vision": {
-        "reasoningEffort": "high"
-      },
-      "*Qwen3.6-35B-A3B-156K-Q8-MTP2": {
-        "reasoningEffort": "high"
-      },
-      "*Qwen3.6-35B-A3B-156K-Q8-MTP2-Vision": {
-        "reasoningEffort": "high"
-      },
-      "*Qwen3.6-35B-A3B-256K-Q8-Vision": {
+      "Qwen3.6_35B-A3B-256K-Q8_Coder_Vision": {
         "reasoningEffort": "high"
       },
       "*Ornith-1.0-35B-156K-Q8-MTP2-Vision-Compact-all": {

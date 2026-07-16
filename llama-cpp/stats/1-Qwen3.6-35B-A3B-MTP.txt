@@ -1,0 +1,42 @@
+[Qwen3.6_35B-A3B-156K-Q8_MTP4_Coder]
+		prompt eval time =   27043.28 ms / 55881 tokens (    0.48 ms per token,  2066.35 tokens per second)
+		       eval time =   60469.89 ms /  5983 tokens (   10.11 ms per token,    98.94 tokens per second)
+		      total time =   87513.17 ms / 61864 tokens
+		   graphs reused =        697
+		draft acceptance = 0.94741 ( 3693 accepted /  3898 generated), mean acceptance length =  3.17, acceptance rate per position = (0.978, 0.629, 0.367, 0.196)
+
+[Qwen3.6_35B-A3B-156K-Q8_MTP4_Strict]
+		prompt eval time =   27028.03 ms / 55956 tokens (    0.48 ms per token,  2070.29 tokens per second)
+		       eval time =  175821.13 ms / 18966 tokens (    9.27 ms per token,   107.87 tokens per second)
+		      total time =  202849.17 ms / 74922 tokens
+		   graphs reused =       2305
+		draft acceptance = 0.96186 (12937 accepted / 13450 generated), mean acceptance length =  3.65, acceptance rate per position = (0.990, 0.745, 0.543, 0.373)
+
+[Qwen3.6_35B-A3B-156K-Q8-MTP4_Coder_Vision]
+		prompt eval time =   26955.76 ms / 55905 tokens (    0.48 ms per token,  2073.95 tokens per second)
+		       eval time =   77601.19 ms /  7938 tokens (    9.78 ms per token,   102.29 tokens per second)
+		      total time =  104556.96 ms / 63843 tokens
+		   graphs reused =        857
+		draft acceptance = 0.95238 ( 5100 accepted /  5355 generated), mean acceptance length =  3.32, acceptance rate per position = (0.982, 0.687, 0.419, 0.234)
+
+[Qwen3.6_35B-A3B-156K-Q8-MTP4_Tuned_Vision]
+		prompt eval time =   26868.67 ms / 55931 tokens (    0.48 ms per token,  2081.64 tokens per second)
+		       eval time =  180774.04 ms / 19340 tokens (    9.35 ms per token,   106.98 tokens per second)
+		      total time =  207642.71 ms / 75271 tokens
+		   graphs reused =       2427
+		draft acceptance = 0.96032 (13019 accepted / 13557 generated), mean acceptance length =  3.59, acceptance rate per position = (0.984, 0.725, 0.524, 0.356)
+
+[Qwen3.6_35B-A3B-256K-Q8_Coder_Vision]
+		prompt eval time =   27334.65 ms / 56793 tokens (    0.48 ms per token,  2077.69 tokens per second)
+		       eval time =   66966.08 ms /  4927 tokens (   13.59 ms per token,    73.57 tokens per second)
+		      total time =   94300.73 ms / 61720 tokens
+		   graphs reused =       5152
+		stop processing: n_tokens = 97406, truncated = 0
+
+[Qwen3.6_35B-A3B-256K-Q8_Tuned_Vision]
+		prompt eval time =   27213.20 ms / 56789 tokens (    0.48 ms per token,  2086.82 tokens per second)
+		       eval time =  140794.57 ms / 10156 tokens (   13.86 ms per token,    72.13 tokens per second)
+		      total time =  168007.77 ms / 66945 tokens
+		   graphs reused =      10356
+		stop processing: n_tokens = 102658, truncated = 0
+s

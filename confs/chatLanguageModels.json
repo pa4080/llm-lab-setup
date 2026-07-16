@@ -5,8 +5,8 @@
     "apiKey": "${input:chat.lm.secret.-4b1abccd}",
     "models": [
       {
-        "id": "Qwen3.6-27B-AR-Q4KM-VBR-MTP3-buun",
-        "name": "Qwen3.6-27B-AR-Q4KM-VBR-MTP3-buun",
+        "id": "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP4_Coder",
+        "name": "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP4_Coder",
         "url": "http://172.16.1.110:10005/v1/chat/completions",
         "toolCalling": true,
         "vision": false,
@@ -30,8 +30,33 @@
         "maxOutputTokens": 32768
       },
       {
-        "id": "Qwen3.6-27B-AR-Q4KM-VBR-Vision-buun",
-        "name": "Qwen3.6-27B-AR-Q4KM-VBR-Vision-buun",
+        "id": "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP4_Strict",
+        "name": "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP4_Strict",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 98304,
+        "maxOutputTokens": 32768
+      },
+      {
+        "id": "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP2_Vision",
+        "name": "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP2_Vision",
         "url": "http://172.16.1.110:10005/v1/chat/completions",
         "toolCalling": true,
         "vision": true,
@@ -55,8 +80,233 @@
         "maxOutputTokens": 32768
       },
       {
-        "id": "Qwen3.6-27B-AR-Q4KM-VBR-MAXCTX-MTP3-buun",
-        "name": "Qwen3.6-27B-AR-Q4KM-VBR-MAXCTX-MTP3-buun",
+        "id": "Qwen3.6_35B-A3B-256K-Q8_Coder_Vision",
+        "name": "Qwen3.6_35B-A3B-256K-Q8_Coder_Vision",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": true,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 196608,
+        "maxOutputTokens": 65536
+      },
+      {
+        "id": "*Ornith-1.0-35B-156K-Q8-MTP2-Vision-Compact-all",
+        "name": "*Ornith-1.0-35B-156K-Q8-MTP2-Vision-Compact-all",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": true,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 196608,
+        "maxOutputTokens": 65536
+      },
+      {
+        "id": "Ornith-1.0-35B-216K-Q8-min-p",
+        "name": "Ornith-1.0-35B-216K-Q8-min-p",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 165888,
+        "maxOutputTokens": 55296
+      },
+      {
+        "id": "Ornith-1.0-35B-216K-Q8-no-mmap",
+        "name": "Ornith-1.0-35B-216K-Q8-no-mmap",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 165888,
+        "maxOutputTokens": 55296
+      },
+      {
+        "id": "Ornith-1.0-35B-216K-Q8-preserve-thinking",
+        "name": "Ornith-1.0-35B-216K-Q8-preserve-thinking",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 165888,
+        "maxOutputTokens": 55296
+      },
+      {
+        "id": "Ornith-1.0-35B-216K-Q8-min-p-no-mmap",
+        "name": "Ornith-1.0-35B-216K-Q8-min-p-no-mmap",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 165888,
+        "maxOutputTokens": 55296
+      },
+      {
+        "id": "Ornith-1.0-35B-216K-Q8-min-p-preserve-thinking",
+        "name": "Ornith-1.0-35B-216K-Q8-min-p-preserve-thinking",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 165888,
+        "maxOutputTokens": 55296
+      },
+      {
+        "id": "Ornith-1.0-35B-216K-Q8-no-mmap-preserve-thinking",
+        "name": "Ornith-1.0-35B-216K-Q8-no-mmap-preserve-thinking",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 165888,
+        "maxOutputTokens": 55296
+      },
+      {
+        "id": "Ornith-1.0-35B-216K-Q8-all",
+        "name": "Ornith-1.0-35B-216K-Q8-all",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 165888,
+        "maxOutputTokens": 55296
+      },
+      {
+        "id": "Ornith-1.0-9B-256K-Q4KM-Q8",
+        "name": "Ornith-1.0-9B-256K-Q4KM-Q8",
         "url": "http://172.16.1.110:10005/v1/chat/completions",
         "toolCalling": true,
         "vision": false,
@@ -78,16 +328,354 @@
         "zeroDataRetentionEnabled": false,
         "maxInputTokens": 196608,
         "maxOutputTokens": 65536
+      },
+      {
+        "id": "Ornith-1.0-9B-256K-Q80-Q4",
+        "name": "Ornith-1.0-9B-256K-Q80-Q4",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 786432,
+        "maxOutputTokens": 262144
+      },
+      {
+        "id": "Ornith-1.0-9B-256K-Q4KM-Q4-MTP",
+        "name": "Ornith-1.0-9B-256K-Q4KM-Q4-MTP",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 196608,
+        "maxOutputTokens": 65536
+      },
+      {
+        "id": "Ornith-1.0-9B-256K-Q4KM-Q8-MTP",
+        "name": "Ornith-1.0-9B-256K-Q4KM-Q8-MTP",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 196608,
+        "maxOutputTokens": 65536
+      },
+      {
+        "id": "Ornith-1.0-9B-256K-Q80-Q4-MTP",
+        "name": "Ornith-1.0-9B-256K-Q80-Q4-MTP",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 393216,
+        "maxOutputTokens": 131072
+      },
+      {
+        "id": "Gemma-4-26B-A4B-it-qat-128K-Q8-MTP4-Vision",
+        "name": "Gemma-4-26B-A4B-it-qat-128K-Q8-MTP4-Vision",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": true,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 98304,
+        "maxOutputTokens": 32768
+      },
+      {
+        "id": "Gemma-4-26B-A4B-it-qat-128K-Q8-Vision",
+        "name": "Gemma-4-26B-A4B-it-qat-128K-Q8-Vision",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": true,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 98304,
+        "maxOutputTokens": 32768
+      },
+      {
+        "id": "Gemma-4-26B-A4B-it-qat-256K-Q8-MTP4-Vision",
+        "name": "Gemma-4-26B-A4B-it-qat-256K-Q8-MTP4-Vision",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": true,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 196608,
+        "maxOutputTokens": 65536
+      },
+      {
+        "id": "Gemma-4-26B-A4B-it-qat-256K-Q8-Vision",
+        "name": "Gemma-4-26B-A4B-it-qat-256K-Q8-Vision",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": true,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 196608,
+        "maxOutputTokens": 65536
+      },
+      {
+        "id": "Gemma-4-31B-it-qat-128K-Q4-MTP4",
+        "name": "Gemma-4-31B-it-qat-128K-Q4-MTP4",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 98304,
+        "maxOutputTokens": 32768
+      },
+      {
+        "id": "Gemma-4-31B-it-qat-108K-Q4-MTP2-Vision",
+        "name": "Gemma-4-31B-it-qat-108K-Q4-MTP2-Vision",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": true,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 82944,
+        "maxOutputTokens": 27648
+      },
+      {
+        "id": "Gemma-4-31B-it-qat-116K-Q4-Vision",
+        "name": "Gemma-4-31B-it-qat-116K-Q4-Vision",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": true,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 89088,
+        "maxOutputTokens": 29696
       }
     ],
     "settings": {
-      "Qwen3.6-27B-AR-Q4KM-VBR-MTP3-buun": {
+      "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP4_Coder": {
         "reasoningEffort": "high"
       },
-      "Qwen3.6-27B-AR-Q4KM-VBR-Vision-buun": {
+      "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP4_Strict": {
         "reasoningEffort": "high"
       },
-      "Qwen3.6-27B-AR-Q4KM-VBR-MAXCTX-MTP3-buun": {
+      "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP2_Vision": {
+        "reasoningEffort": "high"
+      },
+      "Qwen3.6_35B-A3B-256K-Q8_Coder_Vision": {
+        "reasoningEffort": "high"
+      },
+      "*Ornith-1.0-35B-156K-Q8-MTP2-Vision-Compact-all": {
+        "reasoningEffort": "high"
+      },
+      "Ornith-1.0-35B-216K-Q8-min-p": {
+        "reasoningEffort": "high"
+      },
+      "Ornith-1.0-35B-216K-Q8-no-mmap": {
+        "reasoningEffort": "high"
+      },
+      "Ornith-1.0-35B-216K-Q8-preserve-thinking": {
+        "reasoningEffort": "high"
+      },
+      "Ornith-1.0-35B-216K-Q8-min-p-no-mmap": {
+        "reasoningEffort": "high"
+      },
+      "Ornith-1.0-35B-216K-Q8-min-p-preserve-thinking": {
+        "reasoningEffort": "high"
+      },
+      "Ornith-1.0-35B-216K-Q8-no-mmap-preserve-thinking": {
+        "reasoningEffort": "high"
+      },
+      "Ornith-1.0-35B-216K-Q8-all": {
+        "reasoningEffort": "high"
+      },
+      "Ornith-1.0-9B-256K-Q4KM-Q8": {
+        "reasoningEffort": "high"
+      },
+      "Ornith-1.0-9B-256K-Q80-Q4": {
+        "reasoningEffort": "high"
+      },
+      "Ornith-1.0-9B-256K-Q4KM-Q4-MTP": {
+        "reasoningEffort": "high"
+      },
+      "Ornith-1.0-9B-256K-Q4KM-Q8-MTP": {
+        "reasoningEffort": "high"
+      },
+      "Ornith-1.0-9B-256K-Q80-Q4-MTP": {
+        "reasoningEffort": "high"
+      },
+      "Gemma-4-26B-A4B-it-qat-128K-Q8-MTP4-Vision": {
+        "reasoningEffort": "high"
+      },
+      "Gemma-4-26B-A4B-it-qat-128K-Q8-Vision": {
+        "reasoningEffort": "high"
+      },
+      "Gemma-4-26B-A4B-it-qat-256K-Q8-MTP4-Vision": {
+        "reasoningEffort": "high"
+      },
+      "Gemma-4-26B-A4B-it-qat-256K-Q8-Vision": {
+        "reasoningEffort": "high"
+      },
+      "Gemma-4-31B-it-qat-128K-Q4-MTP4": {
+        "reasoningEffort": "high"
+      },
+      "Gemma-4-31B-it-qat-108K-Q4-MTP2-Vision": {
+        "reasoningEffort": "high"
+      },
+      "Gemma-4-31B-it-qat-116K-Q4-Vision": {
         "reasoningEffort": "high"
       }
     }

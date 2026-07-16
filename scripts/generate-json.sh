@@ -47,6 +47,11 @@ parse_ini() {
 			continue
 		fi
 
+		if [[ "$line" =~ ^[[:space:]]*\;[[:space:]]*client-ctx-size[[:space:]]*=[[:space:]]*([0-9]+) ]]; then
+			client_ctx_size="${BASH_REMATCH[1]}"
+			continue
+		fi
+
 		[[ "$line" =~ ^[[:space:]]*\; ]] && continue  # comment
 		[[ "$line" =~ ^[[:space:]]*$ ]] && continue   # blank
 
@@ -59,11 +64,12 @@ parse_ini() {
 			# Emit previous section (if any)
 			if [[ -n "$sec" ]]; then
 				printf '{"id":"%s","ctxSize":%d,"hasMmproj":%s}\n' \
-					"$sec" "$(( ctx_size > 0 ? ctx_size : dummy_ctx_size ))" "$has_mmproj"
+					"$sec" "$(( ctx_size > 0 ? (client_ctx_size > 0 ? client_ctx_size : ctx_size) : dummy_ctx_size ))" "$has_mmproj"
 			fi
 			sec="$new_sec"
 			ctx_size=0
 			dummy_ctx_size=0
+			client_ctx_size=0
 			has_mmproj=false
 			continue
 		fi
@@ -89,7 +95,7 @@ parse_ini() {
 	# Emit last section
 	if [[ -n "$sec" ]]; then
 		printf '{"id":"%s","ctxSize":%d,"hasMmproj":%s}\n' \
-			"$sec" "$(( ctx_size > 0 ? ctx_size : dummy_ctx_size ))" "$has_mmproj"
+			"$sec" "$(( ctx_size > 0 ? (client_ctx_size > 0 ? client_ctx_size : ctx_size) : dummy_ctx_size ))" "$has_mmproj"
 	fi
 }
 

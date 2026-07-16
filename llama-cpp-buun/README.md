@@ -32,9 +32,18 @@ while.
 
 For more details see the [llama-cpp README](../llama-cpp/README.md) and [Buun LLaMA.Cpp project at GitHub](https://github.com/spiritbuun/buun-llama-cpp).
 
+## Helpers
+
+```bash
+docker run --rm docker.io/library/llama-cpp-buun-buun-llama-cpp --help
+```
+
+```bash
+docker run --rm docker.io/library/llama-cpp-buun-buun-llama-cpp --help 2>&1 | grep -iE '\-\-cache-type|vbr|mmproj-gpu-swap|cache-type-k-draft'
+```
+
 ## Refs
 
 - <https://github.com/spiritbuun/buun-llama-cpp>
 - <https://github.com/spiritbuun/buun-llama-cpp/blob/master/docs/docker.md>
 - <https://github.com/spiritbuun/buun-llama-cpp/blob/master/README.md> (VBR / TCQ / mmproj-gpu-swap docs)
-

@@ -4,58 +4,8 @@
   "apiKey": "${input:chat.lm.secret.-4b1abccd}",
   "models": [
     {
-      "id": "*Qwen3.6-35B-A3B-156K-Q8-MTP2",
-      "name": "*Qwen3.6-35B-A3B-156K-Q8-MTP2",
-      "url": "http://172.16.1.110:10005/v1/chat/completions",
-      "toolCalling": true,
-      "vision": false,
-      "streaming": true,
-      "apiType": "chat-completions",
-      "editTools": [
-        "apply-patch",
-        "code-rewrite",
-        "find-replace",
-        "multi-find-replace"
-      ],
-      "thinking": true,
-      "supportsReasoningEffort": [
-        "low",
-        "medium",
-        "high"
-      ],
-      "reasoningEffortFormat": "chat-completions",
-      "zeroDataRetentionEnabled": false,
-      "maxInputTokens": 119808,
-      "maxOutputTokens": 39936
-    },
-    {
-      "id": "*Qwen3.6-35B-A3B-156K-Q8-MTP2-Vision",
-      "name": "*Qwen3.6-35B-A3B-156K-Q8-MTP2-Vision",
-      "url": "http://172.16.1.110:10005/v1/chat/completions",
-      "toolCalling": true,
-      "vision": true,
-      "streaming": true,
-      "apiType": "chat-completions",
-      "editTools": [
-        "apply-patch",
-        "code-rewrite",
-        "find-replace",
-        "multi-find-replace"
-      ],
-      "thinking": true,
-      "supportsReasoningEffort": [
-        "low",
-        "medium",
-        "high"
-      ],
-      "reasoningEffortFormat": "chat-completions",
-      "zeroDataRetentionEnabled": false,
-      "maxInputTokens": 119808,
-      "maxOutputTokens": 39936
-    },
-    {
-      "id": "*Qwen3.6-35B-A3B-256K-Q8-Vision",
-      "name": "*Qwen3.6-35B-A3B-256K-Q8-Vision",
+      "id": "Qwen3.6_35B-A3B-256K-Q8_Coder_Vision",
+      "name": "Qwen3.6_35B-A3B-256K-Q8_Coder_Vision",
       "url": "http://172.16.1.110:10005/v1/chat/completions",
       "toolCalling": true,
       "vision": true,
@@ -80,13 +30,7 @@
     }
   ],
   "settings": {
-    "*Qwen3.6-35B-A3B-156K-Q8-MTP2": {
-      "reasoningEffort": "high"
-    },
-    "*Qwen3.6-35B-A3B-156K-Q8-MTP2-Vision": {
-      "reasoningEffort": "high"
-    },
-    "*Qwen3.6-35B-A3B-256K-Q8-Vision": {
+    "Qwen3.6_35B-A3B-256K-Q8_Coder_Vision": {
       "reasoningEffort": "high"
     }
   }
