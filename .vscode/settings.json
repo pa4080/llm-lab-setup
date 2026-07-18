@@ -1,3 +1,12 @@
 {
-  "cSpell.words": ["Buun", "confs", "huggingface", "sglang"]
+  "cSpell.words": [
+    "Buun",
+    "confs",
+    "GGUF",
+    "huggingface",
+    "Ollama",
+    "Qwen",
+    "Safetensors",
+    "sglang"
+  ]
 }

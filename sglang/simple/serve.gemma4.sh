@@ -3,7 +3,7 @@
 # Model: heterodoxin/gemma-4-e4b-it-apostate (9B, BF16, 17GB safetensors)
 # GPU: RTX 3090 (24GB VRAM) | Context: 32K | Port: 1005
 
-MODEL_FILE="../../huggingface/heterodoxin/gemma-4-e4b-it-apostate"
+MODEL_FILE="../../models/heterodoxin/gemma-4-e4b-it-apostate"
 SERVED_NAME="gemma-4-e4b-it-apostate"
 
 
