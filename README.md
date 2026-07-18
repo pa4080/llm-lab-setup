@@ -22,15 +22,7 @@
 
 Context limits measured on **RTX 3090 (24 GB)** with llama.cpp, `n-gpu-layers=99`, `flash-attn=on`, `fit=on`.
 
-| Model (router.ini section)                        | Stable Context | MEM      |
-| ------------------------------------------------- | -------------- | -------- |
-| `*Qwen3.6-35B-A3B-156K-Q8-MTP2`                   | ~156K          | 21.506Gi |
-| `*Qwen3.6-35B-A3B-156K-Q8-MTP2-Vision`            | ~156K          | 22.522Gi |
-| `*Qwen3.6-35B-A3B-256K-Q8-Vision`                 | ~156K          | 22.385Gi |
-| `*Ornith-1.0-35B-156K-Q8-MTP2-Vision-Compact-all` | ~156K          | 21.335Gi |
-| ------------------------------------------------- | -------------- | -------- |
-| `*Qwen3.6-27B-AR-Q4KM-128K-Q4-MTP3`               | ~128K          | 21.331Gi |
-| `Qwen3.6-27B-AR-Q4KM-126K-Q8-MTP2`                | ~126K          | 23.774Gi |
+...
 
 ## 📋 Helper commands
 
@@ -71,7 +63,7 @@ nvtop
 Download model:
 
 ```bash
-hf download  deepreinforce-ai/Ornith-1.0-9B-GGUF --local-dir deepreinforce-ai/Ornith-1.0-9B-GGUF  --include "**"
+hf download deepreinforce-ai/Ornith-1.0-9B-GGUF --local-dir deepreinforce-ai/Ornith-1.0-9B-GGUF  --include "**"
 ```
 
 Download dataset:

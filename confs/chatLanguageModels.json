@@ -80,8 +80,8 @@
         "maxOutputTokens": 32768
       },
       {
-        "id": "Qwen3.6_35B-A3B-256K-Q8_Coder_Vision",
-        "name": "Qwen3.6_35B-A3B-256K-Q8_Coder_Vision",
+        "id": "Qwen3.6_35B-A3B-196K-Q4_MTP_Coder_Vision",
+        "name": "Qwen3.6_35B-A3B-196K-Q4_MTP_Coder_Vision",
         "url": "http://172.16.1.110:10005/v1/chat/completions",
         "toolCalling": true,
         "vision": true,
@@ -101,8 +101,58 @@
         ],
         "reasoningEffortFormat": "chat-completions",
         "zeroDataRetentionEnabled": false,
-        "maxInputTokens": 196608,
-        "maxOutputTokens": 65536
+        "maxInputTokens": 147000,
+        "maxOutputTokens": 49000
+      },
+      {
+        "id": "Qwen3.6_35B-A3B-256K-Q4_MTP_Coder_Vision",
+        "name": "Qwen3.6_35B-A3B-256K-Q4_MTP_Coder_Vision",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": true,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 192000,
+        "maxOutputTokens": 64000
+      },
+      {
+        "id": "Qwen3.6_35B-A3B-256K-Q4_Coder_Vision",
+        "name": "Qwen3.6_35B-A3B-256K-Q4_Coder_Vision",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": true,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 192000,
+        "maxOutputTokens": 64000
       },
       {
         "id": "*Ornith-1.0-35B-156K-Q8-MTP2-Vision-Compact-all",
@@ -615,7 +665,13 @@
       "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP2_Vision": {
         "reasoningEffort": "high"
       },
-      "Qwen3.6_35B-A3B-256K-Q8_Coder_Vision": {
+      "Qwen3.6_35B-A3B-196K-Q4_MTP_Coder_Vision": {
+        "reasoningEffort": "high"
+      },
+      "Qwen3.6_35B-A3B-256K-Q4_MTP_Coder_Vision": {
+        "reasoningEffort": "high"
+      },
+      "Qwen3.6_35B-A3B-256K-Q4_Coder_Vision": {
         "reasoningEffort": "high"
       },
       "*Ornith-1.0-35B-156K-Q8-MTP2-Vision-Compact-all": {

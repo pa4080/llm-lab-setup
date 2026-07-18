@@ -1,0 +1,144 @@
+<!-- keywords: PCIe passthrough ASRock X570, Ryzen 5900X passthrough, RTX 3090 passthrough, Nvidia T600 passthrough, NVS 315 passthrough, consumer hardware passthrough, multiple GPU passthrough, VFIO setup, IOMMU groups, PCIe ACS override, Linux KVM passthrough, GPU passthrough guide, X570 Phantom Gaming 4 virtualization -->
+
+Setting up a robust PCIe passthrough environment on consumer hardware often presents unique challenges. In this scenario, the hardware includes an **ASRock X570 Phantom Gaming 4** motherboard paired with a **Ryzen 5900X** (no integrated graphics) and four discrete GPUs: an **RTX 3090**, an **Nvidia T600**, and **two identical Nvidia NVS 315s**.
+
+<!--more-->
+## Table of Contents
+
+## The goal
+
+> Isolate the 3090, the T600, and *one* of the NVS 315s for VM passthrough, while forcing the Proxmox host console to display strictly on the *second* NVS 315.
+
+### The Challenges
+
+* **The BIOS Boot Sequence:** The X570 chipset hardcodes the display output sequence. With Resizable BAR enabled (strict UEFI), the BIOS aggressively latched onto the T600 (`04:00.0`), allowing the Linux host kernel to hold it hostage.
+* **The Driver Race Condition:** The open-source `nouveau` driver initialized faster than `vfio-pci`, claiming all Nvidia cards before they could be isolated.
+* **The Identical GPU Conflict:** Both NVS 315s share the exact same Vendor/Device ID (`10de:107c`). Using standard GRUB ID binding would grab both, leaving the host completely headless.
+* **The Sleeping Monitor Quirk:** Because the active NVS 315 monitor sat in the dark during the BIOS POST, it went to sleep. When `nouveau` finally loaded, the sleeping monitor didn't respond, causing the kernel to skip creating a graphical framebuffer entirely.
+
+## How to steps
+
+### Step 1. Disable Framebuffers & Bind Main GPUs
+
+First, prevent the host OS from taking over the UEFI screen from the BIOS, and bind the uniquely identifiable GPUs (RTX 3090 and T600) to VFIO.
+
+Edit the GRUB configuration:
+`nano /etc/default/grub`
+
+Append the isolation flags to your command line:
+
+```text
+GRUB_CMDLINE_LINUX_DEFAULT="quiet nvme_core.default_ps_max_latency_us=0 processor.max_cstate=5 amd_iommu=on iommu=pt initcall_blacklist=sysfb_init video=simplefb:off video=vesafb:off video=efifb:off vfio-pci.ids=10de:1fb1,10de:10fa,10de:2204,10de:1aef"
+```
+
+### Step 2. Fix the Driver Race Condition
+
+Force the `vfio-pci` drivers to load into the kernel immediately, and instruct `nouveau` to wait its turn.
+
+Add VFIO modules to the early load list:
+`nano /etc/modules`
+
+```text
+vfio
+vfio_iommu_type1
+vfio_pci
+```
+
+Create a soft dependency rule:
+`nano /etc/modprobe.d/vfio.conf`
+
+```text
+options vfio-pci ids=10de:1fb1,10de:10fa,10de:2204,10de:1aef
+softdep nouveau pre: vfio-pci
+```
+
+### Step 3. Isolate Identical GPUs by PCI Address
+
+To isolate the first NVS 315 (`05:00.0`) while leaving the second one (`06:00.0`) for the host, bypass Vendor IDs and inject an override script into the initial RAM disk.
+
+Create the script:
+`nano /etc/initramfs-tools/scripts/init-top/bind_vfio.sh`
+
+Add the following logic:
+
+```bash
+#!/bin/sh
+PREREQS=""
+prereqs() { echo "$PREREQS"; }
+case "$1" in
+    prereqs) prereqs; exit 0 ;;
+esac
+
+# Isolate the Video and Audio controllers of the first NVS 315
+for dev in 0000:05:00.0 0000:05:00.1; do
+    echo "vfio-pci" > /sys/bus/pci/devices/$dev/driver_override
+done
+```
+
+Make the script executable:
+
+```bash
+chmod +x /etc/initramfs-tools/scripts/init-top/bind_vfio.sh
+```
+
+### Step 4. Force Monitor Wake-up
+
+Since the second NVS 315 is now the *only* card `nouveau` sees, Linux promotes it to `card0`. Force a signal down its ports to wake up sleeping monitors.
+
+Check the active port names:
+
+```shell
+ls -1 /sys/class/drm/ | grep card0
+```
+
+```bash
+# Example output: `card0-DP-1`, `card0-DP-2`)
+```
+
+Return to the GRUB configuration:
+`nano /etc/default/grub`
+
+Append the forced output flags (`video=DP-1:e video=DP-2:e`):
+
+```text
+GRUB_CMDLINE_LINUX_DEFAULT="quiet nvme_core.default_ps_max_latency_us=0 processor.max_cstate=5 amd_iommu=on iommu=pt initcall_blacklist=sysfb_init video=simplefb:off video=vesafb:off video=efifb:off vfio-pci.ids=10de:1fb1,10de:10fa,10de:2204,10de:1aef video=DP-1:e video=DP-2:e"
+```
+
+### Step 5. Apply the Changes
+
+Compile the GRUB bootloader and rebuild the `initramfs` to bake the script and driver load orders into the boot sequence.
+
+```bash
+update-grub
+update-initramfs -u -k all
+reboot
+```
+
+✅ **Result:** The motherboard BIOS initializes the T600. Once the bootloader hands off to Proxmox, the T600 screen freezes as VFIO isolates it alongside the 3090 and the first NVS 315. The host console seamlessly transfers to the second NVS 315, waking up the monitor.
+
+## Explanations
+
+### Framebuffer Killers & Hostage Negotiation
+
+`initcall_blacklist=sysfb_init video=efifb:off`
+Without these, the Linux kernel inherits the UEFI screen generated by the motherboard BIOS on the primary GPU (the T600). The host kernel refuses to pass a GPU to a VM if it is actively using it for the terminal. These parameters destroy the host display on that specific card at the earliest boot stage, forcing the GPU to become a "free agent".
+
+### Softdep Directives
+
+`softdep nouveau pre: vfio-pci`
+Because all 4 GPUs are Nvidia, `nouveau` wakes up extremely fast and claims everything. This specific software dependency instructs the kernel: *"Before you are allowed to load `nouveau`, you must load `vfio-pci` first."* VFIO takes the hardware specified in the GRUB config, and `nouveau` inherits whatever is left over.
+
+### Force Output
+
+`video=DP-1:e`
+The `:e` syntax stands for **enable**. If a display output (like a DP or DVI port) encounters a sleeping monitor during initialization, the Linux DRM layer assumes the port is empty and abandons framebuffer creation (`Cannot find any crtc or sizes`). This flag forcefully pushes a signal to the port regardless of the monitor's sleep state.
+
+## Hints
+
+If you find yourself troubleshooting headless GPU behaviors or driver assignments, here are the most essential diagnostic commands:
+
+* **Verify active kernel drivers for all VGA devices:** `lspci -nnk | grep -i vga -A 3`
+* **Check the exact chronologial driver loading order:** `dmesg | grep -iE "fbcon|framebuffer|fb[0-9]|nouveau|vfio"`
+* **Check if the kernel created graphical canvases (framebuffers):** `cat /proc/fb`
+* **Identify physical hardware ports assigned by the DRM layer:** `ls -1 /sys/class/drm/`
+* **List GPUs by their exact physical motherboard addresses:** `lspci -Dnn | grep -i vga`

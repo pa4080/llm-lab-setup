@@ -1,0 +1,364 @@
+<!-- keywords: Qwen 3.6 27B, Vision model, context, RTX 3090, single GPU optimization, memory efficient AI, large language model inference, quantized Qwen, VRAM management, 24GB VRAM, model parallelism, 4-bit quantization, 8-bit quantization, transformer optimization, CUDA memory, Hugging Face, vLLM, ExLlamaV2, flash attention, PagedAttention, low resource AI, LLM deployment, GPU memory saving, context window, long context LLM, Qwen optimization, AI inference on RTX 3090 -->
+
+Running large vision-language models (VLMs) locally within production IDE setups frequently exposes edge-case architectural bottlenecks. This post summarizes how I got started with a single 24GB Nvidia RTX 3090, while isolating system workloads to a secondary GPU.
+
+<!--more-->
+
+## Hardware Setup
+
+* **GPU 0:** Nvidia **RTX 3090 24GB** — dedicated compute for LLMs
+* **GPU 1:** Nvidia T600 — display output for Xorg / GNOME Shell
+* **CPU:** AMD Ryzen 9 5900
+* **RAM:** 64GB DDR4
+
+To guarantee absolute memory predictability for the primary execution card, I [mapped all desktop tasks](/blog/reserving-an-rtx-3090-exclusively-for-llms) (Xorg, GNOME Shell, browser rendering) entirely to a low-tier secondary GPU (NVIDIA T600), reserving **GPU 0 (RTX 3090)** as an isolated, unthrottled compute node. Multi-GPU model splitting was explicitly avoided to prevent a severe memory bandwidth bottleneck down to the T600's slower 128-bit bus interface.
+
+## Engine Backends for RTX 3090 24GB VRAM
+
+| Feature               | LM Studio               | Ollama                 | **llama.cpp**       | **buun llama.cpp**                             | SGLang                                | vLLM                                   |
+| :-------------------- | :---------------------- | :--------------------- | :------------------ | :--------------------------------------------- | :------------------------------------ | :------------------------------------- |
+| **Primary Interface** | Desktop GUI             | CLI + Daemon           | CLI + Library       | CLI + OpenAI compatible Server                 | Python API + Server                   | Python API + OpenAI compatible API     |
+| **Best For**          | Beginners, Desktop Chat | Developers, Automation | Experts, Embedded   | Researchers, Long Context, KV Innovation       | Production, Agents, Structured Output | Batch Processing, High-Throughput APIs |
+| **Concurrency**       | Low (Single User)       | Low/Medium             | Low                 | Low                                            | Very High (Continuous Batching)       | High (PagedAttention)                  |
+| **Model Format**      | GGUF                    | GGUF                   | GGUF                | GGUF                                           | Safetensors (Primary), GGUF (Limited) | Safetensors (HuggingFace native)       |
+| **OS Support**        | Win, Mac, Linux         | Win, Mac, Linux        | Everywhere (C++)    | Everywhere (C++, CUDA/ROCm for VBR)            | Linux (CUDA, ROCm)                    | Linux (CUDA, ROCm, TPU, Trainium)      |
+| **Key Advantage**     | Ease of Use             | Ecosystem/API          | Portability/Control | VBR KV Cache, TCQ Codecs, Dynamic Quantization | Throughput & Structured Generation    | Memory Efficiency & Hardware Breadth   |
+
+While every backend in this table has merit, this post focuses on **llama.cpp** because its native GGUF support, `mmproj` multi-modal integration, and fine-grained control over quantization make it the only viable choice for VS Code Copilot vision workflows on consumer hardware.
+
+## Coding models sweet for a single RTX 3090
+
+As of mid-2026, the open-weight landscape has shifted dramatically, with models in the 27B to 35B parameter range achieving coding benchmarks that rival proprietary enterprise APIs.
+
+For an RTX 3090 with 24GB of VRAM, you cannot load these massive models in uncompressed 16-bit precision. The `llama.cpp` ecosystem uses **GGUF** format, which compresses the models to around 15–18 GB (at 4-bit), leaving plenty of VRAM for the KV cache to handle long code files.
+
+Here are the absolute best coding models for a single RTX 3090:
+
+### 1. Qwen3.6-27B (Best Overall Dense Coder)
+
+Alibaba’s Qwen3.6 series has taken the crown for repo-level coding and agentic workflows.
+
+* **Why it excels:** It currently matches Claude 4.5 Opus on the Terminal-Bench 2.0 benchmark and has exceptionally reliable tool-calling abilities. It rarely hallucinates syntax errors or forgets its place in long scripts.
+* **Fit for your setup:** At 27B parameters, a 4-bit GGUF version takes roughly **15.5 GB of VRAM**. Operating at a reduced 300W power draw pairs perfectly with this highly optimized dense model, ensuring fantastic, consistent generation speeds (likely hovering around 30–35 tokens/second) without stressing the GPU's memory bandwidth or spiking core temperatures.
+
+### 2. Gemma 4 31B (Best for Deep Algorithmic Logic)
+
+Google recently dropped the Gemma 4 family, and the 31B flagship is a monster for heavy mathematical and reasoning tasks.
+
+* **Why it excels:** It dominates open-weight leaderboards for complex, reasoning-heavy competitive programming (like LiveCodeBench). It features native function calling and excellent multi-turn logic out of the box.
+* **Fit for your setup:** A 4-bit GGUF version will consume about **18 GB of VRAM**. It is a tighter squeeze for your context window compared to Qwen, but it is unmatched if you are asking the AI to debug complex architectural logic rather than just writing boilerplate HTML.
+
+### 3. Qwen3.6-35B-A3B (Best MoE for Context Efficiency)
+
+This is a Mixture-of-Experts (MoE) model built specifically for local deployment and rapid task switching.
+
+* **Why it excels:** While it holds 35 billion parameters in total, it only activates **3 billion parameters per token** during generation.
+* **Fit for your setup:** MoE models require all their weights to be loaded into VRAM, meaning a 4-bit version will still take about 19 GB. However, because only a fraction of the compute cores are engaged per token, it is extraordinarily fast and highly power-efficient, making it perfect for rapid trial-and-error iterations.
+
+## Model Size Quick Reference for 24GB VRAM
+
+| Model Size  | Unquantized (FP16)   | 4-bit Quantized | Verdict                      |
+| ----------- | -------------------- | --------------- | ---------------------------- |
+| **7B–9B**   | ~14–18 GB            | ~5–6 GB         | Fits easily, extremely fast  |
+| **14B–32B** | 28–64 GB (too large) | ~16–20 GB       | **Sweet spot for 24GB VRAM** |
+| **70B+**    | 140+ GB              | ~35–40 GB       | Requires 2+ GPUs             |
+
+### GGUF vs AWQ vs GPTQ: Which Format?
+
+> **Note on Architecture:** The RTX 3090 (Ampere) does *not* natively support the new FP8 hardware instructions found in Ada (RTX 4090) or Hopper (H100) architectures. Therefore, you are better off relying on INT4/INT8 quantization methods like AWQ and GPTQ rather than the experimental FP8 formats.
+
+When we talk about "compression" in LLMs, we are usually referring to **Post-Training Quantization (PTQ)**. This is the process of taking the model's weights—which are normally 16-bit decimal numbers (FP16)—and rounding or packing them into smaller 4-bit or 8-bit integers (INT4/INT8) to save memory and increase generation speed.
+
+| Feature                     | GPTQ                            | AWQ                                       | GGUF                                        |
+| --------------------------- | ------------------------------- | ----------------------------------------- | ------------------------------------------- |
+| **Primary Target Hardware** | Dedicated GPUs (Nvidia/AMD)     | Dedicated GPUs (Nvidia/AMD)               | CPUs & Apple M-Series (with GPU offloading) |
+| **Quantization Method**     | Mathematical error compensation | Protects weights based on activation data | Mixed bit-rate (k-quants)                   |
+| **Accuracy Degradation**    | Low                             | Very Low (often beats GPTQ)               | Variable (depends on the k-quant chosen)    |
+| **llama.cpp Support**       | Limited                         | Limited                                   | **Native**                                  |
+
+**The Verdict for llama.cpp:** Use **GGUF** with **Q4_K_M** (4-bit mixed quantization). It is the native format for the `llama.cpp` ecosystem and provides the best balance of speed, accuracy, and memory efficiency on your RTX 3090. You will be able to easily fit any 14B–32B model into your 24GB of VRAM and enjoy incredibly fast token generation.
+
+## Prerequisites & Initial Environment Setup
+
+Before deploying the high-context engine, ensure your host system satisfies the necessary driver and container layer preconditions.
+
+### 1. NVIDIA Host Driver & CUDA Layer
+
+Your host requires the modern NVIDIA proprietary driver stack supporting unified memory and advanced attention kernels.
+
+```bash
+# Verify driver version (580.159.03+) and CUDA runtime compatibility (13.0+)
+nvidia-smi
+```
+
+### 2. Docker & NVIDIA Container Toolkit Installation
+
+To pass hardware runtime components directly into isolated containers, install the container toolkit:
+
+```bash
+# Configure the production repository
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+  && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+    sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+    sudo tee /usr/sbin/nvidia-container-toolkit.list
+
+# Install packages
+sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
+
+# Restart the Docker daemon to apply runtime flags
+sudo systemctl restart docker
+```
+
+## The Blueprint
+
+### Final Docker Run Command
+
+```bash
+docker run -d \
+  --name llama-qwen27b \
+  --gpus '"device=0"' \
+  --network host \
+  -v /mnt/data/lmstudio/models/lmstudio-community/Qwen3.6-27B-GGUF:/models \
+  ghcr.io/ggml-org/llama.cpp:server-cuda \
+  -m /models/Qwen3.6-27B-Q4_K_M.gguf \
+  --mmproj /models/mmproj-Qwen3.6-27B-BF16.gguf \
+  --host 0.0.0.0 \
+  --port 10005 \
+  -c 131072 \
+  --n-gpu-layers 99 \
+  --flash-attn on \
+  -ctk q8_0 \
+  -ctv q8_0 \
+  --api-key sk-local-qwen-key
+```
+
+Helper commands:
+
+```shell
+docker rm -f llama-qwen27b # Stop and remove the container
+```
+
+```shell
+docker logs -f llama-qwen27b # Follow the logs for debugging
+```
+
+```shell
+nvidia-smi -i 0 # Monitor GPU 0 memory usage and utilization
+```
+
+### Command Flags
+
+Here is the breakdown of the flags used in the command above:
+
+* **`-m /models/...gguf`**: Defines the path to the primary language model weights (the "brain").
+* **`--mmproj /models/...gguf`**: Defines the path to the multi-modal projector weights (the "eyes") required for vision capabilities.
+* **`--host 0.0.0.0`**: Binds the HTTP server to all available network interfaces, making it accessible over the LAN.
+* **`--port 10005`**: Defines the listening port for the API endpoint.
+* **`-c 131072`**: Sets the maximum context window size (KV cache) to 128K tokens.
+* **`--n-gpu-layers 99`**: Offloads the maximum possible number of model layers (99 is an arbitrary high number ensuring 100% offload) directly to the GPU VRAM.
+* **`--flash-attn on`**: Enables Flash Attention, significantly accelerating prompt processing (pre-fill speeds) and reducing VRAM usage for the context window.
+* **`-ctk q8_0`**: Quantizes the Cache Tokens Key to 8-bit precision, halving memory usage.
+* **`-ctv q8_0`**: Quantizes the Cache Tokens Value to 8-bit precision, completing the 8-bit KV cache optimization.
+* **`--api-key sk-local-qwen-key`**: Secures the endpoint by enforcing a Bearer token authorization header.
+
+## VS Code Integration
+
+To allow native handling of Qwen's internal `<think>` reasoning blocks and align the exact token boundaries, implement this configuration:
+
+```json
+{
+  "name": "llama.cpp Local",
+  "vendor": "customendpoint",
+  "apiKey": "${input:chat.lm.secret.221904e6}",
+  "models": [
+    {
+      "id": "qwen/qwen3.6-27b",
+      "name": "qwen/qwen3.6-27b (Local Vision)",
+      "url": "http://127.0.0.1:10005/v1/chat/completions",
+      "toolCalling": true,
+      "vision": true,
+      "streaming": true,
+      "apiType": "chat-completions",
+      "editTools": [
+        "apply-patch",
+        "code-rewrite",
+        "find-replace",
+        "multi-find-replace"
+      ],
+      "thinking": true,
+      "supportsReasoningEffort": ["low", "medium", "high"],
+      "reasoningEffortFormat": "chat-completions",
+      "zeroDataRetentionEnabled": false,
+      "maxInputTokens": 98304,
+      "maxOutputTokens": 32768
+    }
+  ]
+}
+```
+
+## Production Implementations: `docker-compose.yml`
+
+Depending on the deployment architecture, select one of the following layout strategies.
+
+### Option A: Isolated Bridge Setup with Port Binding (Recommended)
+
+The cleaner standard approach. Containerizes network namespaces while explicitly presenting port `10005` to external loopbacks and the local area network (LAN).
+
+```yaml
+services:
+  llama-qwen27b:
+    container_name: llama-qwen27b
+    image: ghcr.io/ggml-org/llama.cpp:server-cuda
+    ports:
+      - "10005:10005"
+    restart: unless-stopped
+    volumes:
+      - /mnt/data/lmstudio/models/lmstudio-community/Qwen3.6-27B-GGUF:/models
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['0']
+              capabilities: [gpu]
+    command: >
+      -m /models/Qwen3.6-27B-Q4_K_M.gguf
+      --mmproj /models/mmproj-Qwen3.6-27B-BF16.gguf
+      --host 0.0.0.0
+      --port 10005
+      -c 172000
+      --n-gpu-layers 99
+      --flash-attn on
+      -ctk q8_0
+      -ctv q8_0
+      --api-key sk-local-qwen-key
+```
+
+### Option B: Host Network Deployment (Direct-to-Host Stack)
+
+Ideal when network virtualization overhead must be bypassed entirely. Port mapping (`ports:`) is omitted as the container directly binds onto the host network stack.
+
+```yaml
+services:
+  llama-qwen27b:
+    container_name: llama-qwen27b
+    image: ghcr.io/ggml-org/llama.cpp:server-cuda
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      - /mnt/data/lmstudio/models/lmstudio-community/Qwen3.6-27B-GGUF:/models
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['0']
+              capabilities: [gpu]
+    command: >
+      -m /models/Qwen3.6-27B-Q4_K_M.gguf
+      --mmproj /models/mmproj-Qwen3.6-27B-BF16.gguf
+      --host 0.0.0.0
+      --port 10005
+      -c 172000
+      --n-gpu-layers 99
+      --flash-attn on
+      -ctk q8_0
+      -ctv q8_0
+      --api-key ${LLAMA_API_KEY}
+```
+
+Alternatively you can pass the API key var to the internal environment, thus `llama.cpp` will naively handle it.
+
+```yaml
+    ...
+    environment:
+      - LLAMA_API_KEY=${LLAMA_API_KEY}
+```
+
+Note in this example the API key is injected via an environment variable (`${LLAMA_API_KEY}`), which should be defined in a `.env` file (in the same directory as your `docker-compose.yml`) or your host environment for security best practices.
+
+```shell
+# .env
+LLAMA_API_KEY=sk-local-qwen-key
+```
+
+Helper commands:
+
+```shell
+docker compose up -d
+```
+
+```shell
+docker compose down
+```
+
+## Performance Tuning
+
+When a conversation swells toward 150K+ tokens, you encounter the core physical bottleneck of Large Language Models: **Attention Complexity and Memory Bandwidth**.
+
+Even though we optimized the setup to prevent Out-Of-Memory (OOM) crashes, generation slows down because the GPU must scan the entire 172K token history to generate every single new word.
+
+Since we're currently running a container powered by **`llama.cpp`** (to preserve VS Code vision features), here are the specific adjustments available to combat this slowdown.
+
+### Optimizing `llama.cpp` for Large Contexts
+
+To increase processing speeds for large contexts in `llama.cpp`, we can fine-tune how it handles chunking and scheduling during the **prefill phase** (reading your massive code context) and the **generation phase** (typing out the answer).
+
+Add these parameters to your `command:` array in your `docker-compose.yml`:
+
+```yaml
+    command: >
+      ...
+      -b 4096
+      -ub 1024
+      --context-shift
+```
+
+What these flags do:
+
+* **`-b 4096` (Batch Size):** This increases the number of tokens the engine can process simultaneously during the initial codebase read. Bumping this from the default (512) to `4096` dramatically decreases your **Time-to-First-Token (TTFT)**.
+* **`-ub 1024` (Physical Micro-Batch Size):** This splits the larger batch into optimal sizes for the CUDA Flash Attention kernels, ensuring the GPU's streaming multiprocessors stay fully saturated without stalling.
+* **`--context-shift` (Context Shifting):** When your conversation finally breaks past your 172K hard ceiling, the engine won't drop into a massive re-calculation cycle. Instead, it will cleanly slide old tokens out of the cache like a conveyor belt, preserving generation speed.
+
+Instead of hardcoding the layers, you might want to consider replacing `--n-gpu-layers 99` with the newer `--fit on` flag. This command automatically splits the model in the "best" way between CPU and GPU taking into account context size. It acts as a safety net, dynamically shifting a layer or two to system RAM only if your 162K context actually fills up entirely. [ref: Reddit](https://www.reddit.com/r/LocalLLM/comments/1sp8ad1/llamacpp_finding_the_max_vk_cachecontext_size_for/)
+
+### What SGLang Does Differently
+
+If you ever swap to a text-only model and run **SGLang** instead, you'll notice significantly better long-context performance natively due to an architectural feature called **RadixAttention**.
+
+In `llama.cpp`, the KV cache is treated as a linear line. When you send a new prompt, it has to read through the historical context linearly.
+
+SGLang manages the cache like a **Tree Data Structure (Radix Tree)**:
+
+* **Prefix Caching:** If you are working on the same codebase across multiple chat turns, SGLang doesn't re-read or process the files. It recognizes the exact text prefix, keeps it pinned in your VRAM, and instantly hooks new prompts onto it with zero prefill delay.
+* **PagedAttention:** It fragments the memory space into tiny page blocks (similar to how modern operating systems manage RAM), eliminating memory fragmentation and keeping retrieval highly optimized even at 150K+ tokens.
+
+### Multi-Token Prediction (MTP)
+
+MTP stands for **Multi-Token Prediction**, and it represents a massive shift in how the AI actually generates text.
+
+The model [Jackrong/Qwopus3.6-27B-Coder-MTP-GGUF](https://huggingface.co/Jackrong/Qwopus3.6-27B-Coder-MTP-GGUF) has the MTP architecture built into its weights to run incredibly fast. Just because the model has MTP built into it does not mean your server is actively using it — in `llama.cpp`, you have to explicitly turn MTP on.
+
+You can activate this speed boost by adding two specific flags to the `command` section of your Docker Compose file:
+
+```yaml
+    command: >
+      ...
+      --spec-type draft-mtp
+      --spec-draft-n-max 2
+```
+
+* **`--spec-type draft-mtp`**: Activates the Multi-Token Prediction engine. Instead of calculating and outputting a single token at a time sequentially, this instructs the server to utilize the model's built-in MTP heads. The model will look ahead and propose multiple future tokens simultaneously, verifying them in parallel. If the predictions are correct, the engine accepts the batch of tokens all at once, significantly increasing throughput.
+* **`--spec-draft-n-max`**: Defines the exact number of future tokens the AI should attempt to draft per step. While it might be tempting to set a high number, performance is highly dependent on the specific hardware and workload. For coding tasks on an RTX 3090, setting this to `2` or `3` is the recommended starting point. If the model drafts too many tokens and they are ultimately rejected during verification, it results in wasted compute.
+
+The `--spec-draft-n-max 2` flag tells the model to try and guess two words ahead. If you find your system handles it well, you can increase that number to 3 or even 6 to see if it yields faster results.
+
+### Why Not SGLang?
+
+SGLang is a fantastic framework for text-only LLM serving, with architectural features like RadixAttention (prefix caching + PagedAttention) that handle long contexts more efficiently than llama.cpp's linear KV cache. However, for this setup, llama.cpp is the right choice because it provides native support for the `mmproj` multi-modal projector — a strict requirement for VS Code Copilot vision integration. If you ever split your text and vision workflows, SGLang would be worth considering for the text-only workload.
+
+## References & Engine Documentation
+
+* **Inference Backend:** [ggml-org/llama.cpp HTTP Server CLI Specification](https://github.com/ggml-org/llama.cpp/tree/master/examples/server)
+* **Model Architecture:** [Qwen/Qwen3.6-27B Multimodal Technical Specifications](https://huggingface.co/Qwen/Qwen3.6-27B)
+* **Hardware Interfacing:** NVIDIA Container Toolkit [Device Injection Reference Guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/index.html)
