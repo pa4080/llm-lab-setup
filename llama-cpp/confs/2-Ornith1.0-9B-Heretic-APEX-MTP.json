@@ -1,14 +1,14 @@
 {
-  "name": "LLaMA.cpp Local 2-Ornith-1.0-9B",
+  "name": "LLaMA.cpp Local 2-Ornith1.0-9B-Heretic-APEX-MTP",
   "vendor": "customendpoint",
   "apiKey": "${input:chat.lm.secret.-4b1abccd}",
   "models": [
     {
-      "id": "Ornith-1.0-9B-256K-Q4KM-Q8",
-      "name": "Ornith-1.0-9B-256K-Q4KM-Q8",
+      "id": "Ornith1.0-9B-HAIC-256K-q8_MTP_Vision",
+      "name": "Ornith1.0-9B-HAIC-256K-q8_MTP_Vision",
       "url": "http://172.16.1.110:10005/v1/chat/completions",
       "toolCalling": true,
-      "vision": false,
+      "vision": true,
       "streaming": true,
       "apiType": "chat-completions",
       "editTools": [
@@ -25,15 +25,15 @@
       ],
       "reasoningEffortFormat": "chat-completions",
       "zeroDataRetentionEnabled": false,
-      "maxInputTokens": 196608,
-      "maxOutputTokens": 65536
+      "maxInputTokens": 192000,
+      "maxOutputTokens": 64000
     },
     {
-      "id": "Ornith-1.0-9B-256K-Q80-Q4",
-      "name": "Ornith-1.0-9B-256K-Q80-Q4",
+      "id": "Ornith1.0-9B-HAIC-512K-q8_MTP_Vision",
+      "name": "Ornith1.0-9B-HAIC-512K-q8_MTP_Vision",
       "url": "http://172.16.1.110:10005/v1/chat/completions",
       "toolCalling": true,
-      "vision": false,
+      "vision": true,
       "streaming": true,
       "apiType": "chat-completions",
       "editTools": [
@@ -50,15 +50,15 @@
       ],
       "reasoningEffortFormat": "chat-completions",
       "zeroDataRetentionEnabled": false,
-      "maxInputTokens": 786432,
-      "maxOutputTokens": 262144
+      "maxInputTokens": 384000,
+      "maxOutputTokens": 128000
     }
   ],
   "settings": {
-    "Ornith-1.0-9B-256K-Q4KM-Q8": {
+    "Ornith1.0-9B-HAIC-256K-q8_MTP_Vision": {
       "reasoningEffort": "high"
     },
-    "Ornith-1.0-9B-256K-Q80-Q4": {
+    "Ornith1.0-9B-HAIC-512K-q8_MTP_Vision": {
       "reasoningEffort": "high"
     }
   }

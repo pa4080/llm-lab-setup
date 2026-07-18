@@ -8,6 +8,7 @@ Compose `router.ini` file and run the Docker container to serve the LLaMA.Cpp mo
 # ln -s ../.env .env
 ./serve.sh
 ```
+
 This will:
 
 1. Source `../.env` for environment variables.

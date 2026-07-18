@@ -1,11 +1,11 @@
 {
-  "name": "LLaMA.cpp Local 1-Qwen3.6-35B-A3B-MTP",
+  "name": "LLaMA.cpp Local 2-Ornith1.0-35B-Heretic-APEX-MTP",
   "vendor": "customendpoint",
   "apiKey": "${input:chat.lm.secret.-4b1abccd}",
   "models": [
     {
-      "id": "Qwen3.6_35B-A3B-196K-Q4_MTP_Coder_Vision",
-      "name": "Qwen3.6_35B-A3B-196K-Q4_MTP_Coder_Vision",
+      "id": "Ornith1.0_35B-HAIC-192K-q8_MTP_Vision",
+      "name": "Ornith1.0_35B-HAIC-192K-q8_MTP_Vision",
       "url": "http://172.16.1.110:10005/v1/chat/completions",
       "toolCalling": true,
       "vision": true,
@@ -29,8 +29,8 @@
       "maxOutputTokens": 49000
     },
     {
-      "id": "Qwen3.6_35B-A3B-256K-Q4_MTP_Coder_Vision",
-      "name": "Qwen3.6_35B-A3B-256K-Q4_MTP_Coder_Vision",
+      "id": "Ornith1.0_35B-HAIC-256K-q8_MTP_Vision",
+      "name": "Ornith1.0_35B-HAIC-256K-q8_MTP_Vision",
       "url": "http://172.16.1.110:10005/v1/chat/completions",
       "toolCalling": true,
       "vision": true,
@@ -54,8 +54,8 @@
       "maxOutputTokens": 64000
     },
     {
-      "id": "Qwen3.6_35B-A3B-256K-Q4_Coder_Vision",
-      "name": "Qwen3.6_35B-A3B-256K-Q4_Coder_Vision",
+      "id": "Ornith1.0_35B-HAIC-256K-q8_Vision",
+      "name": "Ornith1.0_35B-HAIC-256K-q8_Vision",
       "url": "http://172.16.1.110:10005/v1/chat/completions",
       "toolCalling": true,
       "vision": true,
@@ -80,13 +80,13 @@
     }
   ],
   "settings": {
-    "Qwen3.6_35B-A3B-196K-Q4_MTP_Coder_Vision": {
+    "Ornith1.0_35B-HAIC-192K-q8_MTP_Vision": {
       "reasoningEffort": "high"
     },
-    "Qwen3.6_35B-A3B-256K-Q4_MTP_Coder_Vision": {
+    "Ornith1.0_35B-HAIC-256K-q8_MTP_Vision": {
       "reasoningEffort": "high"
     },
-    "Qwen3.6_35B-A3B-256K-Q4_Coder_Vision": {
+    "Ornith1.0_35B-HAIC-256K-q8_Vision": {
       "reasoningEffort": "high"
     }
   }

@@ -11,17 +11,21 @@ services:
       resources:
         reservations:
           devices:
+            # Pass both GPUs by index. Comma-list in a single entry is the
+            # idiomatic form; splitting into two entries occasionally drops
+            # GPU 0 inside the CUDA runtime when the runtime falls back to
+            # NVIDIA_VISIBLE_DEVICES=all but enumerates only what's currently
+            # active. Keep both GPUs reserved even though the model only
+            # uses a slice — the 3090 stays visible for tensor-split.
             - driver: nvidia
-              device_ids: ['0']
-              capabilities: [gpu]
+              device_ids: ['0', '1']
+              capabilities: [gpu, compute, utility]
     environment:
       - LLAMA_API_KEY=${LLAMA_API_KEY}
       # Force container to only see GPU 0 (RTX 3090). Even with Xorg/Mutter/KMS
       # isolation on the host, this prevents the container from accidentally using
       # the T600 (GPU 1) for compute if something leaks through.
-      - CUDA_VISIBLE_DEVICES=0
-      # - GGML_CUDA_GRAPH_OPT=1
-
+      # - CUDA_VISIBLE_DEVICES=0
       # --ctx-checkpoints 4
       # --swa-checkpoints 4
     command: >

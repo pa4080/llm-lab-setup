@@ -1,61 +1,11 @@
 {
-  "name": "LLaMA.cpp Local 1-Qwen3.6-27B-AutoRound-Q4_K_M",
+  "name": "LLaMA.cpp Local 1-Qwen3.6-35B-A3B",
   "vendor": "customendpoint",
   "apiKey": "${input:chat.lm.secret.-4b1abccd}",
   "models": [
     {
-      "id": "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP4_Coder",
-      "name": "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP4_Coder",
-      "url": "http://172.16.1.110:10005/v1/chat/completions",
-      "toolCalling": true,
-      "vision": false,
-      "streaming": true,
-      "apiType": "chat-completions",
-      "editTools": [
-        "apply-patch",
-        "code-rewrite",
-        "find-replace",
-        "multi-find-replace"
-      ],
-      "thinking": true,
-      "supportsReasoningEffort": [
-        "low",
-        "medium",
-        "high"
-      ],
-      "reasoningEffortFormat": "chat-completions",
-      "zeroDataRetentionEnabled": false,
-      "maxInputTokens": 98304,
-      "maxOutputTokens": 32768
-    },
-    {
-      "id": "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP4_Strict",
-      "name": "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP4_Strict",
-      "url": "http://172.16.1.110:10005/v1/chat/completions",
-      "toolCalling": true,
-      "vision": false,
-      "streaming": true,
-      "apiType": "chat-completions",
-      "editTools": [
-        "apply-patch",
-        "code-rewrite",
-        "find-replace",
-        "multi-find-replace"
-      ],
-      "thinking": true,
-      "supportsReasoningEffort": [
-        "low",
-        "medium",
-        "high"
-      ],
-      "reasoningEffortFormat": "chat-completions",
-      "zeroDataRetentionEnabled": false,
-      "maxInputTokens": 98304,
-      "maxOutputTokens": 32768
-    },
-    {
-      "id": "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP2_Vision",
-      "name": "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP2_Vision",
+      "id": "Qwen3.6_35B-A3B-IQ4NL-196K-q4_MTP_Vision",
+      "name": "Qwen3.6_35B-A3B-IQ4NL-196K-q4_MTP_Vision",
       "url": "http://172.16.1.110:10005/v1/chat/completions",
       "toolCalling": true,
       "vision": true,
@@ -75,18 +25,68 @@
       ],
       "reasoningEffortFormat": "chat-completions",
       "zeroDataRetentionEnabled": false,
-      "maxInputTokens": 98304,
-      "maxOutputTokens": 32768
+      "maxInputTokens": 147000,
+      "maxOutputTokens": 49000
+    },
+    {
+      "id": "Qwen3.6_35B-A3B-IQ4NL-256K-q4_MTP_Vision",
+      "name": "Qwen3.6_35B-A3B-IQ4NL-256K-q4_MTP_Vision",
+      "url": "http://172.16.1.110:10005/v1/chat/completions",
+      "toolCalling": true,
+      "vision": true,
+      "streaming": true,
+      "apiType": "chat-completions",
+      "editTools": [
+        "apply-patch",
+        "code-rewrite",
+        "find-replace",
+        "multi-find-replace"
+      ],
+      "thinking": true,
+      "supportsReasoningEffort": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoningEffortFormat": "chat-completions",
+      "zeroDataRetentionEnabled": false,
+      "maxInputTokens": 192000,
+      "maxOutputTokens": 64000
+    },
+    {
+      "id": "Qwen3.6_35B-A3B-IQ4NL-256K-q4_Vision",
+      "name": "Qwen3.6_35B-A3B-IQ4NL-256K-q4_Vision",
+      "url": "http://172.16.1.110:10005/v1/chat/completions",
+      "toolCalling": true,
+      "vision": true,
+      "streaming": true,
+      "apiType": "chat-completions",
+      "editTools": [
+        "apply-patch",
+        "code-rewrite",
+        "find-replace",
+        "multi-find-replace"
+      ],
+      "thinking": true,
+      "supportsReasoningEffort": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoningEffortFormat": "chat-completions",
+      "zeroDataRetentionEnabled": false,
+      "maxInputTokens": 192000,
+      "maxOutputTokens": 64000
     }
   ],
   "settings": {
-    "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP4_Coder": {
+    "Qwen3.6_35B-A3B-IQ4NL-196K-q4_MTP_Vision": {
       "reasoningEffort": "high"
     },
-    "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP4_Strict": {
+    "Qwen3.6_35B-A3B-IQ4NL-256K-q4_MTP_Vision": {
       "reasoningEffort": "high"
     },
-    "Qwen3.6_27B_AR-Q4KM-128K-Q4-MTP2_Vision": {
+    "Qwen3.6_35B-A3B-IQ4NL-256K-q4_Vision": {
       "reasoningEffort": "high"
     }
   }
