@@ -1,7 +1,0 @@
-{
-  "name": "LLaMA.cpp Local 3-Gemma-4-26B-A4B-it-qat",
-  "vendor": "customendpoint",
-  "apiKey": "${input:chat.lm.secret.-4b1abccd}",
-  "models": [],
-  "settings": {}
-}

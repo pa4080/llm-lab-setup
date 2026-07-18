@@ -1,0 +1,93 @@
+{
+  "name": "LLaMA.cpp Local 1-Qwen3.6-35B-A3B",
+  "vendor": "customendpoint",
+  "apiKey": "${input:chat.lm.secret.-4b1abccd}",
+  "models": [
+    {
+      "id": "Qwen3.6_35B-A3B-IQ4NL-196K-q4_MTP_Vision",
+      "name": "Qwen3.6_35B-A3B-IQ4NL-196K-q4_MTP_Vision",
+      "url": "http://172.16.1.110:10005/v1/chat/completions",
+      "toolCalling": true,
+      "vision": true,
+      "streaming": true,
+      "apiType": "chat-completions",
+      "editTools": [
+        "apply-patch",
+        "code-rewrite",
+        "find-replace",
+        "multi-find-replace"
+      ],
+      "thinking": true,
+      "supportsReasoningEffort": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoningEffortFormat": "chat-completions",
+      "zeroDataRetentionEnabled": false,
+      "maxInputTokens": 147000,
+      "maxOutputTokens": 49000
+    },
+    {
+      "id": "Qwen3.6_35B-A3B-IQ4NL-256K-q4_MTP_Vision",
+      "name": "Qwen3.6_35B-A3B-IQ4NL-256K-q4_MTP_Vision",
+      "url": "http://172.16.1.110:10005/v1/chat/completions",
+      "toolCalling": true,
+      "vision": true,
+      "streaming": true,
+      "apiType": "chat-completions",
+      "editTools": [
+        "apply-patch",
+        "code-rewrite",
+        "find-replace",
+        "multi-find-replace"
+      ],
+      "thinking": true,
+      "supportsReasoningEffort": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoningEffortFormat": "chat-completions",
+      "zeroDataRetentionEnabled": false,
+      "maxInputTokens": 192000,
+      "maxOutputTokens": 64000
+    },
+    {
+      "id": "Qwen3.6_35B-A3B-IQ4NL-256K-q4_Vision",
+      "name": "Qwen3.6_35B-A3B-IQ4NL-256K-q4_Vision",
+      "url": "http://172.16.1.110:10005/v1/chat/completions",
+      "toolCalling": true,
+      "vision": true,
+      "streaming": true,
+      "apiType": "chat-completions",
+      "editTools": [
+        "apply-patch",
+        "code-rewrite",
+        "find-replace",
+        "multi-find-replace"
+      ],
+      "thinking": true,
+      "supportsReasoningEffort": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoningEffortFormat": "chat-completions",
+      "zeroDataRetentionEnabled": false,
+      "maxInputTokens": 192000,
+      "maxOutputTokens": 64000
+    }
+  ],
+  "settings": {
+    "Qwen3.6_35B-A3B-IQ4NL-196K-q4_MTP_Vision": {
+      "reasoningEffort": "high"
+    },
+    "Qwen3.6_35B-A3B-IQ4NL-256K-q4_MTP_Vision": {
+      "reasoningEffort": "high"
+    },
+    "Qwen3.6_35B-A3B-IQ4NL-256K-q4_Vision": {
+      "reasoningEffort": "high"
+    }
+  }
+}
