@@ -1,6 +1,15 @@
 #!/bin/bash
 
-source ../.env
+if [[ -f ../.env ]]; then
+	source ../.env
+fi
+
+# Just to be sure the .env file is loaded
+if [[ -z "$LLAMA_API_KEY" ]]; then
+	echo "Error: Missing required LOCAL_* environment variables."
+	exit 1
+fi
+
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)/../scripts"
 LLAMA_CPP_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -29,6 +38,8 @@ bash "$SCRIPT_DIR/config-swap.sh"
 cat ./router/* > router.ini
 
 export CUDA_VISIBLE_DEVICES=0
+export LLAMA_API_KEY=${LLAMA_API_KEY}
+export LLAMA_CPP_SERVER_LOG_LEVEL=info
 
 ./bin/llama-server \
 	--host 0.0.0.0 \

@@ -11,8 +11,8 @@ services:
       dockerfile: ../buun-llama-cpp.cuda.Dockerfile
       target: server
       args:
-        CUDA_VERSION: ${CUDA_VERSION:-13.0.1}
-        CUDA_DOCKER_ARCH: ${CUDA_DOCKER_ARCH:-86}
+        BUUN_CUDA_VERSION: ${BUUN_CUDA_VERSION:-13.0.1}
+        BUUN_CUDA_DOCKER_ARCH: ${BUUN_CUDA_DOCKER_ARCH:-86}
     network_mode: host
     restart: unless-stopped
     volumes:
