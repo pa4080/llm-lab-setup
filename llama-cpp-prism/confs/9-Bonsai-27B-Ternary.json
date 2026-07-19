@@ -4,8 +4,8 @@
   "apiKey": "${input:chat.lm.secret.-4b1abccd}",
   "models": [
     {
-      "id": "Bonsai_27B-Ternary-Q20-256K-q8_Vision",
-      "name": "Bonsai_27B-Ternary-Q20-256K-q8_Vision",
+      "id": "Bonsai_27B-Ternary-Q20-156K-q8_Vision",
+      "name": "Bonsai_27B-Ternary-Q20-156K-q8_Vision",
       "url": "http://172.16.1.110:10005/v1/chat/completions",
       "toolCalling": true,
       "vision": true,
@@ -25,12 +25,40 @@
       ],
       "reasoningEffortFormat": "chat-completions",
       "zeroDataRetentionEnabled": false,
-      "maxInputTokens": 192000,
-      "maxOutputTokens": 64000
+      "maxInputTokens": 117000,
+      "maxOutputTokens": 39000
+    },
+    {
+      "id": "Bonsai_27B-Ternary-Q20-156K-q4_Vision",
+      "name": "Bonsai_27B-Ternary-Q20-156K-q4_Vision",
+      "url": "http://172.16.1.110:10005/v1/chat/completions",
+      "toolCalling": true,
+      "vision": true,
+      "streaming": true,
+      "apiType": "chat-completions",
+      "editTools": [
+        "apply-patch",
+        "code-rewrite",
+        "find-replace",
+        "multi-find-replace"
+      ],
+      "thinking": true,
+      "supportsReasoningEffort": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reasoningEffortFormat": "chat-completions",
+      "zeroDataRetentionEnabled": false,
+      "maxInputTokens": 117000,
+      "maxOutputTokens": 39000
     }
   ],
   "settings": {
-    "Bonsai_27B-Ternary-Q20-256K-q8_Vision": {
+    "Bonsai_27B-Ternary-Q20-156K-q8_Vision": {
+      "reasoningEffort": "high"
+    },
+    "Bonsai_27B-Ternary-Q20-156K-q4_Vision": {
       "reasoningEffort": "high"
     }
   }
