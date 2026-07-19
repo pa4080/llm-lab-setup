@@ -12,17 +12,19 @@ Run the multi-model LLM inference server (`llama-cpp-prism`) as a persistent sys
 
 ## Installation
 
+### Simple service
+
 Copy the service unit to systemd and reload the daemon:
 
 ```bash
-sudo cp install/systemd/llama-cpp-prism.service /etc/systemd/system/llama-cpp-prism.service
+sudo cp systemd.simple/llama-cpp-prism.service /etc/systemd/system/llama-cpp-prism.service
 sudo systemctl daemon-reload
 ```
 
 Or run the helper script (requires root):
 
 ```bash
-sudo bash install/install.sh
+sudo systemd.simple/install.sh
 ```
 
 ## Management

@@ -17,8 +17,16 @@ llm-lab/
 ├── confs/                 # **auto-generated Configuration files for VSCode Copilot Chat
 ├── .env                   # Environment variables for Docker-compose and "serve.sh"
 │
+├── llama-cpp-prism/       # Prism.LLaMA.cpp Systemd Setup playground
+│   ├── serve.sh           # Entrypoint script for LLaMA.cpp Systemd setup
+│   ├── bin/               # Executables for Prism.LLaMA.cpp
+│   ├── systemd/           # Systemd service files for Prism.LLaMA.cpp
+│   ├── router.ini         # **auto-generated Configuration files for LLaMA.cpp router
+│   ├── router/            # The configuration files for different models
+│   ├── confs/             # **auto-generated Configuration files for VSCode Copilot Chat
+│
 ├── docs/                  # Some notes
-├── llama-cpp-bull/        # Buun.LLaMA.cpp playground
+├── llama-cpp-bull/        # Buun.LLaMA.cpp  Docker-compose Setup playground
 ├── sglang/                # SGLang playground
 ```
 

@@ -10,6 +10,7 @@ if [[ -z "$LLAMA_API_KEY" ]]; then
 	exit 1
 fi
 
+: "${LLAMA_PORT:=10005}"
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)/../scripts"
 LLAMA_CPP_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -43,7 +44,7 @@ export LLAMA_CPP_SERVER_LOG_LEVEL=info
 
 ./bin/llama-server \
 	--host 0.0.0.0 \
-	--port 10005 \
+	--port ${LLAMA_PORT} \
 	--models-preset ./router.ini \
 	--models-max 1 \
 	--threads 16 \
