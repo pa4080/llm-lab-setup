@@ -15,6 +15,11 @@ fi
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)/../scripts"
 LLAMA_CPP_DIR="$(cd "$(dirname "$0")" && pwd)"
 
+# Explicitly use CUDA 12.8 libraries (binary is compiled against CUDA 12.8)
+# This ensures the runtime finds the correct CUDA 12.8 libraries even if
+# /usr/local/cuda points to CUDA 13 via alternatives
+export LD_LIBRARY_PATH=/usr/local/cuda-12/targets/x86_64-linux/lib:/usr/local/cuda-12/lib64:/usr/local/cuda-12/lib:$LD_LIBRARY_PATH
+
 # Generate JSON configs from router INI files
 # Pass paths relative to caller (llama-cpp/) so scripts don't use their own location
 bash "$SCRIPT_DIR/config-copy.sh" "$LLAMA_CPP_DIR/router" "$LLAMA_CPP_DIR/../llama-cpp/router"
@@ -51,6 +56,4 @@ export LLAMA_CPP_SERVER_LOG_LEVEL=info
   --no-warmup \
   --context-shift \
   --cache-ram 16384 \
-  --cache-reuse 4096 \
-  --spec-type draft-dspark \
-  --spec-draft-n-max 4
+  --cache-reuse 4096

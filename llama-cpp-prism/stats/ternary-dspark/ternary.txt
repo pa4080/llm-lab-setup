@@ -1,0 +1,21 @@
+curl -s -X POST "http://localhost:10005/v1/chat/completions" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "Bonsai_27B-TernaryDS",
+    "messages": [{"role": "user", "content": "Write a 100 words poem!"}]
+  }' | jq
+
+nvidia-smi --query-compute-apps=used_memory --format=noheader -i 0
+11350 MiB
+
+# I intentionally leaved the draft model in order to fill up the same VRAM space by the models, without it it takes:
+$ nvidia-smi --query-compute-apps=used_memory --format=noheader -i 0
+9814 MiB
+
+BONSAI_KV4=1 CUDA_VISIBLE_DEVICES=0 \
+  ./bin/llama-server --host 0.0.0.0 --port 10005 \
+    -a "Bonsai_27B-TernaryDS" \
+    -m ../models/prism-ml/Ternary-Bonsai-27B-gguf/Ternary-Bonsai-27B-Q2_0.gguf \
+    -md ../models/prism-ml/Ternary-Bonsai-27B-gguf/Ternary-Bonsai-27B-dspark-Q4_1.gguf \
+    --temp 0 --top-k 20 --top-p 0.95 --min-p 0.0 --kv-unified -s 1 \
+    -ngl 999 -fa on -c 43008 -np 1

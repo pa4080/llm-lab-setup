@@ -8,6 +8,8 @@ Documentation=https://github.com/pa4080/llm-lab-setup/tree/master/llama-cpp-pris
 Type=simple
 WorkingDirectory=/mnt/data/llm-lab/llama-cpp-prism
 EnvironmentFile=/mnt/data/llm-lab/.env
+# Explicitly use CUDA 12.8 libraries (binary is compiled against CUDA 12.8)
+Environment=LD_LIBRARY_PATH=/usr/local/cuda-12/targets/x86_64-linux/lib:/usr/local/cuda-12/lib64:/usr/local/cuda-12/lib:$LD_LIBRARY_PATH
 ExecStart=/mnt/data/llm-lab/llama-cpp-prism/serve.sh
 Restart=on-failure
 RestartSec=5
