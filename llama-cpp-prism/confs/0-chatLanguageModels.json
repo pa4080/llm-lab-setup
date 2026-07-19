@@ -328,6 +328,31 @@
         "zeroDataRetentionEnabled": false,
         "maxInputTokens": 192000,
         "maxOutputTokens": 64000
+      },
+      {
+        "id": "Bonsai_27B-TernaryDS-Q20-256K-q4",
+        "name": "Bonsai_27B-TernaryDS-Q20-256K-q4",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 192000,
+        "maxOutputTokens": 64000
       }
     ],
     "settings": {
@@ -368,6 +393,9 @@
         "reasoningEffort": "high"
       },
       "Bonsai_27B-TernaryDS-Q20-256K-q4_Vision": {
+        "reasoningEffort": "high"
+      },
+      "Bonsai_27B-TernaryDS-Q20-256K-q4": {
         "reasoningEffort": "high"
       }
     }

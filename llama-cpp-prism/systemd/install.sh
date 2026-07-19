@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SERVICE_DIR="/mnt/data/llm-lab/llama-cpp-prism/systemd.simple"
+SERVICE_DIR="/mnt/data/llm-lab/llama-cpp-prism/systemd"
 SERVICE_FILE="${SERVICE_DIR}/llama-cpp-prism.service"
 DEST="/etc/systemd/system/llama-cpp-prism.service"
 

@@ -1,8 +1,8 @@
 [Unit]
-Description=llama.cpp Prism — Multi-model LLM inference server
+Description=llama.cpp Prism -- Multi-model LLM inference server
 After=network.target
 Requires=network.target
-Documentation=https://github.com/pa4080/llm-lab-setup/tree/master/llama-cpp-buun
+Documentation=https://github.com/pa4080/llm-lab-setup/tree/master/llama-cpp-prism
 
 [Service]
 Type=simple
@@ -11,6 +11,10 @@ EnvironmentFile=/mnt/data/llm-lab/.env
 ExecStart=/mnt/data/llm-lab/llama-cpp-prism/serve.sh
 Restart=on-failure
 RestartSec=5
+KillMode=mixed
+KillSignal=SIGKILL
+TimeoutStopSec=5
+TimeoutStartSec=10
 Environment=PATH=/usr/local/bin:/usr/bin:/bin
 
 [Install]
