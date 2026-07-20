@@ -21,8 +21,16 @@ services:
       # the T600 (GPU 1) for compute if something leaks through.
       - CUDA_VISIBLE_DEVICES=0
       # - GGML_CUDA_GRAPH_OPT=1
-
+      #
       # --ctx-checkpoints 4
       # --swa-checkpoints 4
     command: >
-
+      --host 0.0.0.0
+      --port 10005
+      --models-preset /app/router.ini
+      --models-max 1
+      --threads 16
+      --no-warmup
+      --context-shift
+      --cache-ram 16384
+      --cache-reuse 4096

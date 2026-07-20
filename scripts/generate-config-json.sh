@@ -11,12 +11,12 @@ source ../.env
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROUTER_DIR="${1:-router}"
-CONFS_DIR="${2:-confs}"
+CONFS_PARTS_DIR="${2:-confs}"
 
 # Generate JSON config for every router INI file into confs/
 # Skip files that are shared defaults (start with 0, or contain default/common)
-rm -rf "$CONFS_DIR"
-mkdir -p "$CONFS_DIR"
+rm -rf "$CONFS_PARTS_DIR"
+mkdir -p "$CONFS_PARTS_DIR"
 
 # Loop through all INI files in router/ and generate JSON for each
 for ini in "$ROUTER_DIR"/*.ini; do
@@ -27,8 +27,8 @@ for ini in "$ROUTER_DIR"/*.ini; do
 	# Skip files with "default" or "common" in the name (case-insensitive)
 	[[ "${bname,,}" == *default* ]] && continue
 	[[ "${bname,,}" == *common* ]] && continue
-	bash "$SCRIPT_DIR/generate-json.sh" "$ini" "$CONFS_DIR"
+	bash "$SCRIPT_DIR/generate-json-vscode-copilot.sh" "$ini" "$CONFS_PARTS_DIR"
 done
 
 # Merge all individual JSONs into a single 0-chatLanguageModels.json
-bash "$SCRIPT_DIR/merge-json.sh" "$CONFS_DIR"
+bash "$SCRIPT_DIR/merge-json.sh" "$CONFS_PARTS_DIR"

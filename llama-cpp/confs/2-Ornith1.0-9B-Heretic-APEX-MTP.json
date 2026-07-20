@@ -29,8 +29,8 @@
       "maxOutputTokens": 64000
     },
     {
-      "id": "Ornith1.0-9B-HAIC-512K-q8_MTP_Vision",
-      "name": "Ornith1.0-9B-HAIC-512K-q8_MTP_Vision",
+      "id": "Ornith1.0-9B-HAIC-512K-q4_MTP_Vision",
+      "name": "Ornith1.0-9B-HAIC-512K-q4_MTP_Vision",
       "url": "http://172.16.1.110:10005/v1/chat/completions",
       "toolCalling": true,
       "vision": true,
@@ -58,7 +58,7 @@
     "Ornith1.0-9B-HAIC-256K-q8_MTP_Vision": {
       "reasoningEffort": "high"
     },
-    "Ornith1.0-9B-HAIC-512K-q8_MTP_Vision": {
+    "Ornith1.0-9B-HAIC-512K-q4_MTP_Vision": {
       "reasoningEffort": "high"
     }
   }
