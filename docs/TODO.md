@@ -15,6 +15,13 @@
 
 - [ ] models.json have a property called `cost`, we should research does there is an analogical property in VSCode Copilot model config, and if so, we can introduce a new property in the ini files, i.e. `; cost = { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 }` that will be used in the `generate-json-pi.sh` script to set the `cost` field in the pi.dev model config. Despite we running the models locally it cost us the electricity and the hardware.
 
+### Systemd services
+
+- [ ] Create systemd service for each of the llama-cpp, llama-cpp-buun, and llama-cpp-prism projects. The service will run the `serve.sh` script in the background, and will be configured to restart on failure. The service will also be configured to start on boot.
+
+- [ ] Create a script that downloads the latest version to the bin/ folders:
+  - [ ]  <https://github.com/ggml-org/llama.cpp/releases>
+
 ## Research
 
 - [ ] Reasoning llama.cpp documentation and VSCode and decide does these properties we put in `chatLanguageModels.json` actually make sense. Primary I mean these properties: `reasoning`, `supportsReasoningEffort`, and `zeroDataRetentionEnabled`.

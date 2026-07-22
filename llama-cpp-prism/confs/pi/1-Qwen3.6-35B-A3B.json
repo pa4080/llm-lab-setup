@@ -1,0 +1,62 @@
+{
+  "providers": {
+    "LLaMA.cpp Local": {
+      "baseUrl": "http://172.16.1.110:10005/v1/chat/completions",
+      "api": "openai-completions",
+      "apiKey": "${input:chat.lm.secret.-4b1abccd}",
+      "models": [
+        {
+          "id": "Qwen3.6_35B-A3B-IQ4NL-196K-q4_MTP_Vision",
+          "name": "Qwen3.6_35B-A3B-IQ4NL-196K-q4_MTP_Vision",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 196000,
+          "maxTokens": 49000,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          }
+        },
+        {
+          "id": "Qwen3.6_35B-A3B-IQ4NL-256K-q4_MTP_Vision",
+          "name": "Qwen3.6_35B-A3B-IQ4NL-256K-q4_MTP_Vision",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 256000,
+          "maxTokens": 64000,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          }
+        },
+        {
+          "id": "Qwen3.6_35B-A3B-IQ4NL-256K-q4_Vision",
+          "name": "Qwen3.6_35B-A3B-IQ4NL-256K-q4_Vision",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 256000,
+          "maxTokens": 64000,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,6 +1,6 @@
 # Plan: Add pi.dev JSON config generation alongside VS Code Copilot
 
-**TL;DR** Split generated configs into `confs/vscode/` and `confs/pi/` subdirectories. Add `generate-json-pi.sh` (pi.dev format) alongside `generate-json-vscode-copilot.sh`, rename `merge-json.sh` to `merge-json-vscode-copilot.sh`, add `merge-json-pi.sh`, wire both into `generate-config-json.sh`, and update all 3 `serve.sh` scripts.
+**TL;DR** Split generated configs into `confs/copilot/` and `confs/pi/` subdirectories. Add `generate-json-pi.sh` (pi.dev format) alongside `generate-json-copilot.sh`, rename `merge-json.sh` to `merge-json-copilot.sh`, add `merge-json-pi.sh`, wire both into `generate-config-json.sh`, and update all 3 `serve.sh` scripts.
 
 ---
 
@@ -53,8 +53,8 @@ pi expects `~/.pi/agent/models.json` with this structure:
 
 **Step 1 — Create `generate-json-pi.sh`**
 - Location: `/mnt/data/llm-lab/scripts/generate-json-pi.sh`
-- Signature: `./generate-json-pi.sh <ini-file> [output-dir]` (same as `generate-json-vscode-copilot.sh`)
-- Reuses the same `parse_ini` function pattern (copy from `generate-json-vscode-copilot.sh`) to extract `id`, `ctxSize`, `hasMmproj` per section
+- Signature: `./generate-json-pi.sh <ini-file> [output-dir]` (same as `generate-json-copilot.sh`)
+- Reuses the same `parse_ini` function pattern (copy from `generate-json-copilot.sh`) to extract `id`, `ctxSize`, `hasMmproj` per section
 - Uses `env-helper.sh` for env var parsing (same pattern)
 - Reads `LOCAL_URL`, `LOCAL_SERVER_NAME`, `LOCAL_API_KEY` from `.env`
 - Outputs `<ini>.json` in output-dir with pi.dev format:
@@ -82,23 +82,23 @@ pi expects `~/.pi/agent/models.json` with this structure:
 
 ### Phase 2: Refactor existing scripts
 
-**Step 3 — Rename `merge-json.sh` to `merge-json-vscode-copilot.sh`**
-- Rename `/mnt/data/llm-lab/scripts/merge-json.sh` to `/mnt/data/llm-lab/scripts/merge-json-vscode-copilot.sh`
+**Step 3 — Rename `merge-json.sh` to `merge-json-copilot.sh`**
+- Rename `/mnt/data/llm-lab/scripts/merge-json.sh` to `/mnt/data/llm-lab/scripts/merge-json-copilot.sh`
 - No internal changes needed — the script logic stays identical
 
 **Step 4 — Update `generate-config-json.sh`**
 - After `rm -rf "$CONFS_PARTS_DIR"` and `mkdir -p "$CONFS_PARTS_DIR"`, also create subdirectories:
   ```bash
-  mkdir -p "$CONFS_PARTS_DIR/vscode"
+  mkdir -p "$CONFS_PARTS_DIR/copilot"
   mkdir -p "$CONFS_PARTS_DIR/pi"
   ```
-- Inside the `for` loop, after the `generate-json-vscode-copilot.sh` call, add:
+- Inside the `for` loop, after the `generate-json-copilot.sh` call, add:
   ```bash
   bash "$SCRIPT_DIR/generate-json-pi.sh" "$ini" "$CONFS_PARTS_DIR/pi"
   ```
 - Replace the single merge call with two merge calls:
   ```bash
-  bash "$SCRIPT_DIR/merge-json-vscode-copilot.sh" "$CONFS_PARTS_DIR/vscode"
+  bash "$SCRIPT_DIR/merge-json-copilot.sh" "$CONFS_PARTS_DIR/copilot"
   bash "$SCRIPT_DIR/merge-json-pi.sh" "$CONFS_PARTS_DIR/pi"
   ```
 
@@ -111,7 +111,7 @@ pi expects `~/.pi/agent/models.json` with this structure:
   ```
   To:
   ```bash
-  cp "$LLAMA_CPP_DIR/confs/vscode/0-chatLanguageModels.json" "../confs/chatLanguageModels.json"
+  cp "$LLAMA_CPP_DIR/confs/copilot/0-chatLanguageModels.json" "../confs/chatLanguageModels.json"
   ```
 - Add after the public config block:
   ```bash
@@ -128,7 +128,7 @@ pi expects `~/.pi/agent/models.json` with this structure:
 
 **Step 8 — Update `llama-cpp/README.md`**
 - Update the Scripts table:
-  - Change `merge-json.sh` to `merge-json-vscode-copilot.sh`
+  - Change `merge-json.sh` to `merge-json-copilot.sh`
   - Add `generate-json-pi.sh` row
   - Add `merge-json-pi.sh` row
 - Update usage examples to reflect new structure
@@ -137,19 +137,19 @@ pi expects `~/.pi/agent/models.json` with this structure:
 
 ## Relevant files
 
-| File                                                        | Action                                                                   |
-| ----------------------------------------------------------- | ------------------------------------------------------------------------ |
-| `/mnt/data/llm-lab/scripts/generate-config-json.sh`         | **Modify** — add vscode/pi subdirs, call pi generator, rename merge call |
-| `/mnt/data/llm-lab/scripts/merge-json.sh`                   | **Rename** to `merge-json-vscode-copilot.sh`                             |
-| `/mnt/data/llm-lab/scripts/generate-json-vscode-copilot.sh` | **No change** — reference for `parse_ini` pattern                        |
-| `/mnt/data/llm-lab/scripts/env-helper.sh`                   | **Reference** — reuse `get_env` pattern                                  |
-| `/mnt/data/llm-lab/scripts/generate-json-pi.sh`             | **Create** — pi.dev JSON generator                                       |
-| `/mnt/data/llm-lab/scripts/merge-json-pi.sh`                | **Create** — pi.dev JSON merger                                          |
-| `/mnt/data/llm-lab/scripts/merge-json-vscode-copilot.sh`    | **Create** (via rename from `merge-json.sh`)                             |
-| `/mnt/data/llm-lab/llama-cpp/serve.sh`                      | **Modify** — update copy paths, add pi copy                              |
-| `/mnt/data/llm-lab/llama-cpp-buun/serve.sh`                 | **Modify** — update copy paths, add pi copy                              |
-| `/mnt/data/llm-lab/llama-cpp-prism/serve.sh`                | **Modify** — update copy paths, add pi copy                              |
-| `/mnt/data/llm-lab/llama-cpp/README.md`                     | **Modify** — update scripts table and examples                           |
+| File                                                 | Action                                                                   |
+| ---------------------------------------------------- | ------------------------------------------------------------------------ |
+| `/mnt/data/llm-lab/scripts/generate-config-json.sh`  | **Modify** — add vscode/pi subdirs, call pi generator, rename merge call |
+| `/mnt/data/llm-lab/scripts/merge-json.sh`            | **Rename** to `merge-json-copilot.sh`                                    |
+| `/mnt/data/llm-lab/scripts/generate-json-copilot.sh` | **No change** — reference for `parse_ini` pattern                        |
+| `/mnt/data/llm-lab/scripts/env-helper.sh`            | **Reference** — reuse `get_env` pattern                                  |
+| `/mnt/data/llm-lab/scripts/generate-json-pi.sh`      | **Create** — pi.dev JSON generator                                       |
+| `/mnt/data/llm-lab/scripts/merge-json-pi.sh`         | **Create** — pi.dev JSON merger                                          |
+| `/mnt/data/llm-lab/scripts/merge-json-copilot.sh`    | **Create** (via rename from `merge-json.sh`)                             |
+| `/mnt/data/llm-lab/llama-cpp/serve.sh`               | **Modify** — update copy paths, add pi copy                              |
+| `/mnt/data/llm-lab/llama-cpp-buun/serve.sh`          | **Modify** — update copy paths, add pi copy                              |
+| `/mnt/data/llm-lab/llama-cpp-prism/serve.sh`         | **Modify** — update copy paths, add pi copy                              |
+| `/mnt/data/llm-lab/llama-cpp/README.md`              | **Modify** — update scripts table and examples                           |
 
 ---
 
@@ -172,14 +172,14 @@ llama-cpp/confs/
 ## Verification
 
 1. Run `bash scripts/generate-config-json.sh ./llama-cpp-prism/router ./llama-cpp-prism/confs` and verify:
-   - `confs/vscode/` contains individual JSONs + `0-chatLanguageModels.json`
+   - `confs/copilot/` contains individual JSONs + `0-chatLanguageModels.json`
    - `confs/pi/` contains individual JSONs + `0-pi-models.json`
    - `0-pi-models.json` has valid `{ "providers": { ... } }` structure
    - Each model has `id`, `name`, `reasoning`, `input`, `contextWindow`, `maxTokens`, `cost`
 2. Validate `0-pi-models.json` with `jq .` — should parse without errors
 3. Verify `input` field is `["text", "image"]` for models with mmproj, `["text"]` for text-only
 4. Run `llama-cpp-prism/serve.sh` (dry-run or actual) and verify:
-   - `../confs/chatLanguageModels.json` is correctly copied from `confs/vscode/`
+   - `../confs/chatLanguageModels.json` is correctly copied from `confs/copilot/`
    - `../confs/pi-models.json` exists and is valid
 5. Check `../confs/chatLanguageModels.json` still has correct structure (array of objects with `models` array)
 
@@ -199,4 +199,4 @@ llama-cpp/confs/
 
 1. **Reasoning detection**: Currently setting `reasoning: true` for all. Could add INI parsing to detect `chat-template-kwargs` containing `preserve_thinking` or `enable_thinking` for per-model accuracy. **Recommendation**: keep `true` for now, refine later if a non-reasoning model is added.
 2. **Public pi config**: Should we generate a public pi config (like `chatLanguageModels.public.json`)? **Recommendation**: exclude for now — pi configs are typically local (`~/.pi/agent/models.json`); add later if needed.
-3. **Shared `parse_ini`**: Both `generate-json-vscode-copilot.sh` and `generate-json-pi.sh` will have copy-pasted `parse_ini` functions. **Recommendation**: accept duplication for now; extract to a shared library only if a 3rd consumer emerges.
+3. **Shared `parse_ini`**: Both `generate-json-copilot.sh` and `generate-json-pi.sh` will have copy-pasted `parse_ini` functions. **Recommendation**: accept duplication for now; extract to a shared library only if a 3rd consumer emerges.

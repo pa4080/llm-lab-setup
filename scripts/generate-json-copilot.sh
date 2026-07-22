@@ -1,6 +1,6 @@
 #!/bin/bash
 # Generate chatLanguageModels JSON from a router INI file.
-# Usage: ./generate-json-vscode-copilot.sh <ini-file> [output-dir]
+# Usage: ./generate-json-copilot.sh <ini-file> [output-dir]
 #
 # Reads LOCAL_URL, LOCAL_SERVER_NAME, LOCAL_API_KEY from .env.
 # Outputs <ini-file>.json in <output-dir> (defaults to same dir as INI).

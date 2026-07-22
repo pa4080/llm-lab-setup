@@ -1,0 +1,197 @@
+{
+  "providers": {
+    "LLaMA.cpp Local": {
+      "baseUrl": "http://172.16.1.110:10005/v1/chat/completions",
+      "api": "openai-completions",
+      "apiKey": "${input:chat.lm.secret.-4b1abccd}",
+      "models": [
+        {
+          "id": "Qwen3.6_27B-AR-Q4KS-128K-q4-MTP_Vision",
+          "name": "Qwen3.6_27B-AR-Q4KS-128K-q4-MTP_Vision",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 128000,
+          "maxTokens": 32000,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          }
+        },
+        {
+          "id": "Qwen3.6_27B-AR-Q4KM-128K-q4-MTP_Vision",
+          "name": "Qwen3.6_27B-AR-Q4KM-128K-q4-MTP_Vision",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 128000,
+          "maxTokens": 32000,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          }
+        },
+        {
+          "id": "Qwen3.6_27B-AR-Q4KM-128K-q4-MTP",
+          "name": "Qwen3.6_27B-AR-Q4KM-128K-q4-MTP",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "contextWindow": 128000,
+          "maxTokens": 32000,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          }
+        },
+        {
+          "id": "Qwen3.6_35B-A3B-IQ4NL-196K-q4_MTP_Vision",
+          "name": "Qwen3.6_35B-A3B-IQ4NL-196K-q4_MTP_Vision",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 196000,
+          "maxTokens": 49000,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          }
+        },
+        {
+          "id": "Qwen3.6_35B-A3B-IQ4NL-256K-q4_MTP_Vision",
+          "name": "Qwen3.6_35B-A3B-IQ4NL-256K-q4_MTP_Vision",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 256000,
+          "maxTokens": 64000,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          }
+        },
+        {
+          "id": "Qwen3.6_35B-A3B-IQ4NL-256K-q4_Vision",
+          "name": "Qwen3.6_35B-A3B-IQ4NL-256K-q4_Vision",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 256000,
+          "maxTokens": 64000,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          }
+        },
+        {
+          "id": "Ornith1.0_35B-HAIC-192K-q8_MTP_Vision",
+          "name": "Ornith1.0_35B-HAIC-192K-q8_MTP_Vision",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 196000,
+          "maxTokens": 49000,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          }
+        },
+        {
+          "id": "Ornith1.0_35B-HAIC-256K-q8_MTP_Vision",
+          "name": "Ornith1.0_35B-HAIC-256K-q8_MTP_Vision",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 256000,
+          "maxTokens": 64000,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          }
+        },
+        {
+          "id": "Ornith1.0_35B-HAIC-256K-q8_Vision",
+          "name": "Ornith1.0_35B-HAIC-256K-q8_Vision",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 256000,
+          "maxTokens": 64000,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          }
+        },
+        {
+          "id": "Ornith1.0-9B-HAIC-256K-q8_MTP_Vision",
+          "name": "Ornith1.0-9B-HAIC-256K-q8_MTP_Vision",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 256000,
+          "maxTokens": 64000,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          }
+        },
+        {
+          "id": "Ornith1.0-9B-HAIC-512K-q4_MTP_Vision",
+          "name": "Ornith1.0-9B-HAIC-512K-q4_MTP_Vision",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 512000,
+          "maxTokens": 128000,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          }
+        }
+      ]
+    }
+  }
+}

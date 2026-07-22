@@ -10,7 +10,8 @@ LLAMA_CPP_DIR="$(cd "$(dirname "$0")" && pwd)"
 bash "$SCRIPT_DIR/generate-config-json.sh" "$LLAMA_CPP_DIR/router" "$LLAMA_CPP_DIR/confs"
 
 # Copy generated config to project-level confs
-cp "$LLAMA_CPP_DIR/confs/0-chatLanguageModels.json" "../confs/chatLanguageModels.json"
+cp "$LLAMA_CPP_DIR/confs/copilot/0-chatLanguageModels.json" "../confs/chatLanguageModels.json"
+cp "$LLAMA_CPP_DIR/confs/pi/0-pi-models.json" "../confs/pi-models.json"
 
 # Generate public config with PUBLIC env vars (only if PUBLIC_* are set)
 if [[ -n "$PUBLIC_URL" && -n "$PUBLIC_SERVER_NAME" && -n "$PUBLIC_API_KEY" ]]; then
