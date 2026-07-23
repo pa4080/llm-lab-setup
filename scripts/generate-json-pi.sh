@@ -26,6 +26,13 @@ LOCAL_API_KEY="$(get_env LOCAL_API_KEY)"
 : "${LOCAL_SERVER_NAME:?LOCAL_SERVER_NAME not set in .env}"
 : "${LOCAL_API_KEY:?LOCAL_API_KEY not set in .env}"
 
+# Pi expects base URLs without /chat/completions (it appends based on api type)
+PI_BASE_URL="${LOCAL_URL%/chat/completions}"
+
+# Slugify provider key for pi.dev — must match auth.json key
+# 'LLaMA.cpp Local' → 'llama-cpp-local'
+PROVIDER_KEY="$(echo "$LOCAL_SERVER_NAME" | tr '[:upper:]' '[:lower:]' | sed 's/[. ]/-/g')"
+
 # ── Parse INI into JSONL (one JSON object per section) ─────────────
 # Each line: { "id": "<section>", "ctxSize": <number>, "hasMmproj": <bool> }
 #
@@ -97,10 +104,11 @@ parse_ini() {
 	fi
 }
 
-# ── Build final JSON with jq (pi.dev format) ──────────────────────
+# ── Build final JSON with jq (pi.dev models.json format) ─────────
+# Pi reads ~/.pi/agent/models.json with { providers: { ... } } wrapper
 parse_ini | jq -s \
-	--arg name     "$LOCAL_SERVER_NAME" \
-	--arg baseUrl  "$LOCAL_URL" \
+	--arg name     "$PROVIDER_KEY" \
+	--arg baseUrl  "$PI_BASE_URL" \
 	--arg apiKey   "$LOCAL_API_KEY" \
 	'
 	{
@@ -117,6 +125,13 @@ parse_ini | jq -s \
 						input:           (if .hasMmproj then ["text", "image"] else ["text"] end),
 						contextWindow:   .ctxSize,
 						maxTokens:       (.ctxSize / 4 | floor),
+						thinkingLevelMap: {
+							minimal:    null,
+							low:        "low",
+							medium:     "medium",
+							high:       "high",
+							max:        null
+						},
 						cost: {
 							input:       0,
 							output:      0,

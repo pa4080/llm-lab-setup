@@ -1,5 +1,100 @@
-# Pi confs
+# Pi Notes
 
-- Auth: /home/pa4080/.pi/agent/auth.json
-- Models: /home/pa4080/.pi/agent/models-store.json
-- Settings: /home/pa4080/.pi/agent/settings.json
+## Confs
+
+- Auth: `/home/pa4080/.pi/agent/auth.json`
+- Models: `/home/pa4080/.pi/agent/models-store.json`
+- Settings: `/home/pa4080/.pi/agent/settings.json`
+
+## Docs
+
+- <https://pi.dev/docs/latest/models>
+
+## Example confs
+
+`models-store.json`:
+
+```json
+{
+  "deepseek": {
+    "models": [
+      {
+        "id": "deepseek-v4-flash",
+        "name": "DeepSeek V4 Flash",
+        "api": "openai-completions",
+        "baseUrl": "https://api.deepseek.com",
+        "provider": "deepseek",
+        "reasoning": true,
+        "input": [
+          "text"
+        ],
+        "cost": {
+          "input": 0.14,
+          "output": 0.28,
+          "cacheRead": 0.0028,
+          "cacheWrite": 0
+        },
+        "contextWindow": 1000000,
+        "maxTokens": 384000,
+        "compat": {
+          "supportsStore": false,
+          "supportsDeveloperRole": false,
+          "requiresReasoningContentOnAssistantMessages": true,
+          "thinkingFormat": "deepseek"
+        },
+        "thinkingLevelMap": {
+          "minimal": null,
+          "low": null,
+          "medium": null,
+          "high": "high",
+          "max": "max"
+        }
+      },
+      {
+        "id": "deepseek-v4-pro",
+        "name": "DeepSeek V4 Pro",
+        "api": "openai-completions",
+        "baseUrl": "https://api.deepseek.com",
+        "provider": "deepseek",
+        "reasoning": true,
+        "input": [
+          "text"
+        ],
+        "cost": {
+          "input": 0.435,
+          "output": 0.87,
+          "cacheRead": 0.003625,
+          "cacheWrite": 0
+        },
+        "contextWindow": 1000000,
+        "maxTokens": 384000,
+        "compat": {
+          "supportsStore": false,
+          "supportsDeveloperRole": false,
+          "requiresReasoningContentOnAssistantMessages": true,
+          "thinkingFormat": "deepseek"
+        },
+        "thinkingLevelMap": {
+          "minimal": null,
+          "low": null,
+          "medium": null,
+          "high": "high",
+          "max": "max"
+        }
+      }
+    ],
+    "checkedAt": 1784699086448
+  }
+}
+```
+
+`auth.json`:
+
+```json
+{
+  "deepseek": {
+    "type": "api_key",
+    "key": "sk-..."
+  }
+}
+```

@@ -20,16 +20,20 @@ This will:
 
 ## Scripts
 
-| Script                     | Description                                                                                                                      |
-| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `serve.sh`                 | Main entry point — thin wrapper: env init → optional pre-processing → `serve-generic.sh` → server-specific startup.              |
-| `serve-env-init.sh`        | Shared environment initialization: sources `.env`, validates required vars, sets defaults, defines `SCRIPT_DIR`/`LLAMA_CPP_DIR`. |
-| `serve-generic.sh`         | Shared generic processing: JSON generation, config copying, public config, VS Code swap, and router.ini composition.             |
-| `generate-config-json.sh`  | Loops through all router INI files and generates individual JSON configs, then merges them.                                      |
-| `generate-json-copilot.sh` | Parses a single INI file and generates a JSON config for VS Code Chat Language Models.                                           |
-| `generate-json-pi.sh`      | Parses a single INI file and generates a JSON config for pi.dev (`~/.pi/agent/models.json`).                                     |
-| `merge-json-copilot.sh`    | Merges all individual VS Code JSON configs into a single `0-chatLanguageModels.json`.                                            |
-| `merge-json-pi.sh`         | Merges all individual pi.dev JSON configs into a single `0-pi-models.json`.                                                      |
+| Script                     | Description                                                                                                                                                                       |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `serve.sh`                 | Main entry point — thin wrapper: env init → optional pre-processing → `serve-generic.sh` → server-specific startup.                                                               |
+| `serve-env-init.sh`        | Shared environment initialization: sources `.env`, validates required vars, sets defaults, defines `SCRIPT_DIR`/`LLAMA_CPP_DIR`.                                                  |
+| `serve-generic.sh`         | Shared generic processing: JSON generation, config copying, public config generation, config swapping, and router.ini composition.                                                |
+| `generate-config-json.sh`  | Loops through all router INI files and generates individual JSON configs, then merges them.                                                                                       |
+| `generate-json-copilot.sh` | Parses a single INI file and generates a JSON config for VS Code Chat Language Models.                                                                                            |
+| `generate-json-pi.sh`      | Parses a single INI file and generates a JSON config for pi.dev (`~/.pi/agent/models.json`). Uses `{ providers: {...} }` wrapper and stripped base URLs (no `/chat/completions`). |
+| `merge-json-copilot.sh`    | Merges all individual VS Code JSON configs into a single `0-chatLanguageModels.json`.                                                                                             |
+| `merge-json-pi.sh`         | Merges all individual pi.dev JSON configs into a single `0-pi-models.json`.                                                                                                       |
+| `config-public-copilot.sh` | Generate public copilot config (`chatLanguageModels.public.json`) by replacing LOCAL vars with PUBLIC vars.                                                                       |
+| `config-public-pi.sh`      | Generate public pi config (`models.public.json`) by replacing LOCAL vars with PUBLIC vars, stripping `/chat/completions` from URLs.                                               |
+| `config-swap-copilot.sh`   | Swap our generated copilot config into the VS Code user settings file (creates target if missing).                                                                                |
+| `config-swap-pi.sh`        | Copy our generated pi config to `~/.pi/agent/models.json` (overwrite mode, creates directory if missing).                                                                         |
 
 ```bash
 # Generate JSON for a single INI file

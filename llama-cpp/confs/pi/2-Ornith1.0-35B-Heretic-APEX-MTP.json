@@ -1,7 +1,7 @@
 {
   "providers": {
-    "LLaMA.cpp Local": {
-      "baseUrl": "http://172.16.1.110:10005/v1/chat/completions",
+    "llama-cpp-local": {
+      "baseUrl": "http://172.16.1.110:10005/v1",
       "api": "openai-completions",
       "apiKey": "${input:chat.lm.secret.-4b1abccd}",
       "models": [
@@ -15,6 +15,13 @@
           ],
           "contextWindow": 196000,
           "maxTokens": 49000,
+          "thinkingLevelMap": {
+            "minimal": null,
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "max": null
+          },
           "cost": {
             "input": 0,
             "output": 0,
@@ -32,6 +39,13 @@
           ],
           "contextWindow": 256000,
           "maxTokens": 64000,
+          "thinkingLevelMap": {
+            "minimal": null,
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "max": null
+          },
           "cost": {
             "input": 0,
             "output": 0,
@@ -49,6 +63,13 @@
           ],
           "contextWindow": 256000,
           "maxTokens": 64000,
+          "thinkingLevelMap": {
+            "minimal": null,
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "max": null
+          },
           "cost": {
             "input": 0,
             "output": 0,
