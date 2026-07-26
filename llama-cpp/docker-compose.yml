@@ -1,6 +1,8 @@
 services:
   llama-cpp:
     container_name: llama-cpp
+    #  The current Driver 595.84 supports CUDA Version: 13.2, the image requires CUDA 13.3
+    # image: ghcr.io/ggml-org/llama.cpp:server-cuda13
     image: ghcr.io/ggml-org/llama.cpp:server-cuda
     network_mode: host
     restart: unless-stopped

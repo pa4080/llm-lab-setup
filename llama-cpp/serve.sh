@@ -9,5 +9,5 @@ source "$SCRIPT_DIR/serve-generic.sh"
 #  --------------------
 
 docker compose down
-docker compose up -d
+docker compose up --pull always -d
 docker logs -f llama-cpp

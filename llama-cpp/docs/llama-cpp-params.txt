@@ -1,6 +1,6 @@
 $ docker run --rm ghcr.io/ggml-org/llama.cpp:server-cuda --help
 
------ common params -----
+---- common params -----
 
 -h,    --help, --usage                  print usage and exit
 --version                               show version and build info
@@ -356,7 +356,7 @@ $ docker run --rm ghcr.io/ggml-org/llama.cpp:server-cuda --help
 --spec-draft-model, -md, --model-draft FNAME
                                         draft model for speculative decoding (default: unused)
                                         (env: LLAMA_ARG_SPEC_DRAFT_MODEL)
---spec-type none,draft-simple,draft-eagle3,draft-mtp,ngram-simple,ngram-map-k,ngram-map-k4v,ngram-mod,ngram-cache
+--spec-type none,draft-simple,draft-eagle3,draft-mtp,draft-dflash,ngram-simple,ngram-map-k,ngram-map-k4v,ngram-mod,ngram-cache
                                         comma-separated list of types of speculative decoding to use (default:
                                         none)
 
@@ -405,8 +405,8 @@ $ docker run --rm ghcr.io/ggml-org/llama.cpp:server-cuda --help
                                         max number of context checkpoints to create per slot (default:
                                         32)[(more info)](https://github.com/ggml-org/llama.cpp/pull/15293)
                                         (env: LLAMA_ARG_CTX_CHECKPOINTS)
--cms,  --checkpoint-min-step N          minimum spacing between context checkpoints in tokens (default: 256, 0
-                                        = no minimum)
+-cms,  --checkpoint-min-step N          minimum spacing between context checkpoints in tokens (default: 8192,
+                                        0 = no minimum)
                                         (env: LLAMA_ARG_CHECKPOINT_MIN_SPACING_NT)
 -cram, --cache-ram N                    set the maximum cache size in MiB (default: 8192, -1 - no limit, 0 -
                                         disable)[(more
@@ -472,35 +472,47 @@ $ docker run --rm ghcr.io/ggml-org/llama.cpp:server-cuda --help
                                         (env: LLAMA_ARG_REUSE_PORT)
 --path PATH                             path to serve static files from (default: )
                                         (env: LLAMA_ARG_STATIC_PATH)
+--cors-origins ORIGINS                  comma-separated list of allowed origins for CORS (default: *)
+                                        if set to special value 'localhost', reflect the Origin header only if
+                                        it is localhost
+                                        (env: LLAMA_ARG_CORS_ORIGINS)
+--cors-methods METHODS                  comma-separated list of allowed methods for CORS (default: GET, POST,
+                                        DELETE, OPTIONS)
+                                        (env: LLAMA_ARG_CORS_METHODS)
+--cors-headers HEADERS                  comma-separated list of allowed headers for CORS (default: *)
+                                        (env: LLAMA_ARG_CORS_HEADERS)
+--cors-credentials, --no-cors-credentials
+                                        whether to allow credentials for CORS (default: enabled)
+                                        note: if this is enabled and --cors-origins is set to * (default), the
+                                        Origin header will be echoed back, and credentials will always be
+                                        allowed
+                                        (env: LLAMA_ARG_CORS_CREDENTIALS)
 --api-prefix PREFIX                     prefix path the server serves from, without the trailing slash
                                         (default: )
                                         (env: LLAMA_ARG_API_PREFIX)
---webui-config JSON                     [DEPRECATED: use --ui-config] JSON that provides default WebUI
-                                        settings (overrides WebUI defaults)
-                                        (env: LLAMA_ARG_WEBUI_CONFIG)
---ui-config JSON                        JSON that provides default UI settings (overrides UI defaults)
+--ui-config, --webui-config JSON        JSON that provides default UI settings (overrides UI defaults)
                                         (env: LLAMA_ARG_UI_CONFIG)
---webui-config-file PATH                [DEPRECATED: use --ui-config-file] JSON file that provides default
-                                        WebUI settings (overrides WebUI defaults)
-                                        (env: LLAMA_ARG_WEBUI_CONFIG_FILE)
---ui-config-file PATH                   JSON file that provides default UI settings (overrides UI defaults)
+--ui-config-file, --webui-config-file PATH
+                                        JSON file that provides default UI settings (overrides UI defaults)
                                         (env: LLAMA_ARG_UI_CONFIG_FILE)
---webui-mcp-proxy, --no-webui-mcp-proxy
-                                        [DEPRECATED: use --ui-mcp-proxy/--no-ui-mcp-proxy] experimental:
-                                        whether to enable MCP CORS proxy
-                                        (env: LLAMA_ARG_WEBUI_MCP_PROXY)
---ui-mcp-proxy, --no-ui-mcp-proxy       experimental: whether to enable MCP CORS proxy - do not enable in
+--ui-mcp-proxy, --webui-mcp-proxy, --no-ui-mcp-proxy, --no-webui-mcp-proxy
+                                        experimental: whether to enable MCP CORS proxy - do not enable in
                                         untrusted environments (default: disabled)
                                         (env: LLAMA_ARG_UI_MCP_PROXY)
 --tools TOOL1,TOOL2,...                 experimental: whether to enable built-in tools for AI agents - do not
                                         enable in untrusted environments (default: no tools)
                                         specify "all" to enable all tools
                                         available tools: read_file, file_glob_search, grep_search,
-                                        exec_shell_command, write_file, edit_file, apply_diff, get_datetime
+                                        exec_shell_command, write_file, edit_file, get_datetime
+                                        note: for security reasons, this will limit --cors-origins to
+                                        localhost by default
                                         (env: LLAMA_ARG_TOOLS)
---webui, --no-webui                     [DEPRECATED: use --ui/--no-ui] whether to enable the Web UI
-                                        (env: LLAMA_ARG_WEBUI)
---ui,  --no-ui                          whether to enable the Web UI (default: enabled)
+-ag,   --agent, -no-ag, --no-agent      whether to enable CORS proxy and all built-in tools - do not enable in
+                                        untrusted environments (default: disabled)
+                                        note: for security reasons, this will limit --cors-origins to
+                                        localhost by default
+                                        (env: LLAMA_ARG_AGENT)
+--ui,  --webui, --no-ui, --no-webui     whether to enable the Web UI (default: enabled)
                                         (env: LLAMA_ARG_UI)
 --embedding, --embeddings               restrict to only support embedding use case; use only with dedicated
                                         embedding models (default: disabled)
@@ -510,7 +522,8 @@ $ docker run --rm ghcr.io/ggml-org/llama.cpp:server-cuda --help
 --api-key KEY                           API key to use for authentication, multiple keys can be provided as a
                                         comma-separated list (default: none)
                                         (env: LLAMA_API_KEY)
---api-key-file FNAME                    path to file containing API keys (default: none)
+--api-key-file FNAME                    path to file containing API keys, one per line; lines starting with a
+                                        hash are treated as comments (default: none)
                                         (env: LLAMA_ARG_API_KEY_FILE)
 --ssl-key-file FNAME                    path to file a PEM-encoded SSL private key
                                         (env: LLAMA_ARG_SSL_KEY_FILE)
@@ -571,6 +584,14 @@ $ docker run --rm ghcr.io/ggml-org/llama.cpp:server-cuda --help
 --reasoning-budget-message MESSAGE      message injected before the end-of-thinking tag when reasoning budget
                                         is exhausted (default: none)
                                         (env: LLAMA_ARG_THINK_BUDGET_MESSAGE)
+--reasoning-preserve, --no-reasoning-preserve
+                                        preserve reasoning trace in the full history, not just the last
+                                        assistant message (default: template default)
+                                        compatible with certain templates having 'supports_preserve_reasoning'
+                                        capability
+                                        example:
+                                        https://docs.z.ai/guides/capabilities/thinking-mode#preserved-thinking
+                                        (env: LLAMA_ARG_REASONING_PRESERVE)
 --chat-template JINJA_TEMPLATE          set custom jinja chat template (default: template taken from model's
                                         metadata)
                                         if suffix/prefix are specified, template will be disabled
@@ -623,7 +644,8 @@ $ docker run --rm ghcr.io/ggml-org/llama.cpp:server-cuda --help
                                         /lora-adapters) (default: disabled)
 --sleep-idle-seconds SECONDS            number of seconds of idleness after which the server will sleep
                                         (default: -1; -1 = disabled)
---log-prompts-dir PATH                  Log prompts to directory (only used for debugging, default: disabled)
+--log-prompts-dir PATH                  Log prompts to directory (auto-created if not present; only used for
+                                        debugging, default: disabled)
 -mv,   --model-vocoder FNAME            vocoder model for audio generation (default: unused)
 --tts-use-guide-tokens                  Use guide tokens to improve TTS word recall
 --embd-gemma-default                    use default EmbeddingGemma model (note: can download weights from the
