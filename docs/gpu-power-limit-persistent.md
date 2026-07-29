@@ -21,11 +21,11 @@ sudo nvidia-smi -i 0 -pl 300
 
 ### Flags explained
 
-| Flag | Meaning |
-|------|---------|
-| `-pm 1` | Enable **Persistence Mode**. Keeps the NVIDIA driver loaded even when no process is using the GPU. |
-| `-i 0` | Target GPU by index (0 = first GPU). |
-| `-pl 300` | Set **power limit** to 300 W. Without this, the GPU uses its default power limit. |
+| Flag      | Meaning                                                                                            |
+| --------- | -------------------------------------------------------------------------------------------------- |
+| `-pm 1`   | Enable **Persistence Mode**. Keeps the NVIDIA driver loaded even when no process is using the GPU. |
+| `-i 0`    | Target GPU by index (0 = first GPU).                                                               |
+| `-pl 300` | Set **power limit** to 300 W. Without this, the GPU uses its default power limit.                  |
 
 ### Verify
 

@@ -1,0 +1,31 @@
+{
+  "providers": {
+    "LLaMA.cpp Local": {
+      "type": "openai",
+      "options": {
+        "baseURL": "http://172.16.1.110:10004/v1",
+        "apiKey": "${input:chat.lm.secret.-4b1abccd}"
+      },
+      "models": [
+        {
+          "id": "LagunaS2.1_118B-A8B-Q4KM-256K-q4",
+          "name": "LagunaS2.1_118B-A8B-Q4KM-256K-q4",
+          "toolCalling": true,
+          "vision": false,
+          "streaming": true,
+          "maxInputTokens": 262144,
+          "maxOutputTokens": 8192
+        },
+        {
+          "id": "LagunaS2.1_118B-A8B-Q4KM-256K-dflash",
+          "name": "LagunaS2.1_118B-A8B-Q4KM-256K-dflash",
+          "toolCalling": true,
+          "vision": false,
+          "streaming": true,
+          "maxInputTokens": 262144,
+          "maxOutputTokens": 8192
+        }
+      ]
+    }
+  }
+}

@@ -1,6 +1,4 @@
-$ docker run --rm ghcr.io/ggml-org/llama.cpp:server-cuda --help
-
----- common params -----
+----- common params -----
 
 -h,    --help, --usage                  print usage and exit
 --version                               show version and build info
@@ -84,14 +82,26 @@ $ docker run --rm ghcr.io/ggml-org/llama.cpp:server-cuda --help
                                         (env: LLAMA_ARG_CACHE_TYPE_V)
 -dt,   --defrag-thold N                 KV cache defragmentation threshold (DEPRECATED)
                                         (env: LLAMA_ARG_DEFRAG_THOLD)
---mlock                                 force system to keep model in RAM rather than swapping or compressing
+--mlock                                 DEPRECATED in favor of `--load-mode`: force system to keep model in
+                                        RAM rather than swapping or compressing
                                         (env: LLAMA_ARG_MLOCK)
---mmap, --no-mmap                       whether to memory-map model. (if mmap disabled, slower load but may
-                                        reduce pageouts if not using mlock) (default: enabled)
+--mmap, --no-mmap                       DEPRECATED in favor of `--load-mode`: whether to memory-map model. (if
+                                        mmap disabled, slower load but may reduce pageouts if not using mlock)
                                         (env: LLAMA_ARG_MMAP)
 -dio,  --direct-io, -ndio, --no-direct-io
-                                        use DirectIO if available. (default: disabled)
+                                        DEPRECATED in favor of `--load-mode`: use DirectIO if available
                                         (env: LLAMA_ARG_DIO)
+-lm,   --load-mode MODE                 model loading mode (default: mmap)
+                                        - none: no special loading mode
+                                        - mmap: memory-map model (if mmap disabled, slower load but may reduce
+                                        pageouts if not using mlock)
+                                        - mlock: force system to keep model in RAM rather than swapping or
+                                        compressing
+                                        - mmap+mlock: mmap + force system to keep model in RAM rather than
+                                        swapping or compressing
+                                        - dio: use DirectIO if available
+                                        
+                                        (env: LLAMA_ARG_LOAD_MODE)
 --numa TYPE                             attempt optimizations that help on some NUMA systems
                                         - distribute: spread execution evenly over all nodes
                                         - isolate: only spawn threads on CPUs on the node that execution
@@ -207,7 +217,7 @@ $ docker run --rm ghcr.io/ggml-org/llama.cpp:server-cuda --help
                                          - 4: trace (more info)
                                          - 5: debug
                                         (default: 3)
-
+                                        
                                         (env: LLAMA_ARG_LOG_VERBOSITY)
 --log-prefix, --no-log-prefix           Enable prefix in log messages
                                         (env: LLAMA_ARG_LOG_PREFIX)
@@ -359,7 +369,7 @@ $ docker run --rm ghcr.io/ggml-org/llama.cpp:server-cuda --help
 --spec-type none,draft-simple,draft-eagle3,draft-mtp,draft-dflash,ngram-simple,ngram-map-k,ngram-map-k4v,ngram-mod,ngram-cache
                                         comma-separated list of types of speculative decoding to use (default:
                                         none)
-
+                                        
                                         (env: LLAMA_ARG_SPEC_TYPE)
 --spec-ngram-mod-n-min N                minimum number of ngram tokens to use for ngram-based speculative
                                         decoding (default: 48)
@@ -507,6 +517,18 @@ $ docker run --rm ghcr.io/ggml-org/llama.cpp:server-cuda --help
                                         note: for security reasons, this will limit --cors-origins to
                                         localhost by default
                                         (env: LLAMA_ARG_TOOLS)
+--mcp-servers-config PATH               experimental: path to JSON file with MCP server definitions
+                                        (Cursor-compatible format) - do not enable in untrusted environments
+                                        (default: none)
+                                        note: for security reasons, this will limit --cors-origins to
+                                        localhost by default
+                                        (env: LLAMA_ARG_MCP_SERVERS_CONFIG)
+--mcp-servers-json JSON                 experimental: inline JSON with MCP server definitions
+                                        (Cursor-compatible format) - do not enable in untrusted environments
+                                        (default: none)
+                                        note: for security reasons, this will limit --cors-origins to
+                                        localhost by default
+                                        (env: LLAMA_ARG_MCP_SERVERS_JSON)
 -ag,   --agent, -no-ag, --no-agent      whether to enable CORS proxy and all built-in tools - do not enable in
                                         untrusted environments (default: disabled)
                                         note: for security reasons, this will limit --cors-origins to
@@ -635,7 +657,7 @@ $ docker run --rm ghcr.io/ggml-org/llama.cpp:server-cuda --help
                                         assistant message (default: prefill enabled)
                                         when this flag is set, if the last message is an assistant message
                                         then it will be treated as a full message and not prefilled
-
+                                        
                                         (env: LLAMA_ARG_PREFILL_ASSISTANT)
 -sps,  --slot-prompt-similarity SIMILARITY
                                         how much the prompt of a request must match the prompt of a slot in
