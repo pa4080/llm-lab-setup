@@ -280,58 +280,8 @@
         "maxOutputTokens": 128000
       },
       {
-        "id": "LagunaS2.1_118B-A8B-Q4KM-256K-q4",
-        "name": "LagunaS2.1_118B-A8B-Q4KM-256K-q4",
-        "url": "http://172.16.1.110:10005/v1/chat/completions",
-        "toolCalling": true,
-        "vision": false,
-        "streaming": true,
-        "apiType": "chat-completions",
-        "editTools": [
-          "apply-patch",
-          "code-rewrite",
-          "find-replace",
-          "multi-find-replace"
-        ],
-        "thinking": true,
-        "supportsReasoningEffort": [
-          "low",
-          "medium",
-          "high"
-        ],
-        "reasoningEffortFormat": "chat-completions",
-        "zeroDataRetentionEnabled": false,
-        "maxInputTokens": 196608,
-        "maxOutputTokens": 65536
-      },
-      {
-        "id": "LagunaS2.1_118B-A8B-Q4KM-256K-q8",
-        "name": "LagunaS2.1_118B-A8B-Q4KM-256K-q8",
-        "url": "http://172.16.1.110:10005/v1/chat/completions",
-        "toolCalling": true,
-        "vision": false,
-        "streaming": true,
-        "apiType": "chat-completions",
-        "editTools": [
-          "apply-patch",
-          "code-rewrite",
-          "find-replace",
-          "multi-find-replace"
-        ],
-        "thinking": true,
-        "supportsReasoningEffort": [
-          "low",
-          "medium",
-          "high"
-        ],
-        "reasoningEffortFormat": "chat-completions",
-        "zeroDataRetentionEnabled": false,
-        "maxInputTokens": 196608,
-        "maxOutputTokens": 65536
-      },
-      {
-        "id": "LagunaS2.1_118B-A8B-Q4KM-256K-dflash",
-        "name": "LagunaS2.1_118B-A8B-Q4KM-256K-dflash",
+        "id": "LagunaS2.1_118B-A8B-Q4KM-256K-f16",
+        "name": "LagunaS2.1_118B-A8B-Q4KM-256K-f16",
         "url": "http://172.16.1.110:10005/v1/chat/completions",
         "toolCalling": true,
         "vision": false,
@@ -439,13 +389,7 @@
       "Ornith1.0-9B-HAIC-512K-q4_MTP_Vision": {
         "reasoningEffort": "high"
       },
-      "LagunaS2.1_118B-A8B-Q4KM-256K-q4": {
-        "reasoningEffort": "high"
-      },
-      "LagunaS2.1_118B-A8B-Q4KM-256K-q8": {
-        "reasoningEffort": "high"
-      },
-      "LagunaS2.1_118B-A8B-Q4KM-256K-dflash": {
+      "LagunaS2.1_118B-A8B-Q4KM-256K-f16": {
         "reasoningEffort": "high"
       },
       "LagunaXS2.1_33B-A3B-Q4KM-128K-q4": {

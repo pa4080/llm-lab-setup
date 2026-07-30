@@ -6,54 +6,8 @@
       "apiKey": "${input:chat.lm.secret.-4b1abccd}",
       "models": [
         {
-          "id": "LagunaS2.1_118B-A8B-Q4KM-256K-q4",
-          "name": "LagunaS2.1_118B-A8B-Q4KM-256K-q4",
-          "reasoning": true,
-          "input": [
-            "text"
-          ],
-          "contextWindow": 262144,
-          "maxTokens": 65536,
-          "thinkingLevelMap": {
-            "minimal": null,
-            "low": "low",
-            "medium": "medium",
-            "high": "high",
-            "max": null
-          },
-          "cost": {
-            "input": 0,
-            "output": 0,
-            "cacheRead": 0,
-            "cacheWrite": 0
-          }
-        },
-        {
-          "id": "LagunaS2.1_118B-A8B-Q4KM-256K-q8",
-          "name": "LagunaS2.1_118B-A8B-Q4KM-256K-q8",
-          "reasoning": true,
-          "input": [
-            "text"
-          ],
-          "contextWindow": 262144,
-          "maxTokens": 65536,
-          "thinkingLevelMap": {
-            "minimal": null,
-            "low": "low",
-            "medium": "medium",
-            "high": "high",
-            "max": null
-          },
-          "cost": {
-            "input": 0,
-            "output": 0,
-            "cacheRead": 0,
-            "cacheWrite": 0
-          }
-        },
-        {
-          "id": "LagunaS2.1_118B-A8B-Q4KM-256K-dflash",
-          "name": "LagunaS2.1_118B-A8B-Q4KM-256K-dflash",
+          "id": "LagunaS2.1_118B-A8B-Q4KM-256K-f16",
+          "name": "LagunaS2.1_118B-A8B-Q4KM-256K-f16",
           "reasoning": true,
           "input": [
             "text"
