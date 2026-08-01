@@ -29,11 +29,11 @@
     ```json
     {
     "thinking": true,
-        "supportsReasoningEffort": [
-          "low",
-          "medium",
-          "high"
-        ],
+    "supportsReasoningEffort": [
+      "low",
+      "medium",
+      "high"
+    ],
     "zeroDataRetentionEnabled": false,
     }
     ```

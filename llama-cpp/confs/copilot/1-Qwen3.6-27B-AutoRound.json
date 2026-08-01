@@ -4,8 +4,8 @@
   "apiKey": "${input:chat.lm.secret.-4b1abccd}",
   "models": [
     {
-      "id": "Qwen3.6_27B-AR-Q4KS-128K-q4-MTP_Vision",
-      "name": "Qwen3.6_27B-AR-Q4KS-128K-q4-MTP_Vision",
+      "id": "Qwen3.6_27B-AR-Q4KM-128K-MTP_Vision",
+      "name": "Qwen3.6_27B-AR-Q4KM-128K-MTP_Vision",
       "url": "http://172.16.1.110:10005/v1/chat/completions",
       "toolCalling": true,
       "vision": true,
@@ -29,8 +29,8 @@
       "maxOutputTokens": 32000
     },
     {
-      "id": "Qwen3.6_27B-AR-Q4KM-128K-q4-MTP_Vision",
-      "name": "Qwen3.6_27B-AR-Q4KM-128K-q4-MTP_Vision",
+      "id": "Qwen3.6_27B-AR-Q4KS-128K-MTP_Vision_q4/4_n2",
+      "name": "Qwen3.6_27B-AR-Q4KS-128K-MTP_Vision_q4/4_n2",
       "url": "http://172.16.1.110:10005/v1/chat/completions",
       "toolCalling": true,
       "vision": true,
@@ -54,8 +54,8 @@
       "maxOutputTokens": 32000
     },
     {
-      "id": "Qwen3.6_27B-AR-Q4KM-128K-q4-MTP",
-      "name": "Qwen3.6_27B-AR-Q4KM-128K-q4-MTP",
+      "id": "Qwen3.6_27B-AR-Q4KM-128K-MTP_q4/4_n2",
+      "name": "Qwen3.6_27B-AR-Q4KM-128K-MTP_q4/4_n2",
       "url": "http://172.16.1.110:10005/v1/chat/completions",
       "toolCalling": true,
       "vision": false,
@@ -80,13 +80,13 @@
     }
   ],
   "settings": {
-    "Qwen3.6_27B-AR-Q4KS-128K-q4-MTP_Vision": {
+    "Qwen3.6_27B-AR-Q4KM-128K-MTP_Vision": {
       "reasoningEffort": "high"
     },
-    "Qwen3.6_27B-AR-Q4KM-128K-q4-MTP_Vision": {
+    "Qwen3.6_27B-AR-Q4KS-128K-MTP_Vision_q4/4_n2": {
       "reasoningEffort": "high"
     },
-    "Qwen3.6_27B-AR-Q4KM-128K-q4-MTP": {
+    "Qwen3.6_27B-AR-Q4KM-128K-MTP_q4/4_n2": {
       "reasoningEffort": "high"
     }
   }

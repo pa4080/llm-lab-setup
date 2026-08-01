@@ -6,8 +6,8 @@
       "apiKey": "${input:chat.lm.secret.-4b1abccd}",
       "models": [
         {
-          "id": "Qwen3.6_27B-AR-Q4KS-128K-q4-MTP_Vision",
-          "name": "Qwen3.6_27B-AR-Q4KS-128K-q4-MTP_Vision",
+          "id": "Qwen3.6_27B-AR-Q4KM-128K-MTP_Vision",
+          "name": "Qwen3.6_27B-AR-Q4KM-128K-MTP_Vision",
           "reasoning": true,
           "input": [
             "text",
@@ -30,8 +30,8 @@
           }
         },
         {
-          "id": "Qwen3.6_27B-AR-Q4KM-128K-q4-MTP_Vision",
-          "name": "Qwen3.6_27B-AR-Q4KM-128K-q4-MTP_Vision",
+          "id": "Qwen3.6_27B-AR-Q4KS-128K-MTP_Vision_q4/4_n2",
+          "name": "Qwen3.6_27B-AR-Q4KS-128K-MTP_Vision_q4/4_n2",
           "reasoning": true,
           "input": [
             "text",
@@ -54,8 +54,8 @@
           }
         },
         {
-          "id": "Qwen3.6_27B-AR-Q4KM-128K-q4-MTP",
-          "name": "Qwen3.6_27B-AR-Q4KM-128K-q4-MTP",
+          "id": "Qwen3.6_27B-AR-Q4KM-128K-MTP_q4/4_n2",
+          "name": "Qwen3.6_27B-AR-Q4KM-128K-MTP_q4/4_n2",
           "reasoning": true,
           "input": [
             "text"
@@ -149,39 +149,15 @@
           }
         },
         {
-          "id": "Ornith1.0_35B-HAIC-192K-q8_MTP_Vision",
-          "name": "Ornith1.0_35B-HAIC-192K-q8_MTP_Vision",
+          "id": "Ornith1.0_35B-HAIC-168K-q8_MTP_Vision",
+          "name": "Ornith1.0_35B-HAIC-168K-q8_MTP_Vision",
           "reasoning": true,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 196000,
-          "maxTokens": 49000,
-          "thinkingLevelMap": {
-            "minimal": null,
-            "low": "low",
-            "medium": "medium",
-            "high": "high",
-            "max": null
-          },
-          "cost": {
-            "input": 0,
-            "output": 0,
-            "cacheRead": 0,
-            "cacheWrite": 0
-          }
-        },
-        {
-          "id": "Ornith1.0_35B-HAIC-256K-q8_MTP_Vision",
-          "name": "Ornith1.0_35B-HAIC-256K-q8_MTP_Vision",
-          "reasoning": true,
-          "input": [
-            "text",
-            "image"
-          ],
-          "contextWindow": 256000,
-          "maxTokens": 64000,
+          "contextWindow": 168000,
+          "maxTokens": 42000,
           "thinkingLevelMap": {
             "minimal": null,
             "low": "low",
@@ -221,8 +197,8 @@
           }
         },
         {
-          "id": "Ornith1.0-9B-HAIC-256K-q8_MTP_Vision",
-          "name": "Ornith1.0-9B-HAIC-256K-q8_MTP_Vision",
+          "id": "Ornith1.0_9B-HAIC-256K-q8_MTP_Vision",
+          "name": "Ornith1.0_9B-HAIC-256K-q8_MTP_Vision",
           "reasoning": true,
           "input": [
             "text",
@@ -245,8 +221,8 @@
           }
         },
         {
-          "id": "Ornith1.0-9B-HAIC-512K-q4_MTP_Vision",
-          "name": "Ornith1.0-9B-HAIC-512K-q4_MTP_Vision",
+          "id": "Ornith1.0_9B-HAIC-512K-q4_MTP_Vision",
+          "name": "Ornith1.0_9B-HAIC-512K-q4_MTP_Vision",
           "reasoning": true,
           "input": [
             "text",

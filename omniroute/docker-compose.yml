@@ -1,0 +1,99 @@
+# ──────────────────────────────────────────────────────────────────────
+# OmniRoute – Production Stack for Portainer + Cloudflare Tunnel
+# ──────────────────────────────────────────────────────────────────────
+#
+# Ref: https://chat.deepseek.com/a/chat/s/53fbe093-6a1f-4a45-963e-860a9e1d75ef
+#
+# - Uses official `latest` image (no build required)
+# - Binds to localhost only → traffic must come via Cloudflared
+# - Separate ports: 20128 (dashboard) and 20129 (API)
+# - Redis as rate‑limiter backend
+#
+# JWT_SECRET                     | Signs dashboard session cookies.                   | openssl rand -base64 48
+# API_KEY_SECRET                 | Encrypts stored API keys at rest.                  | openssl rand -hex 32
+# INITIAL_PASSWORD               | First‑boot admin password (change after login).    | Pick a strong password, then change it from the dashboard settings.
+
+# LIVE_WS_ALLOWED_ORIGINS        | Origins allowed to open the live WebSocket.        | https://omniroute.spasov.me (your dashboard domain).
+# NEXT_PUBLIC_LIVE_WS_PUBLIC_URL | Public WebSocket endpoint (browser connects here). | wss://omniroute.spasov.me/live-ws (Cloudflare terminates TLS, so use wss://).
+# OMNIROUTE_WS_BRIDGE_SECRET     | Internal server-to-server communication            | openssl rand -hex 32
+
+# STORAGE_ENCRYPTION_KEY         | (Optional) Encrypts the entire SQLite database.    | openssl rand -hex 32 – leave empty to disable.
+# ──────────────────────────────────────────────────────────────────────
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: omniroute-redis
+    restart: unless-stopped
+    command: redis-server --save 60 1 --loglevel warning
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  omniroute:
+    image: diegosouzapw/omniroute:latest
+    container_name: omniroute
+    restart: unless-stopped
+    stop_grace_period: 40s
+    depends_on:
+      redis:
+        condition: service_healthy
+    ports:
+      # Bind to localhost only – traffic must come via Cloudflared
+      - "20128:20128"   # Dashboard (Next.js + HTTP proxy)
+      - "20129:20129"   # API (OpenAI‑compatible)
+      - "20132:20132"   # Live WebSocket Server (internal, proxied via 20128)
+    environment:
+      # ── Mandatory secrets (set in Portainer) ──
+      - JWT_SECRET=${JWT_SECRET}
+      - API_KEY_SECRET=${API_KEY_SECRET}
+      - INITIAL_PASSWORD=${INITIAL_PASSWORD}
+      - OMNIROUTE_WS_BRIDGE_SECRET=${OMNIROUTE_WS_BRIDGE_SECRET}
+
+      # ── Optional: database encryption ──
+      - STORAGE_ENCRYPTION_KEY=${STORAGE_ENCRYPTION_KEY:-}
+      - STORAGE_ENCRYPTION_KEY_VERSION=v1
+
+      # ── Core runtime ──
+      - NODE_ENV=production
+      - PORT=20128
+      - API_PORT=20129
+      - HOSTNAME=0.0.0.0
+      - DATA_DIR=/app/data
+
+      # ── Live WebSocket Configuration (RE-ADDED): https://domain + wss://domain/live-ws ──
+      - LIVE_WS_PORT=20132
+      - LIVE_WS_HOST=0.0.0.0
+      - LIVE_WS_ALLOWED_ORIGINS=${LIVE_WS_ALLOWED_ORIGINS}
+      - NEXT_PUBLIC_LIVE_WS_PUBLIC_URL=${NEXT_PUBLIC_LIVE_WS_PUBLIC_URL}
+
+      # ── Public URLs (for OAuth & internal routing): https://domain + Internal container name ──
+      - NEXT_PUBLIC_BASE_URL=${NEXT_PUBLIC_BASE_URL}
+      - BASE_URL=http://omniroute:20128
+
+      # ── Security behind Cloudflare ──
+      - AUTH_COOKIE_SECURE=true
+      - OMNIROUTE_TRUST_PROXY=true
+
+      # ── Redis & Rate Limiting ──
+      - REDIS_URL=redis://redis:6379
+      - RELAY_IP_PER_MINUTE=30
+
+    volumes:
+      - omniroute-data:/app/data
+    healthcheck:
+      test: ["CMD", "node", "healthcheck.mjs"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+volumes:
+  redis-data:
+    name: omniroute-redis-data
+  omniroute-data:
+    name: omniroute-data

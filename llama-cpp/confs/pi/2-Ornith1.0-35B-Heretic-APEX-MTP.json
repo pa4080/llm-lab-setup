@@ -6,39 +6,15 @@
       "apiKey": "${input:chat.lm.secret.-4b1abccd}",
       "models": [
         {
-          "id": "Ornith1.0_35B-HAIC-192K-q8_MTP_Vision",
-          "name": "Ornith1.0_35B-HAIC-192K-q8_MTP_Vision",
+          "id": "Ornith1.0_35B-HAIC-168K-q8_MTP_Vision",
+          "name": "Ornith1.0_35B-HAIC-168K-q8_MTP_Vision",
           "reasoning": true,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 196000,
-          "maxTokens": 49000,
-          "thinkingLevelMap": {
-            "minimal": null,
-            "low": "low",
-            "medium": "medium",
-            "high": "high",
-            "max": null
-          },
-          "cost": {
-            "input": 0,
-            "output": 0,
-            "cacheRead": 0,
-            "cacheWrite": 0
-          }
-        },
-        {
-          "id": "Ornith1.0_35B-HAIC-256K-q8_MTP_Vision",
-          "name": "Ornith1.0_35B-HAIC-256K-q8_MTP_Vision",
-          "reasoning": true,
-          "input": [
-            "text",
-            "image"
-          ],
-          "contextWindow": 256000,
-          "maxTokens": 64000,
+          "contextWindow": 168000,
+          "maxTokens": 42000,
           "thinkingLevelMap": {
             "minimal": null,
             "low": "low",

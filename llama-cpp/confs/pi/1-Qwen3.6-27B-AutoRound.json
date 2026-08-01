@@ -6,8 +6,8 @@
       "apiKey": "${input:chat.lm.secret.-4b1abccd}",
       "models": [
         {
-          "id": "Qwen3.6_27B-AR-Q4KS-128K-q4-MTP_Vision",
-          "name": "Qwen3.6_27B-AR-Q4KS-128K-q4-MTP_Vision",
+          "id": "Qwen3.6_27B-AR-Q4KM-128K-MTP_Vision",
+          "name": "Qwen3.6_27B-AR-Q4KM-128K-MTP_Vision",
           "reasoning": true,
           "input": [
             "text",
@@ -30,8 +30,8 @@
           }
         },
         {
-          "id": "Qwen3.6_27B-AR-Q4KM-128K-q4-MTP_Vision",
-          "name": "Qwen3.6_27B-AR-Q4KM-128K-q4-MTP_Vision",
+          "id": "Qwen3.6_27B-AR-Q4KS-128K-MTP_Vision_q4/4_n2",
+          "name": "Qwen3.6_27B-AR-Q4KS-128K-MTP_Vision_q4/4_n2",
           "reasoning": true,
           "input": [
             "text",
@@ -54,8 +54,8 @@
           }
         },
         {
-          "id": "Qwen3.6_27B-AR-Q4KM-128K-q4-MTP",
-          "name": "Qwen3.6_27B-AR-Q4KM-128K-q4-MTP",
+          "id": "Qwen3.6_27B-AR-Q4KM-128K-MTP_q4/4_n2",
+          "name": "Qwen3.6_27B-AR-Q4KM-128K-MTP_q4/4_n2",
           "reasoning": true,
           "input": [
             "text"

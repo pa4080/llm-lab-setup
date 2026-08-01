@@ -6,8 +6,8 @@
       "apiKey": "${input:chat.lm.secret.-4b1abccd}",
       "models": [
         {
-          "id": "Ornith1.0-9B-HAIC-256K-q8_MTP_Vision",
-          "name": "Ornith1.0-9B-HAIC-256K-q8_MTP_Vision",
+          "id": "Ornith1.0_9B-HAIC-256K-q8_MTP_Vision",
+          "name": "Ornith1.0_9B-HAIC-256K-q8_MTP_Vision",
           "reasoning": true,
           "input": [
             "text",
@@ -30,8 +30,8 @@
           }
         },
         {
-          "id": "Ornith1.0-9B-HAIC-512K-q4_MTP_Vision",
-          "name": "Ornith1.0-9B-HAIC-512K-q4_MTP_Vision",
+          "id": "Ornith1.0_9B-HAIC-512K-q4_MTP_Vision",
+          "name": "Ornith1.0_9B-HAIC-512K-q4_MTP_Vision",
           "reasoning": true,
           "input": [
             "text",
