@@ -9,5 +9,8 @@
     "Qwen",
     "Safetensors",
     "sglang"
-  ]
+  ],
+  "cSpell.enabledFileTypes": {
+    "markdown": true
+  }
 }

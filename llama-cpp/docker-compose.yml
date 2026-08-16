@@ -30,6 +30,8 @@ services:
       - CUDA_VISIBLE_DEVICES=0
       - CLAUDE_CODE_ATTRIBUTION_HEADER=0
       # - GGML_CUDA_GRAPH_OPT=1
+
+      # --no-context-shift
     command: >
       --host 0.0.0.0
       --port 10005
@@ -37,6 +39,5 @@ services:
       --models-max 1
       --threads 16
       --no-warmup
-      --no-context-shift
       --cache-ram 65536
       --cache-reuse 4096

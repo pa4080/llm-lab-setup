@@ -30,8 +30,33 @@
         "maxOutputTokens": 32000
       },
       {
-        "id": "Qwen3.6_27B-AR-Q4KS-128K-MTP_Vision_q4/4_n2",
-        "name": "Qwen3.6_27B-AR-Q4KS-128K-MTP_Vision_q4/4_n2",
+        "id": "Qwen3.6_27B-AR-Q4KM-128K-MTP",
+        "name": "Qwen3.6_27B-AR-Q4KM-128K-MTP",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 96000,
+        "maxOutputTokens": 32000
+      },
+      {
+        "id": "Qwen3.6_27B-AR-Q4KS-128K-MTP_Vision_n2",
+        "name": "Qwen3.6_27B-AR-Q4KS-128K-MTP_Vision_n2",
         "url": "http://172.16.1.110:10005/v1/chat/completions",
         "toolCalling": true,
         "vision": true,
@@ -55,8 +80,8 @@
         "maxOutputTokens": 32000
       },
       {
-        "id": "Qwen3.6_27B-AR-Q4KM-128K-MTP_q4/4_n2",
-        "name": "Qwen3.6_27B-AR-Q4KM-128K-MTP_q4/4_n2",
+        "id": "Qwen3.6_27B-AR-Q4KM-128K-MTP_n2",
+        "name": "Qwen3.6_27B-AR-Q4KM-128K-MTP_n2",
         "url": "http://172.16.1.110:10005/v1/chat/completions",
         "toolCalling": true,
         "vision": false,
@@ -153,6 +178,58 @@
         "zeroDataRetentionEnabled": false,
         "maxInputTokens": 192000,
         "maxOutputTokens": 64000
+      },
+      {
+        "id": "Qwen3.8_27B-Q4KM-128K-MTP_Vision",
+        "name": "Qwen3.8_27B-Q4KM-128K-MTP_Vision",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "xhigh",
+          "medium",
+          "low",
+          "none"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 96000,
+        "maxOutputTokens": 32000
+      },
+      {
+        "id": "Qwen3.8_27B-UDQ4KXL-128K-MTP_Vision",
+        "name": "Qwen3.8_27B-UDQ4KXL-128K-MTP_Vision",
+        "url": "http://172.16.1.110:10005/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "apiType": "chat-completions",
+        "editTools": [
+          "apply-patch",
+          "code-rewrite",
+          "find-replace",
+          "multi-find-replace"
+        ],
+        "thinking": true,
+        "supportsReasoningEffort": [
+          "xhigh",
+          "medium",
+          "low",
+          "none"
+        ],
+        "reasoningEffortFormat": "chat-completions",
+        "zeroDataRetentionEnabled": false,
+        "maxInputTokens": 96000,
+        "maxOutputTokens": 32000
       },
       {
         "id": "Ornith1.0_35B-HAIC-168K-q8_MTP_Vision",
@@ -253,91 +330,19 @@
         "zeroDataRetentionEnabled": false,
         "maxInputTokens": 384000,
         "maxOutputTokens": 128000
-      },
-      {
-        "id": "LagunaS2.1_118B-A8B-Q4KM-256K-f16",
-        "name": "LagunaS2.1_118B-A8B-Q4KM-256K-f16",
-        "url": "http://172.16.1.110:10005/v1/chat/completions",
-        "toolCalling": true,
-        "vision": false,
-        "streaming": true,
-        "apiType": "chat-completions",
-        "editTools": [
-          "apply-patch",
-          "code-rewrite",
-          "find-replace",
-          "multi-find-replace"
-        ],
-        "thinking": true,
-        "supportsReasoningEffort": [
-          "low",
-          "medium",
-          "high"
-        ],
-        "reasoningEffortFormat": "chat-completions",
-        "zeroDataRetentionEnabled": false,
-        "maxInputTokens": 196608,
-        "maxOutputTokens": 65536
-      },
-      {
-        "id": "LagunaXS2.1_33B-A3B-Q4KM-128K-q4",
-        "name": "LagunaXS2.1_33B-A3B-Q4KM-128K-q4",
-        "url": "http://172.16.1.110:10005/v1/chat/completions",
-        "toolCalling": true,
-        "vision": false,
-        "streaming": true,
-        "apiType": "chat-completions",
-        "editTools": [
-          "apply-patch",
-          "code-rewrite",
-          "find-replace",
-          "multi-find-replace"
-        ],
-        "thinking": true,
-        "supportsReasoningEffort": [
-          "low",
-          "medium",
-          "high"
-        ],
-        "reasoningEffortFormat": "chat-completions",
-        "zeroDataRetentionEnabled": false,
-        "maxInputTokens": 96000,
-        "maxOutputTokens": 32000
-      },
-      {
-        "id": "LagunaXS2.1_33B-A3B-Q4KM-168K-q4",
-        "name": "LagunaXS2.1_33B-A3B-Q4KM-168K-q4",
-        "url": "http://172.16.1.110:10005/v1/chat/completions",
-        "toolCalling": true,
-        "vision": false,
-        "streaming": true,
-        "apiType": "chat-completions",
-        "editTools": [
-          "apply-patch",
-          "code-rewrite",
-          "find-replace",
-          "multi-find-replace"
-        ],
-        "thinking": true,
-        "supportsReasoningEffort": [
-          "low",
-          "medium",
-          "high"
-        ],
-        "reasoningEffortFormat": "chat-completions",
-        "zeroDataRetentionEnabled": false,
-        "maxInputTokens": 126000,
-        "maxOutputTokens": 42000
       }
     ],
     "settings": {
       "Qwen3.6_27B-AR-Q4KM-128K-MTP_Vision": {
         "reasoningEffort": "high"
       },
-      "Qwen3.6_27B-AR-Q4KS-128K-MTP_Vision_q4/4_n2": {
+      "Qwen3.6_27B-AR-Q4KM-128K-MTP": {
         "reasoningEffort": "high"
       },
-      "Qwen3.6_27B-AR-Q4KM-128K-MTP_q4/4_n2": {
+      "Qwen3.6_27B-AR-Q4KS-128K-MTP_Vision_n2": {
+        "reasoningEffort": "high"
+      },
+      "Qwen3.6_27B-AR-Q4KM-128K-MTP_n2": {
         "reasoningEffort": "high"
       },
       "Qwen3.6_35B-A3B-IQ4NL-196K-q4_MTP_Vision": {
@@ -349,6 +354,12 @@
       "Qwen3.6_35B-A3B-IQ4NL-256K-q4_Vision": {
         "reasoningEffort": "high"
       },
+      "Qwen3.8_27B-Q4KM-128K-MTP_Vision": {
+        "reasoningEffort": "xhigh"
+      },
+      "Qwen3.8_27B-UDQ4KXL-128K-MTP_Vision": {
+        "reasoningEffort": "xhigh"
+      },
       "Ornith1.0_35B-HAIC-168K-q8_MTP_Vision": {
         "reasoningEffort": "high"
       },
@@ -359,15 +370,6 @@
         "reasoningEffort": "high"
       },
       "Ornith1.0_9B-HAIC-512K-q4_MTP_Vision": {
-        "reasoningEffort": "high"
-      },
-      "LagunaS2.1_118B-A8B-Q4KM-256K-f16": {
-        "reasoningEffort": "high"
-      },
-      "LagunaXS2.1_33B-A3B-Q4KM-128K-q4": {
-        "reasoningEffort": "high"
-      },
-      "LagunaXS2.1_33B-A3B-Q4KM-168K-q4": {
         "reasoningEffort": "high"
       }
     }

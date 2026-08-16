@@ -15,6 +15,14 @@ sudo nvidia-smi -pm 1
 
 # 2. Set the power limit (300 W in this example)
 sudo nvidia-smi -i 0 -pl 300
+
+# 3. Verify the power limit is applied
+nvidia-smi -i 0 -q -d POWER
+
+# 4. Limit the GPU clocks (optional, but recommended for stability)
+# Undo: sudo nvidia-smi -i 0 -rgc
+# Check current clocks: nvidia-smi -i 0 -q -d CLOCK
+sudo nvidia-smi -i 0 -lgc 210,1800
 ```
 
 > **⚠️ Always run `-pm` and `-pl` as separate commands, not combined on one line.** Running `nvidia-smi -pm 1 -pl 300` can produce errors and the power limit won't be applied.
@@ -107,13 +115,17 @@ sudo nano /etc/systemd/system/gpu-power-limit.service
 
 ```ini
 [Unit]
-Description=Set GPU 0 power limit to 300W
+Description=Set RTX 3090 (GPU 0) power limit to 300W and lock core clocks
 After=nvidia-persistenced.service
 Wants=nvidia-persistenced.service
 
 [Service]
 Type=oneshot
+# Keep your existing 300W power limit - max 380W
 ExecStart=/usr/bin/nvidia-smi -i 0 -pl 300
+# Add the clock lock to stop the transient spikes - max 2115 MHz
+ExecStart=/usr/bin/nvidia-smi -i 0 -lgc 210,1800
+# Consider the service 'Active' so it doesn't try to shut down or undo itself
 RemainAfterExit=yes
 
 [Install]
@@ -165,7 +177,7 @@ sudo crontab -e
 
 Append:
 
-```
+```bash
 @reboot /usr/bin/nvidia-smi -i 0 -pl 300
 ```
 

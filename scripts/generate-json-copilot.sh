@@ -34,8 +34,14 @@ SERVER_NAME="$LOCAL_SERVER_NAME $INI_BASENAME"
 # for JSON generation (maxInputTokens/maxOutputTokens), for presets that have
 # no real ctx-size because --fit auto-sizes it at runtime (e.g. VBR "MAXCTX"
 # presets). It is never passed to llama-server (stays commented in router.ini).
+#
+# A commented-out `; client-reasoning-efforts = a, b, c` list overrides the
+# supported reasoning_effort values in the generated JSON, and
+# `; client-reasoning-effort-default = a` sets the default reasoningEffort
+# (Copilot) / maps the effort names in the thinkingLevelMap (pi). Both stay
+# commented, so they are never passed to llama-server.
 parse_ini() {
-	local sec="" ctx_size=0 dummy_ctx_size=0 has_mmproj=false
+	local sec="" ctx_size=0 dummy_ctx_size=0 has_mmproj=false reasoning_efforts="" reasoning_effort_default=""
 
 	while IFS= read -r line; do
 		line="${line//$'\r'/}"                     # strip \r
@@ -52,6 +58,27 @@ parse_ini() {
 			continue
 		fi
 
+		# Commented-out client-reasoning-effort*-default hint (checked before
+		# the -efforts match: the two key names differ, order keeps the more
+		# specific key first).
+		if [[ "$line" =~ ^[[:space:]]*\;[[:space:]]*client-reasoning-effort-default[[:space:]]*=(.*)$ ]]; then
+			reasoning_effort_default="${BASH_REMATCH[1]}"
+			reasoning_effort_default="${reasoning_effort_default%%\;*}"  # strip trailing `; comment`
+			reasoning_effort_default="${reasoning_effort_default#"${reasoning_effort_default%%[![:space:]]*}"}" # trim leading
+			reasoning_effort_default="${reasoning_effort_default%"${reasoning_effort_default##*[![:space:]]}"}" # trim trailing
+			continue
+		fi
+
+		# Commented-out client-reasoning-efforts hint (comma-separated list of
+		# supported reasoning_effort values, e.g. `xhigh, medium, low, none`).
+		if [[ "$line" =~ ^[[:space:]]*\;[[:space:]]*client-reasoning-efforts[[:space:]]*=(.*)$ ]]; then
+			reasoning_efforts="${BASH_REMATCH[1]}"
+			reasoning_efforts="${reasoning_efforts%%\;*}"              # strip trailing `; comment`
+			reasoning_efforts="${reasoning_efforts#"${reasoning_efforts%%[![:space:]]*}"}" # trim leading
+			reasoning_efforts="${reasoning_efforts%"${reasoning_efforts##*[![:space:]]}"}" # trim trailing
+			continue
+		fi
+
 		[[ "$line" =~ ^[[:space:]]*\; ]] && continue  # comment
 		[[ "$line" =~ ^[[:space:]]*$ ]] && continue   # blank
 
@@ -63,14 +90,16 @@ parse_ini() {
 			[[ "$new_sec" == "*" ]] && continue           # skip [*] defaults
 			# Emit previous section (if any)
 			if [[ -n "$sec" ]]; then
-				printf '{"id":"%s","ctxSize":%d,"hasMmproj":%s}\n' \
-					"$sec" "$(( ctx_size > 0 ? (client_ctx_size > 0 ? client_ctx_size : ctx_size) : dummy_ctx_size ))" "$has_mmproj"
+				printf '{"id":"%s","ctxSize":%d,"hasMmproj":%s,"reasoningEfforts":"%s","reasoningEffortDefault":"%s"}\n' \
+					"$sec" "$(( ctx_size > 0 ? (client_ctx_size > 0 ? client_ctx_size : ctx_size) : dummy_ctx_size ))" "$has_mmproj" "$reasoning_efforts" "$reasoning_effort_default"
 			fi
 			sec="$new_sec"
 			ctx_size=0
 			dummy_ctx_size=0
 			client_ctx_size=0
 			has_mmproj=false
+			reasoning_efforts=""
+			reasoning_effort_default=""
 			continue
 		fi
 
@@ -94,24 +123,44 @@ parse_ini() {
 
 	# Emit last section
 	if [[ -n "$sec" ]]; then
-		printf '{"id":"%s","ctxSize":%d,"hasMmproj":%s}\n' \
-			"$sec" "$(( ctx_size > 0 ? (client_ctx_size > 0 ? client_ctx_size : ctx_size) : dummy_ctx_size ))" "$has_mmproj"
+		printf '{"id":"%s","ctxSize":%d,"hasMmproj":%s,"reasoningEfforts":"%s","reasoningEffortDefault":"%s"}\n' \
+			"$sec" "$(( ctx_size > 0 ? (client_ctx_size > 0 ? client_ctx_size : ctx_size) : dummy_ctx_size ))" "$has_mmproj" "$reasoning_efforts" "$reasoning_effort_default"
 	fi
 }
 
 # ── Build final JSON with jq ───────────────────────────────────────
+#
+# Per-model reasoning effort resolution:
+#   supported efforts  = parsed `client-reasoning-efforts` list
+#                        (falls back to ["low", "medium", "high"] when absent)
+#   default effort     = parsed `client-reasoning-effort-default` when it is a
+#                        supported effort, else the first supported effort,
+#                        else "high"
 parse_ini | jq -s \
 	--arg name       "$SERVER_NAME" \
 	--arg vendor     "customendpoint" \
 	--arg apiKey     "$LOCAL_API_KEY" \
 	--arg url        "$LOCAL_URL" \
 	'
-	{
+	def split_efforts: (. // "") | split(",") | map(gsub("^[[:space:]]+|[[:space:]]+$"; "") | select(. != ""));
+	[ .[]
+		| ( .reasoningEfforts | split_efforts ) as $efforts
+		| ( if ($efforts | length) > 0 then $efforts else ["low", "medium", "high"] end ) as $resolved_efforts
+		| ( [ .reasoningEffortDefault // "" ] | map(gsub("^[[:space:]]+|[[:space:]]+$"; "")) | .[0] ) as $default
+		| { id: .id,
+		    ctxSize: .ctxSize,
+		    hasMmproj: .hasMmproj,
+		    resolvedEfforts: $resolved_efforts,
+		    effortDefault: ( if $default != "" and ($resolved_efforts | index($default)) then $default
+		                      elif ($efforts | length) > 0 then ($resolved_efforts | .[0])
+		                      else "high" end ) }
+	] as $models
+	| {
 		name:   $name,
 		vendor: $vendor,
 		apiKey: $apiKey,
 		models: [
-			.[] | {
+			$models[] | {
 				id:                    .id,
 				name:                  .id,
 				url:                   $url,
@@ -126,7 +175,7 @@ parse_ini | jq -s \
 					"multi-find-replace"
 				],
 				thinking:              true,
-				supportsReasoningEffort: ["low", "medium", "high"],
+				supportsReasoningEffort: .resolvedEfforts,
 				reasoningEffortFormat: "chat-completions",
 				zeroDataRetentionEnabled: false,
 				maxInputTokens:        (.ctxSize * 3 / 4 | floor),
@@ -134,7 +183,7 @@ parse_ini | jq -s \
 			}
 		],
 		settings: (
-			[ .[] | { (.id): { reasoningEffort: "high" } } ] | add // {}
+			[ $models[] | { (.id): { reasoningEffort: .effortDefault } } ] | add // {}
 		)
 	}
 	' > "$OUT_FILE"

@@ -1,11 +1,11 @@
 {
-  "name": "LLaMA.cpp Local 3-LagunaXS2.1-33B-A3B",
+  "name": "LLaMA.cpp Local 1-Qwen3.8-27B",
   "vendor": "customendpoint",
   "apiKey": "${input:chat.lm.secret.-4b1abccd}",
   "models": [
     {
-      "id": "LagunaXS2.1_33B-A3B-Q4KM-128K-q4",
-      "name": "LagunaXS2.1_33B-A3B-Q4KM-128K-q4",
+      "id": "Qwen3.8_27B-Q4KM-128K-MTP_Vision",
+      "name": "Qwen3.8_27B-Q4KM-128K-MTP_Vision",
       "url": "http://172.16.1.110:10005/v1/chat/completions",
       "toolCalling": true,
       "vision": false,
@@ -19,9 +19,10 @@
       ],
       "thinking": true,
       "supportsReasoningEffort": [
-        "low",
+        "xhigh",
         "medium",
-        "high"
+        "low",
+        "none"
       ],
       "reasoningEffortFormat": "chat-completions",
       "zeroDataRetentionEnabled": false,
@@ -29,8 +30,8 @@
       "maxOutputTokens": 32000
     },
     {
-      "id": "LagunaXS2.1_33B-A3B-Q4KM-168K-q4",
-      "name": "LagunaXS2.1_33B-A3B-Q4KM-168K-q4",
+      "id": "Qwen3.8_27B-UDQ4KXL-128K-MTP_Vision",
+      "name": "Qwen3.8_27B-UDQ4KXL-128K-MTP_Vision",
       "url": "http://172.16.1.110:10005/v1/chat/completions",
       "toolCalling": true,
       "vision": false,
@@ -44,22 +45,23 @@
       ],
       "thinking": true,
       "supportsReasoningEffort": [
-        "low",
+        "xhigh",
         "medium",
-        "high"
+        "low",
+        "none"
       ],
       "reasoningEffortFormat": "chat-completions",
       "zeroDataRetentionEnabled": false,
-      "maxInputTokens": 126000,
-      "maxOutputTokens": 42000
+      "maxInputTokens": 96000,
+      "maxOutputTokens": 32000
     }
   ],
   "settings": {
-    "LagunaXS2.1_33B-A3B-Q4KM-128K-q4": {
-      "reasoningEffort": "high"
+    "Qwen3.8_27B-Q4KM-128K-MTP_Vision": {
+      "reasoningEffort": "xhigh"
     },
-    "LagunaXS2.1_33B-A3B-Q4KM-168K-q4": {
-      "reasoningEffort": "high"
+    "Qwen3.8_27B-UDQ4KXL-128K-MTP_Vision": {
+      "reasoningEffort": "xhigh"
     }
   }
 }

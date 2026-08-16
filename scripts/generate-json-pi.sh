@@ -39,8 +39,13 @@ PROVIDER_KEY="$(echo "$LOCAL_SERVER_NAME" | tr '[:upper:]' '[:lower:]' | sed 's/
 # A commented-out `; dummy-ctx-size = N` acts as a fallback ctx-size used only
 # for JSON generation, for presets that have no real ctx-size because --fit
 # auto-sizes it at runtime. It is never passed to llama-server.
+#
+# A commented-out `; client-reasoning-efforts = a, b, c` list overrides the
+# supported reasoning_effort values in the generated thinkingLevelMap, and
+# `; client-reasoning-effort-default = a` marks the default effort. Both stay
+# commented, so they are never passed to llama-server.
 parse_ini() {
-	local sec="" ctx_size=0 dummy_ctx_size=0 has_mmproj=false
+	local sec="" ctx_size=0 dummy_ctx_size=0 has_mmproj=false reasoning_efforts="" reasoning_effort_default=""
 
 	while IFS= read -r line; do
 		line="${line//$'\r'/}"                     # strip \r
@@ -57,6 +62,27 @@ parse_ini() {
 			continue
 		fi
 
+		# Commented-out client-reasoning-effort*-default hint (checked before
+		# the -efforts match: the two key names differ, order keeps the more
+		# specific key first).
+		if [[ "$line" =~ ^[[:space:]]*\;[[:space:]]*client-reasoning-effort-default[[:space:]]*=(.*)$ ]]; then
+			reasoning_effort_default="${BASH_REMATCH[1]}"
+			reasoning_effort_default="${reasoning_effort_default%%\;*}"  # strip trailing `; comment`
+			reasoning_effort_default="${reasoning_effort_default#"${reasoning_effort_default%%[![:space:]]*}"}" # trim leading
+			reasoning_effort_default="${reasoning_effort_default%"${reasoning_effort_default##*[![:space:]]}"}" # trim trailing
+			continue
+		fi
+
+		# Commented-out client-reasoning-efforts hint (comma-separated list of
+		# supported reasoning_effort values, e.g. `xhigh, medium, low, none`).
+		if [[ "$line" =~ ^[[:space:]]*\;[[:space:]]*client-reasoning-efforts[[:space:]]*=(.*)$ ]]; then
+			reasoning_efforts="${BASH_REMATCH[1]}"
+			reasoning_efforts="${reasoning_efforts%%\;*}"              # strip trailing `; comment`
+			reasoning_efforts="${reasoning_efforts#"${reasoning_efforts%%[![:space:]]*}"}" # trim leading
+			reasoning_efforts="${reasoning_efforts%"${reasoning_efforts##*[![:space:]]}"}" # trim trailing
+			continue
+		fi
+
 		[[ "$line" =~ ^[[:space:]]*\; ]] && continue  # comment
 		[[ "$line" =~ ^[[:space:]]*$ ]] && continue   # blank
 
@@ -68,14 +94,16 @@ parse_ini() {
 			[[ "$new_sec" == "*" ]] && continue           # skip [*] defaults
 			# Emit previous section (if any)
 			if [[ -n "$sec" ]]; then
-				printf '{"id":"%s","ctxSize":%d,"hasMmproj":%s}\n' \
-					"$sec" "$(( ctx_size > 0 ? (client_ctx_size > 0 ? client_ctx_size : ctx_size) : dummy_ctx_size ))" "$has_mmproj"
+				printf '{"id":"%s","ctxSize":%d,"hasMmproj":%s,"reasoningEfforts":"%s","reasoningEffortDefault":"%s"}\n' \
+					"$sec" "$(( ctx_size > 0 ? (client_ctx_size > 0 ? client_ctx_size : ctx_size) : dummy_ctx_size ))" "$has_mmproj" "$reasoning_efforts" "$reasoning_effort_default"
 			fi
 			sec="$new_sec"
 			ctx_size=0
 			dummy_ctx_size=0
 			client_ctx_size=0
 			has_mmproj=false
+			reasoning_efforts=""
+			reasoning_effort_default=""
 			continue
 		fi
 
@@ -99,13 +127,20 @@ parse_ini() {
 
 	# Emit last section
 	if [[ -n "$sec" ]]; then
-		printf '{"id":"%s","ctxSize":%d,"hasMmproj":%s}\n' \
-			"$sec" "$(( ctx_size > 0 ? (client_ctx_size > 0 ? client_ctx_size : ctx_size) : dummy_ctx_size ))" "$has_mmproj"
+		printf '{"id":"%s","ctxSize":%d,"hasMmproj":%s,"reasoningEfforts":"%s","reasoningEffortDefault":"%s"}\n' \
+			"$sec" "$(( ctx_size > 0 ? (client_ctx_size > 0 ? client_ctx_size : ctx_size) : dummy_ctx_size ))" "$has_mmproj" "$reasoning_efforts" "$reasoning_effort_default"
 	fi
 }
 
 # ── Build final JSON with jq (pi.dev models.json format) ─────────
 # Pi reads ~/.pi/agent/models.json with { providers: { ... } } wrapper
+#
+# Per-model thinkingLevelMap derivation:
+#   listed efforts    = parsed `client-reasoning-efforts` list
+#   listed levels     = map identity (e.g. "xhigh" -> "xhigh")
+#   unlisted levels   = null (hidden by pi)
+#   "none" level      = maps to off: "none" (pi sends reasoning_effort: "none")
+#   absent hint list  = fallback to the standard map (low/medium/high)
 parse_ini | jq -s \
 	--arg name     "$PROVIDER_KEY" \
 	--arg baseUrl  "$PI_BASE_URL" \
@@ -118,20 +153,20 @@ parse_ini | jq -s \
 				api:      "openai-completions",
 				apiKey:   $apiKey,
 				models: [
-					.[] | {
+					.[]
+					| ( ( .reasoningEfforts // "" ) | split(",") | map(gsub("^[[:space:]]+|[[:space:]]+$"; "") | select(. != "")) ) as $efforts
+					| ( if ($efforts | length) > 0
+						then ( ( ["low", "medium", "high", "xhigh", "max"] | map(. as $e | { key: $e, value: (if ($efforts | index($e)) then $e else null end) }) | from_entries )
+							+ { off: (if ($efforts | index("none")) then "none" else null end) } | { minimal: null } + . )
+						else { minimal: null, low: "low", medium: "medium", high: "high", max: null } end ) as $map
+					| {
 						id:              .id,
 						name:            .id,
 						reasoning:       true,
 						input:           (if .hasMmproj then ["text", "image"] else ["text"] end),
 						contextWindow:   .ctxSize,
 						maxTokens:       (.ctxSize / 4 | floor),
-						thinkingLevelMap: {
-							minimal:    null,
-							low:        "low",
-							medium:     "medium",
-							high:       "high",
-							max:        null
-						},
+						thinkingLevelMap: $map,
 						cost: {
 							input:       0,
 							output:      0,

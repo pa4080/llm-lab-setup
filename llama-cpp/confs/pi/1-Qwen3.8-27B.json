@@ -6,8 +6,8 @@
       "apiKey": "${input:chat.lm.secret.-4b1abccd}",
       "models": [
         {
-          "id": "LagunaXS2.1_33B-A3B-Q4KM-128K-q4",
-          "name": "LagunaXS2.1_33B-A3B-Q4KM-128K-q4",
+          "id": "Qwen3.8_27B-Q4KM-128K-MTP_Vision",
+          "name": "Qwen3.8_27B-Q4KM-128K-MTP_Vision",
           "reasoning": true,
           "input": [
             "text"
@@ -18,8 +18,10 @@
             "minimal": null,
             "low": "low",
             "medium": "medium",
-            "high": "high",
-            "max": null
+            "high": null,
+            "xhigh": "xhigh",
+            "max": null,
+            "off": "none"
           },
           "cost": {
             "input": 0,
@@ -29,20 +31,22 @@
           }
         },
         {
-          "id": "LagunaXS2.1_33B-A3B-Q4KM-168K-q4",
-          "name": "LagunaXS2.1_33B-A3B-Q4KM-168K-q4",
+          "id": "Qwen3.8_27B-UDQ4KXL-128K-MTP_Vision",
+          "name": "Qwen3.8_27B-UDQ4KXL-128K-MTP_Vision",
           "reasoning": true,
           "input": [
             "text"
           ],
-          "contextWindow": 168000,
-          "maxTokens": 42000,
+          "contextWindow": 128000,
+          "maxTokens": 32000,
           "thinkingLevelMap": {
             "minimal": null,
             "low": "low",
             "medium": "medium",
-            "high": "high",
-            "max": null
+            "high": null,
+            "xhigh": "xhigh",
+            "max": null,
+            "off": "none"
           },
           "cost": {
             "input": 0,
