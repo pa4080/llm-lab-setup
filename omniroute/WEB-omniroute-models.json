@@ -1,0 +1,131 @@
+[
+  {
+    "id": "qwen-web/qwen3.7-plus",
+    "object": "model",
+    "created": 1785664282,
+    "owned_by": "qwen-web",
+    "permission": [],
+    "root": "qwen3.7-plus",
+    "parent": null,
+    "capabilities": {
+      "vision": true,
+      "tool_calling": false,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 1000000,
+    "max_output_tokens": 65536,
+    "max_input_tokens": 1000000,
+    "name": "Qwen3.7 Plus"
+  },
+  {
+    "id": "qwen-web/qwen3.8-max-preview",
+    "object": "model",
+    "created": 1785664282,
+    "owned_by": "qwen-web",
+    "permission": [],
+    "root": "qwen3.8-max-preview",
+    "parent": null,
+    "capabilities": {
+      "vision": true,
+      "tool_calling": false,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 1000000,
+    "max_output_tokens": 65536,
+    "max_input_tokens": 1000000,
+    "name": "Qwen3.8 Max Preview"
+  },
+  {
+    "id": "qwen-web/qwen3.7-max",
+    "object": "model",
+    "created": 1785664282,
+    "owned_by": "qwen-web",
+    "permission": [],
+    "root": "qwen3.7-max",
+    "parent": null,
+    "capabilities": {
+      "vision": false,
+      "tool_calling": false,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "context_length": 1000000,
+    "max_output_tokens": 65536,
+    "max_input_tokens": 1000000,
+    "name": "Qwen3.7 Max"
+  },
+  {
+    "id": "qwen-web/qwen3.6-plus",
+    "object": "model",
+    "created": 1785664282,
+    "owned_by": "qwen-web",
+    "permission": [],
+    "root": "qwen3.6-plus",
+    "parent": null,
+    "capabilities": {
+      "vision": true,
+      "tool_calling": false,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 1000000,
+    "max_output_tokens": 65536,
+    "max_input_tokens": 1000000,
+    "name": "Qwen3.6 Plus"
+  }
+]

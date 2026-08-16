@@ -1,0 +1,1306 @@
+[
+  {
+    "id": "chatgpt-web/gpt-5.6-pro",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "chatgpt-web",
+    "permission": [],
+    "root": "gpt-5.6-pro",
+    "parent": "cgpt-web/gpt-5.6-pro",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": false,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 1050000,
+    "max_output_tokens": 128000,
+    "max_input_tokens": 1050000,
+    "name": "GPT-5.6 Pro"
+  },
+  {
+    "id": "chatgpt-web/gpt-5.6-thinking",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "chatgpt-web",
+    "permission": [],
+    "root": "gpt-5.6-thinking",
+    "parent": "cgpt-web/gpt-5.6-thinking",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": false,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 1050000,
+    "max_output_tokens": 128000,
+    "max_input_tokens": 1050000,
+    "name": "GPT-5.6 Thinking"
+  },
+  {
+    "id": "chatgpt-web/gpt-5.5-pro-extended",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "chatgpt-web",
+    "permission": [],
+    "root": "gpt-5.5-pro-extended",
+    "parent": "cgpt-web/gpt-5.5-pro-extended",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": false,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 1050000,
+    "max_output_tokens": 128000,
+    "max_input_tokens": 1050000,
+    "name": "GPT-5.5 Pro Extended"
+  },
+  {
+    "id": "chatgpt-web/gpt-5.5-pro",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "chatgpt-web",
+    "permission": [],
+    "root": "gpt-5.5-pro",
+    "parent": "cgpt-web/gpt-5.5-pro",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": false,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 1050000,
+    "max_output_tokens": 128000,
+    "max_input_tokens": 1050000,
+    "name": "GPT-5.5 Pro"
+  },
+  {
+    "id": "chatgpt-web/gpt-5.5-thinking",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "chatgpt-web",
+    "permission": [],
+    "root": "gpt-5.5-thinking",
+    "parent": "cgpt-web/gpt-5.5-thinking",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": false,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 1050000,
+    "max_output_tokens": 128000,
+    "max_input_tokens": 1050000,
+    "name": "GPT-5.5 Thinking"
+  },
+  {
+    "id": "chatgpt-web/o3",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "chatgpt-web",
+    "permission": [],
+    "root": "o3",
+    "parent": "cgpt-web/o3",
+    "capabilities": {
+      "tool_calling": false,
+      "reasoning": true
+    },
+    "name": "o3",
+    "context_length": 400000
+  },
+  {
+    "id": "claude-web/claude-sonnet-5",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "claude-sonnet-5",
+    "parent": "cw/claude-sonnet-5",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": false,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 1000000,
+    "max_output_tokens": 128000,
+    "max_input_tokens": 1000000,
+    "name": "Claude Sonnet 5 (web)"
+  },
+  {
+    "id": "claude-web/claude-sonnet-4-6",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "claude-sonnet-4-6",
+    "parent": "cw/claude-sonnet-4-6",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": false,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 1000000,
+    "max_output_tokens": 64000,
+    "max_input_tokens": 1000000,
+    "name": "Claude Sonnet 4.6 (web)"
+  },
+  {
+    "id": "claude-web/claude-haiku-4-5-20251001",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "claude-haiku-4-5-20251001",
+    "parent": "cw/claude-haiku-4-5-20251001",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": false,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 200000,
+    "max_output_tokens": 64000,
+    "max_input_tokens": 200000,
+    "name": "Claude Haiku 4.5 (web)"
+  },
+  {
+    "id": "deepseek-web/deepseek-v4-pro",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "deepseek-web",
+    "permission": [],
+    "root": "deepseek-v4-pro",
+    "parent": "ds-web/deepseek-v4-pro",
+    "capabilities": {
+      "tool_calling": false,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "context_length": 1000000,
+    "max_output_tokens": 384000,
+    "max_input_tokens": 1000000,
+    "name": "DeepSeek V4 Pro"
+  },
+  {
+    "id": "deepseek-web/deepseek-v4-pro-search",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "deepseek-web",
+    "permission": [],
+    "root": "deepseek-v4-pro-search",
+    "parent": "ds-web/deepseek-v4-pro-search",
+    "capabilities": {
+      "tool_calling": false,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "context_length": 1000000,
+    "max_output_tokens": 384000,
+    "max_input_tokens": 1000000,
+    "name": "DeepSeek V4 Pro Search"
+  },
+  {
+    "id": "deepseek-web/deepseek-v4-pro-think-search",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "deepseek-web",
+    "permission": [],
+    "root": "deepseek-v4-pro-think-search",
+    "parent": "ds-web/deepseek-v4-pro-think-search",
+    "capabilities": {
+      "tool_calling": true,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "context_length": 1000000,
+    "max_output_tokens": 384000,
+    "max_input_tokens": 1000000,
+    "name": "DeepSeek V4 Pro Think+Search"
+  },
+  {
+    "id": "deepseek-web/deepseek-v4-flash",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "deepseek-web",
+    "permission": [],
+    "root": "deepseek-v4-flash",
+    "parent": "ds-web/deepseek-v4-flash",
+    "capabilities": {
+      "tool_calling": false,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "context_length": 1000000,
+    "max_output_tokens": 384000,
+    "max_input_tokens": 1000000,
+    "name": "DeepSeek V4 Flash"
+  },
+  {
+    "id": "deepseek-web/deepseek-v4-flash-think",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "deepseek-web",
+    "permission": [],
+    "root": "deepseek-v4-flash-think",
+    "parent": "ds-web/deepseek-v4-flash-think",
+    "capabilities": {
+      "tool_calling": true,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "context_length": 1000000,
+    "max_output_tokens": 384000,
+    "max_input_tokens": 1000000,
+    "name": "DeepSeek V4 Flash Think"
+  },
+  {
+    "id": "deepseek-web/deepseek-v4-flash-think-search",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "deepseek-web",
+    "permission": [],
+    "root": "deepseek-v4-flash-think-search",
+    "parent": "ds-web/deepseek-v4-flash-think-search",
+    "capabilities": {
+      "tool_calling": true,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "context_length": 1000000,
+    "max_output_tokens": 384000,
+    "max_input_tokens": 1000000,
+    "name": "DeepSeek V4 Flash Think+Search"
+  },
+  {
+    "id": "deepseek-web/deepseek-chat",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "deepseek-web",
+    "permission": [],
+    "root": "deepseek-chat",
+    "parent": "ds-web/deepseek-chat",
+    "capabilities": {
+      "tool_calling": false,
+      "reasoning": true
+    },
+    "name": "DeepSeek Chat",
+    "context_length": 128000
+  },
+  {
+    "id": "deepseek-web/deepseek-reasoner",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "deepseek-web",
+    "permission": [],
+    "root": "deepseek-reasoner",
+    "parent": "ds-web/deepseek-reasoner",
+    "capabilities": {
+      "tool_calling": true,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "name": "DeepSeek Reasoner",
+    "context_length": 128000
+  },
+  {
+    "id": "deepseek-web/DeepSeek-R1",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "deepseek-web",
+    "permission": [],
+    "root": "DeepSeek-R1",
+    "parent": "ds-web/DeepSeek-R1",
+    "capabilities": {
+      "tool_calling": true,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "name": "DeepSeek R1",
+    "context_length": 128000
+  },
+  {
+    "id": "deepseek-web/DeepSeek-V3.2",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "deepseek-web",
+    "permission": [],
+    "root": "DeepSeek-V3.2",
+    "parent": "ds-web/DeepSeek-V3.2",
+    "capabilities": {
+      "tool_calling": false,
+      "reasoning": true
+    },
+    "name": "DeepSeek V3.2",
+    "context_length": 128000
+  },
+  {
+    "id": "deepseek-web/DeepSeek-Search",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "deepseek-web",
+    "permission": [],
+    "root": "DeepSeek-Search",
+    "parent": "ds-web/DeepSeek-Search",
+    "capabilities": {
+      "tool_calling": false,
+      "reasoning": true
+    },
+    "name": "DeepSeek Search",
+    "context_length": 128000
+  },
+  {
+    "id": "qwen-web/qwen3.7-plus",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "qwen-web",
+    "permission": [],
+    "root": "qwen3.7-plus",
+    "parent": null,
+    "capabilities": {
+      "vision": true,
+      "tool_calling": false,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 1000000,
+    "max_output_tokens": 65536,
+    "max_input_tokens": 1000000,
+    "name": "Qwen3.7 Plus"
+  },
+  {
+    "id": "qwen-web/qwen3.8-max-preview",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "qwen-web",
+    "permission": [],
+    "root": "qwen3.8-max-preview",
+    "parent": null,
+    "capabilities": {
+      "vision": true,
+      "tool_calling": false,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 1000000,
+    "max_output_tokens": 65536,
+    "max_input_tokens": 1000000,
+    "name": "Qwen3.8 Max Preview"
+  },
+  {
+    "id": "qwen-web/qwen3.7-max",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "qwen-web",
+    "permission": [],
+    "root": "qwen3.7-max",
+    "parent": null,
+    "capabilities": {
+      "vision": false,
+      "tool_calling": false,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "context_length": 1000000,
+    "max_output_tokens": 65536,
+    "max_input_tokens": 1000000,
+    "name": "Qwen3.7 Max"
+  },
+  {
+    "id": "qwen-web/qwen3.6-plus",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "qwen-web",
+    "permission": [],
+    "root": "qwen3.6-plus",
+    "parent": null,
+    "capabilities": {
+      "vision": true,
+      "tool_calling": false,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 1000000,
+    "max_output_tokens": 65536,
+    "max_input_tokens": 1000000,
+    "name": "Qwen3.6 Plus"
+  },
+  {
+    "id": "claude-web/claude-sonnet-5-low",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "claude-sonnet-5-low",
+    "parent": "cw/claude-sonnet-5",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": true,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 1000000,
+    "max_output_tokens": 128000,
+    "max_input_tokens": 1000000,
+    "name": "claude-sonnet-5-low"
+  },
+  {
+    "id": "claude-web/claude-sonnet-5-medium",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "claude-sonnet-5-medium",
+    "parent": "cw/claude-sonnet-5",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": true,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 1000000,
+    "max_output_tokens": 128000,
+    "max_input_tokens": 1000000,
+    "name": "claude-sonnet-5-medium"
+  },
+  {
+    "id": "claude-web/claude-sonnet-5-high",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "claude-sonnet-5-high",
+    "parent": "cw/claude-sonnet-5",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": true,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 1000000,
+    "max_output_tokens": 128000,
+    "max_input_tokens": 1000000,
+    "name": "claude-sonnet-5-high"
+  },
+  {
+    "id": "claude-web/claude-sonnet-5-xhigh",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "claude-sonnet-5-xhigh",
+    "parent": "cw/claude-sonnet-5",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": true,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 1000000,
+    "max_output_tokens": 128000,
+    "max_input_tokens": 1000000,
+    "name": "claude-sonnet-5-xhigh"
+  },
+  {
+    "id": "claude-web/claude-sonnet-4-6-low",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "claude-sonnet-4-6-low",
+    "parent": "cw/claude-sonnet-4-6",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": true,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 1000000,
+    "max_output_tokens": 64000,
+    "max_input_tokens": 1000000,
+    "name": "claude-sonnet-4-6-low"
+  },
+  {
+    "id": "claude-web/claude-sonnet-4-6-medium",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "claude-sonnet-4-6-medium",
+    "parent": "cw/claude-sonnet-4-6",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": true,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 1000000,
+    "max_output_tokens": 64000,
+    "max_input_tokens": 1000000,
+    "name": "claude-sonnet-4-6-medium"
+  },
+  {
+    "id": "claude-web/claude-sonnet-4-6-high",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "claude-sonnet-4-6-high",
+    "parent": "cw/claude-sonnet-4-6",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": true,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 1000000,
+    "max_output_tokens": 64000,
+    "max_input_tokens": 1000000,
+    "name": "claude-sonnet-4-6-high"
+  },
+  {
+    "id": "claude-web/claude-haiku-4-5-20251001-low",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "claude-haiku-4-5-20251001-low",
+    "parent": "cw/claude-haiku-4-5-20251001",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": true,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 200000,
+    "max_output_tokens": 64000,
+    "max_input_tokens": 200000,
+    "name": "claude-haiku-4-5-20251001-low"
+  },
+  {
+    "id": "claude-web/claude-haiku-4-5-20251001-medium",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "claude-haiku-4-5-20251001-medium",
+    "parent": "cw/claude-haiku-4-5-20251001",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": true,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 200000,
+    "max_output_tokens": 64000,
+    "max_input_tokens": 200000,
+    "name": "claude-haiku-4-5-20251001-medium"
+  },
+  {
+    "id": "claude-web/claude-haiku-4-5-20251001-high",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "claude-haiku-4-5-20251001-high",
+    "parent": "cw/claude-haiku-4-5-20251001",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": true,
+      "reasoning": true,
+      "thinking": true,
+      "supportsThinking": true,
+      "effort_tiers": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "context_length": 200000,
+    "max_output_tokens": 64000,
+    "max_input_tokens": 200000,
+    "name": "claude-haiku-4-5-20251001-high"
+  },
+  {
+    "id": "no-think/claude-web/claude-sonnet-5",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "no-think/claude-web/claude-sonnet-5",
+    "parent": "cw/claude-sonnet-5",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": true,
+      "reasoning": true
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "name": "no-think/claude-web/claude-sonnet-5",
+    "context_length": 200000
+  },
+  {
+    "id": "no-think/claude-web/claude-sonnet-4-6",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "no-think/claude-web/claude-sonnet-4-6",
+    "parent": "cw/claude-sonnet-4-6",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": true,
+      "reasoning": true
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "name": "no-think/claude-web/claude-sonnet-4-6",
+    "context_length": 200000
+  },
+  {
+    "id": "no-think/claude-web/claude-haiku-4-5-20251001",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "no-think/claude-web/claude-haiku-4-5-20251001",
+    "parent": "cw/claude-haiku-4-5-20251001",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": true,
+      "reasoning": true
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "name": "no-think/claude-web/claude-haiku-4-5-20251001",
+    "context_length": 200000
+  },
+  {
+    "id": "no-think/claude-web/claude-sonnet-5-low",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "no-think/claude-web/claude-sonnet-5-low",
+    "parent": "cw/claude-sonnet-5",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": true,
+      "reasoning": true
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "name": "no-think/claude-web/claude-sonnet-5-low",
+    "context_length": 200000
+  },
+  {
+    "id": "no-think/claude-web/claude-sonnet-5-medium",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "no-think/claude-web/claude-sonnet-5-medium",
+    "parent": "cw/claude-sonnet-5",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": true,
+      "reasoning": true
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "name": "no-think/claude-web/claude-sonnet-5-medium",
+    "context_length": 200000
+  },
+  {
+    "id": "no-think/claude-web/claude-sonnet-5-high",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "no-think/claude-web/claude-sonnet-5-high",
+    "parent": "cw/claude-sonnet-5",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": true,
+      "reasoning": true
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "name": "no-think/claude-web/claude-sonnet-5-high",
+    "context_length": 200000
+  },
+  {
+    "id": "no-think/claude-web/claude-sonnet-5-xhigh",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "no-think/claude-web/claude-sonnet-5-xhigh",
+    "parent": "cw/claude-sonnet-5",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": true,
+      "reasoning": true
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "name": "no-think/claude-web/claude-sonnet-5-xhigh",
+    "context_length": 200000
+  },
+  {
+    "id": "no-think/claude-web/claude-sonnet-4-6-low",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "no-think/claude-web/claude-sonnet-4-6-low",
+    "parent": "cw/claude-sonnet-4-6",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": true,
+      "reasoning": true
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "name": "no-think/claude-web/claude-sonnet-4-6-low",
+    "context_length": 200000
+  },
+  {
+    "id": "no-think/claude-web/claude-sonnet-4-6-medium",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "no-think/claude-web/claude-sonnet-4-6-medium",
+    "parent": "cw/claude-sonnet-4-6",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": true,
+      "reasoning": true
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "name": "no-think/claude-web/claude-sonnet-4-6-medium",
+    "context_length": 200000
+  },
+  {
+    "id": "no-think/claude-web/claude-sonnet-4-6-high",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "no-think/claude-web/claude-sonnet-4-6-high",
+    "parent": "cw/claude-sonnet-4-6",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": true,
+      "reasoning": true
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "name": "no-think/claude-web/claude-sonnet-4-6-high",
+    "context_length": 200000
+  },
+  {
+    "id": "no-think/claude-web/claude-haiku-4-5-20251001-low",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "no-think/claude-web/claude-haiku-4-5-20251001-low",
+    "parent": "cw/claude-haiku-4-5-20251001",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": true,
+      "reasoning": true
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "name": "no-think/claude-web/claude-haiku-4-5-20251001-low",
+    "context_length": 200000
+  },
+  {
+    "id": "no-think/claude-web/claude-haiku-4-5-20251001-medium",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "no-think/claude-web/claude-haiku-4-5-20251001-medium",
+    "parent": "cw/claude-haiku-4-5-20251001",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": true,
+      "reasoning": true
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "name": "no-think/claude-web/claude-haiku-4-5-20251001-medium",
+    "context_length": 200000
+  },
+  {
+    "id": "no-think/claude-web/claude-haiku-4-5-20251001-high",
+    "object": "model",
+    "created": 1785664487,
+    "owned_by": "claude-web",
+    "permission": [],
+    "root": "no-think/claude-web/claude-haiku-4-5-20251001-high",
+    "parent": "cw/claude-haiku-4-5-20251001",
+    "capabilities": {
+      "vision": true,
+      "tool_calling": true,
+      "reasoning": true
+    },
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "name": "no-think/claude-web/claude-haiku-4-5-20251001-high",
+    "context_length": 200000
+  }
+]

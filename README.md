@@ -90,3 +90,21 @@ Download dataset:
 ```bash
 hf download --repo-type dataset spiritbuun/turboquant-tcq-kv-cache --local-dir spiritbuun/turboquant-tcq-kv-cache
 ```
+
+## Test Command
+
+```bash
+curl -s -X POST "http://localhost:10005/v1/chat/completions" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $LLAMA_API_KEY" \
+  -d '{
+    "model": "Qwen3.6_27B-AR-Q4KM-128K-MTP_Vision",
+    "messages": [{"role": "user", "content": "Write a haiku!"}]
+  }' | jq
+```
+
+```bash
+curl -s -X GET "http://localhost:10005/v1/models" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $LLAMA_API_KEY" | jq
+```

@@ -1,0 +1,1144 @@
+[
+  {
+    "name": "OmniRoute_WEB",
+    "vendor": "customendpoint",
+    "apiKey": "${input:chat.lm.secret.-3832fa98}",
+    "apiType": "chat-completions",
+    "models": [
+      {
+        "id": "chatgpt-web/gpt-5.6-pro",
+        "name": "chatgpt-web/gpt-5.6-pro",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 922000,
+        "maxOutputTokens": 128000,
+        "toolCalling": false,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "chatgpt-web/gpt-5.6-thinking",
+        "name": "chatgpt-web/gpt-5.6-thinking",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 922000,
+        "maxOutputTokens": 128000,
+        "toolCalling": false,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "chatgpt-web/gpt-5.5-pro-extended",
+        "name": "chatgpt-web/gpt-5.5-pro-extended",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 922000,
+        "maxOutputTokens": 128000,
+        "toolCalling": false,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "chatgpt-web/gpt-5.5-pro",
+        "name": "chatgpt-web/gpt-5.5-pro",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 922000,
+        "maxOutputTokens": 128000,
+        "toolCalling": false,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "chatgpt-web/gpt-5.5-thinking",
+        "name": "chatgpt-web/gpt-5.5-thinking",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 922000,
+        "maxOutputTokens": 128000,
+        "toolCalling": false,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "chatgpt-web/o3",
+        "name": "chatgpt-web/o3",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 300000,
+        "maxOutputTokens": 100000,
+        "toolCalling": false,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": false,
+        "streaming": true,
+        "inputModalities": [
+          "text"
+        ]
+      },
+      {
+        "id": "claude-web/claude-sonnet-5",
+        "name": "claude-web/claude-sonnet-5",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 872000,
+        "maxOutputTokens": 128000,
+        "toolCalling": false,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "claude-web/claude-sonnet-4-6",
+        "name": "claude-web/claude-sonnet-4-6",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 936000,
+        "maxOutputTokens": 64000,
+        "toolCalling": false,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "claude-web/claude-haiku-4-5-20251001",
+        "name": "claude-web/claude-haiku-4-5-20251001",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 136000,
+        "maxOutputTokens": 64000,
+        "toolCalling": false,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "deepseek-web/deepseek-v4-pro",
+        "name": "deepseek-web/deepseek-v4-pro",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 616000,
+        "maxOutputTokens": 384000,
+        "toolCalling": false,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": false,
+        "streaming": true,
+        "inputModalities": [
+          "text"
+        ]
+      },
+      {
+        "id": "deepseek-web/deepseek-v4-pro-search",
+        "name": "deepseek-web/deepseek-v4-pro-search",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 616000,
+        "maxOutputTokens": 384000,
+        "toolCalling": false,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": false,
+        "streaming": true,
+        "inputModalities": [
+          "text"
+        ]
+      },
+      {
+        "id": "deepseek-web/deepseek-v4-pro-think-search",
+        "name": "deepseek-web/deepseek-v4-pro-think-search",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 616000,
+        "maxOutputTokens": 384000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": false,
+        "streaming": true,
+        "inputModalities": [
+          "text"
+        ]
+      },
+      {
+        "id": "deepseek-web/deepseek-v4-flash",
+        "name": "deepseek-web/deepseek-v4-flash",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 616000,
+        "maxOutputTokens": 384000,
+        "toolCalling": false,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": false,
+        "streaming": true,
+        "inputModalities": [
+          "text"
+        ]
+      },
+      {
+        "id": "deepseek-web/deepseek-v4-flash-think",
+        "name": "deepseek-web/deepseek-v4-flash-think",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 616000,
+        "maxOutputTokens": 384000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": false,
+        "streaming": true,
+        "inputModalities": [
+          "text"
+        ]
+      },
+      {
+        "id": "deepseek-web/deepseek-v4-flash-think-search",
+        "name": "deepseek-web/deepseek-v4-flash-think-search",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 616000,
+        "maxOutputTokens": 384000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": false,
+        "streaming": true,
+        "inputModalities": [
+          "text"
+        ]
+      },
+      {
+        "id": "deepseek-web/deepseek-chat",
+        "name": "deepseek-web/deepseek-chat",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 96000,
+        "maxOutputTokens": 32000,
+        "toolCalling": false,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": false,
+        "streaming": true,
+        "inputModalities": [
+          "text"
+        ]
+      },
+      {
+        "id": "deepseek-web/deepseek-reasoner",
+        "name": "deepseek-web/deepseek-reasoner",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 96000,
+        "maxOutputTokens": 32000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": false,
+        "streaming": true,
+        "inputModalities": [
+          "text"
+        ]
+      },
+      {
+        "id": "deepseek-web/DeepSeek-R1",
+        "name": "deepseek-web/DeepSeek-R1",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 96000,
+        "maxOutputTokens": 32000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": false,
+        "streaming": true,
+        "inputModalities": [
+          "text"
+        ]
+      },
+      {
+        "id": "deepseek-web/DeepSeek-V3.2",
+        "name": "deepseek-web/DeepSeek-V3.2",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 96000,
+        "maxOutputTokens": 32000,
+        "toolCalling": false,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": false,
+        "streaming": true,
+        "inputModalities": [
+          "text"
+        ]
+      },
+      {
+        "id": "deepseek-web/DeepSeek-Search",
+        "name": "deepseek-web/DeepSeek-Search",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 96000,
+        "maxOutputTokens": 32000,
+        "toolCalling": false,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": false,
+        "streaming": true,
+        "inputModalities": [
+          "text"
+        ]
+      },
+      {
+        "id": "qwen-web/qwen3.7-plus",
+        "name": "qwen-web/qwen3.7-plus",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 934464,
+        "maxOutputTokens": 65536,
+        "toolCalling": false,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "qwen-web/qwen3.8-max-preview",
+        "name": "qwen-web/qwen3.8-max-preview",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 934464,
+        "maxOutputTokens": 65536,
+        "toolCalling": false,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "qwen-web/qwen3.7-max",
+        "name": "qwen-web/qwen3.7-max",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 934464,
+        "maxOutputTokens": 65536,
+        "toolCalling": false,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": false,
+        "streaming": true,
+        "inputModalities": [
+          "text"
+        ]
+      },
+      {
+        "id": "qwen-web/qwen3.6-plus",
+        "name": "qwen-web/qwen3.6-plus",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 934464,
+        "maxOutputTokens": 65536,
+        "toolCalling": false,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "claude-web/claude-sonnet-5-low",
+        "name": "claude-web/claude-sonnet-5-low",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 872000,
+        "maxOutputTokens": 128000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "claude-web/claude-sonnet-5-medium",
+        "name": "claude-web/claude-sonnet-5-medium",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 872000,
+        "maxOutputTokens": 128000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "claude-web/claude-sonnet-5-high",
+        "name": "claude-web/claude-sonnet-5-high",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 872000,
+        "maxOutputTokens": 128000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "claude-web/claude-sonnet-5-xhigh",
+        "name": "claude-web/claude-sonnet-5-xhigh",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 872000,
+        "maxOutputTokens": 128000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "claude-web/claude-sonnet-4-6-low",
+        "name": "claude-web/claude-sonnet-4-6-low",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 936000,
+        "maxOutputTokens": 64000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "claude-web/claude-sonnet-4-6-medium",
+        "name": "claude-web/claude-sonnet-4-6-medium",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 936000,
+        "maxOutputTokens": 64000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "claude-web/claude-sonnet-4-6-high",
+        "name": "claude-web/claude-sonnet-4-6-high",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 936000,
+        "maxOutputTokens": 64000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "claude-web/claude-haiku-4-5-20251001-low",
+        "name": "claude-web/claude-haiku-4-5-20251001-low",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 136000,
+        "maxOutputTokens": 64000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "claude-web/claude-haiku-4-5-20251001-medium",
+        "name": "claude-web/claude-haiku-4-5-20251001-medium",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 136000,
+        "maxOutputTokens": 64000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "claude-web/claude-haiku-4-5-20251001-high",
+        "name": "claude-web/claude-haiku-4-5-20251001-high",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 136000,
+        "maxOutputTokens": 64000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "none",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "no-think/claude-web/claude-sonnet-5",
+        "name": "no-think/claude-web/claude-sonnet-5",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 150000,
+        "maxOutputTokens": 50000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "no-think/claude-web/claude-sonnet-4-6",
+        "name": "no-think/claude-web/claude-sonnet-4-6",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 150000,
+        "maxOutputTokens": 50000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "no-think/claude-web/claude-haiku-4-5-20251001",
+        "name": "no-think/claude-web/claude-haiku-4-5-20251001",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 150000,
+        "maxOutputTokens": 50000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "no-think/claude-web/claude-sonnet-5-low",
+        "name": "no-think/claude-web/claude-sonnet-5-low",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 150000,
+        "maxOutputTokens": 50000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "no-think/claude-web/claude-sonnet-5-medium",
+        "name": "no-think/claude-web/claude-sonnet-5-medium",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 150000,
+        "maxOutputTokens": 50000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "no-think/claude-web/claude-sonnet-5-high",
+        "name": "no-think/claude-web/claude-sonnet-5-high",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 150000,
+        "maxOutputTokens": 50000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "no-think/claude-web/claude-sonnet-5-xhigh",
+        "name": "no-think/claude-web/claude-sonnet-5-xhigh",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 150000,
+        "maxOutputTokens": 50000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "no-think/claude-web/claude-sonnet-4-6-low",
+        "name": "no-think/claude-web/claude-sonnet-4-6-low",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 150000,
+        "maxOutputTokens": 50000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "no-think/claude-web/claude-sonnet-4-6-medium",
+        "name": "no-think/claude-web/claude-sonnet-4-6-medium",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 150000,
+        "maxOutputTokens": 50000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "no-think/claude-web/claude-sonnet-4-6-high",
+        "name": "no-think/claude-web/claude-sonnet-4-6-high",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 150000,
+        "maxOutputTokens": 50000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "no-think/claude-web/claude-haiku-4-5-20251001-low",
+        "name": "no-think/claude-web/claude-haiku-4-5-20251001-low",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 150000,
+        "maxOutputTokens": 50000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "no-think/claude-web/claude-haiku-4-5-20251001-medium",
+        "name": "no-think/claude-web/claude-haiku-4-5-20251001-medium",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 150000,
+        "maxOutputTokens": 50000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      },
+      {
+        "id": "no-think/claude-web/claude-haiku-4-5-20251001-high",
+        "name": "no-think/claude-web/claude-haiku-4-5-20251001-high",
+        "url": "https://omniapi.spasov.me/v1/chat/completions",
+        "apiType": "chat-completions",
+        "maxInputTokens": 150000,
+        "maxOutputTokens": 50000,
+        "toolCalling": true,
+        "supportsReasoningEffort": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "thinking": true,
+        "zeroDataRetentionEnabled": false,
+        "reasoningEffortFormat": "chat-completions",
+        "vision": true,
+        "streaming": true,
+        "inputModalities": [
+          "text",
+          "image"
+        ]
+      }
+    ],
+    "settings": {
+      "caching": false,
+      "seed": -1,
+      "top_p": 1,
+      "temperature": 0
+    }
+  }
+]

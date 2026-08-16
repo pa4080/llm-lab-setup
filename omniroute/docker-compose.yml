@@ -2,7 +2,9 @@
 # OmniRoute – Production Stack for Portainer + Cloudflare Tunnel
 # ──────────────────────────────────────────────────────────────────────
 #
-# Ref: https://chat.deepseek.com/a/chat/s/53fbe093-6a1f-4a45-963e-860a9e1d75ef
+# Ref:
+# = https://github.com/diegosouzapw/OmniRoute/blob/main/.env.example
+# - https://chat.deepseek.com/a/chat/s/53fbe093-6a1f-4a45-963e-860a9e1d75ef
 #
 # - Uses official `latest` image (no build required)
 # - Binds to localhost only → traffic must come via Cloudflared
@@ -82,6 +84,7 @@ services:
       # ── Redis & Rate Limiting ──
       - REDIS_URL=redis://redis:6379
       - RELAY_IP_PER_MINUTE=30
+      - OMNIROUTE_CHAT_MAX_HEAVY_IN_FLIGHT=2
 
     volumes:
       - omniroute-data:/app/data

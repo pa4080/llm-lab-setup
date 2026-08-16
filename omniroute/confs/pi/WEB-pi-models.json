@@ -1,0 +1,562 @@
+{
+  "providers": {
+    "omniroute_web": {
+      "baseUrl": "https://omniapi.spasov.me/v1",
+      "api": "openai",
+      "apiKey": "${input:chat.lm.secret.-3832fa98}",
+      "models": [
+        {
+          "id": "chatgpt-web/gpt-5.6-pro",
+          "name": "chatgpt-web/gpt-5.6-pro",
+          "contextWindow": 1050000,
+          "maxInputTokens": 922000,
+          "maxOutputTokens": 128000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": false
+        },
+        {
+          "id": "chatgpt-web/gpt-5.6-thinking",
+          "name": "chatgpt-web/gpt-5.6-thinking",
+          "contextWindow": 1050000,
+          "maxInputTokens": 922000,
+          "maxOutputTokens": 128000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": false
+        },
+        {
+          "id": "chatgpt-web/gpt-5.5-pro-extended",
+          "name": "chatgpt-web/gpt-5.5-pro-extended",
+          "contextWindow": 1050000,
+          "maxInputTokens": 922000,
+          "maxOutputTokens": 128000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": false
+        },
+        {
+          "id": "chatgpt-web/gpt-5.5-pro",
+          "name": "chatgpt-web/gpt-5.5-pro",
+          "contextWindow": 1050000,
+          "maxInputTokens": 922000,
+          "maxOutputTokens": 128000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": false
+        },
+        {
+          "id": "chatgpt-web/gpt-5.5-thinking",
+          "name": "chatgpt-web/gpt-5.5-thinking",
+          "contextWindow": 1050000,
+          "maxInputTokens": 922000,
+          "maxOutputTokens": 128000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": false
+        },
+        {
+          "id": "chatgpt-web/o3",
+          "name": "chatgpt-web/o3",
+          "contextWindow": 400000,
+          "maxInputTokens": 300000,
+          "maxOutputTokens": 100000,
+          "input": [
+            "text"
+          ],
+          "supportsToolCalls": false
+        },
+        {
+          "id": "claude-web/claude-sonnet-5",
+          "name": "claude-web/claude-sonnet-5",
+          "contextWindow": 1000000,
+          "maxInputTokens": 872000,
+          "maxOutputTokens": 128000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": false
+        },
+        {
+          "id": "claude-web/claude-sonnet-4-6",
+          "name": "claude-web/claude-sonnet-4-6",
+          "contextWindow": 1000000,
+          "maxInputTokens": 936000,
+          "maxOutputTokens": 64000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": false
+        },
+        {
+          "id": "claude-web/claude-haiku-4-5-20251001",
+          "name": "claude-web/claude-haiku-4-5-20251001",
+          "contextWindow": 200000,
+          "maxInputTokens": 136000,
+          "maxOutputTokens": 64000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": false
+        },
+        {
+          "id": "deepseek-web/deepseek-v4-pro",
+          "name": "deepseek-web/deepseek-v4-pro",
+          "contextWindow": 1000000,
+          "maxInputTokens": 616000,
+          "maxOutputTokens": 384000,
+          "input": [
+            "text"
+          ],
+          "supportsToolCalls": false
+        },
+        {
+          "id": "deepseek-web/deepseek-v4-pro-search",
+          "name": "deepseek-web/deepseek-v4-pro-search",
+          "contextWindow": 1000000,
+          "maxInputTokens": 616000,
+          "maxOutputTokens": 384000,
+          "input": [
+            "text"
+          ],
+          "supportsToolCalls": false
+        },
+        {
+          "id": "deepseek-web/deepseek-v4-pro-think-search",
+          "name": "deepseek-web/deepseek-v4-pro-think-search",
+          "contextWindow": 1000000,
+          "maxInputTokens": 616000,
+          "maxOutputTokens": 384000,
+          "input": [
+            "text"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "deepseek-web/deepseek-v4-flash",
+          "name": "deepseek-web/deepseek-v4-flash",
+          "contextWindow": 1000000,
+          "maxInputTokens": 616000,
+          "maxOutputTokens": 384000,
+          "input": [
+            "text"
+          ],
+          "supportsToolCalls": false
+        },
+        {
+          "id": "deepseek-web/deepseek-v4-flash-think",
+          "name": "deepseek-web/deepseek-v4-flash-think",
+          "contextWindow": 1000000,
+          "maxInputTokens": 616000,
+          "maxOutputTokens": 384000,
+          "input": [
+            "text"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "deepseek-web/deepseek-v4-flash-think-search",
+          "name": "deepseek-web/deepseek-v4-flash-think-search",
+          "contextWindow": 1000000,
+          "maxInputTokens": 616000,
+          "maxOutputTokens": 384000,
+          "input": [
+            "text"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "deepseek-web/deepseek-chat",
+          "name": "deepseek-web/deepseek-chat",
+          "contextWindow": 128000,
+          "maxInputTokens": 96000,
+          "maxOutputTokens": 32000,
+          "input": [
+            "text"
+          ],
+          "supportsToolCalls": false
+        },
+        {
+          "id": "deepseek-web/deepseek-reasoner",
+          "name": "deepseek-web/deepseek-reasoner",
+          "contextWindow": 128000,
+          "maxInputTokens": 96000,
+          "maxOutputTokens": 32000,
+          "input": [
+            "text"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "deepseek-web/DeepSeek-R1",
+          "name": "deepseek-web/DeepSeek-R1",
+          "contextWindow": 128000,
+          "maxInputTokens": 96000,
+          "maxOutputTokens": 32000,
+          "input": [
+            "text"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "deepseek-web/DeepSeek-V3.2",
+          "name": "deepseek-web/DeepSeek-V3.2",
+          "contextWindow": 128000,
+          "maxInputTokens": 96000,
+          "maxOutputTokens": 32000,
+          "input": [
+            "text"
+          ],
+          "supportsToolCalls": false
+        },
+        {
+          "id": "deepseek-web/DeepSeek-Search",
+          "name": "deepseek-web/DeepSeek-Search",
+          "contextWindow": 128000,
+          "maxInputTokens": 96000,
+          "maxOutputTokens": 32000,
+          "input": [
+            "text"
+          ],
+          "supportsToolCalls": false
+        },
+        {
+          "id": "qwen-web/qwen3.7-plus",
+          "name": "qwen-web/qwen3.7-plus",
+          "contextWindow": 1000000,
+          "maxInputTokens": 934464,
+          "maxOutputTokens": 65536,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": false
+        },
+        {
+          "id": "qwen-web/qwen3.8-max-preview",
+          "name": "qwen-web/qwen3.8-max-preview",
+          "contextWindow": 1000000,
+          "maxInputTokens": 934464,
+          "maxOutputTokens": 65536,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": false
+        },
+        {
+          "id": "qwen-web/qwen3.7-max",
+          "name": "qwen-web/qwen3.7-max",
+          "contextWindow": 1000000,
+          "maxInputTokens": 934464,
+          "maxOutputTokens": 65536,
+          "input": [
+            "text"
+          ],
+          "supportsToolCalls": false
+        },
+        {
+          "id": "qwen-web/qwen3.6-plus",
+          "name": "qwen-web/qwen3.6-plus",
+          "contextWindow": 1000000,
+          "maxInputTokens": 934464,
+          "maxOutputTokens": 65536,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": false
+        },
+        {
+          "id": "claude-web/claude-sonnet-5-low",
+          "name": "claude-web/claude-sonnet-5-low",
+          "contextWindow": 1000000,
+          "maxInputTokens": 872000,
+          "maxOutputTokens": 128000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "claude-web/claude-sonnet-5-medium",
+          "name": "claude-web/claude-sonnet-5-medium",
+          "contextWindow": 1000000,
+          "maxInputTokens": 872000,
+          "maxOutputTokens": 128000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "claude-web/claude-sonnet-5-high",
+          "name": "claude-web/claude-sonnet-5-high",
+          "contextWindow": 1000000,
+          "maxInputTokens": 872000,
+          "maxOutputTokens": 128000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "claude-web/claude-sonnet-5-xhigh",
+          "name": "claude-web/claude-sonnet-5-xhigh",
+          "contextWindow": 1000000,
+          "maxInputTokens": 872000,
+          "maxOutputTokens": 128000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "claude-web/claude-sonnet-4-6-low",
+          "name": "claude-web/claude-sonnet-4-6-low",
+          "contextWindow": 1000000,
+          "maxInputTokens": 936000,
+          "maxOutputTokens": 64000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "claude-web/claude-sonnet-4-6-medium",
+          "name": "claude-web/claude-sonnet-4-6-medium",
+          "contextWindow": 1000000,
+          "maxInputTokens": 936000,
+          "maxOutputTokens": 64000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "claude-web/claude-sonnet-4-6-high",
+          "name": "claude-web/claude-sonnet-4-6-high",
+          "contextWindow": 1000000,
+          "maxInputTokens": 936000,
+          "maxOutputTokens": 64000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "claude-web/claude-haiku-4-5-20251001-low",
+          "name": "claude-web/claude-haiku-4-5-20251001-low",
+          "contextWindow": 200000,
+          "maxInputTokens": 136000,
+          "maxOutputTokens": 64000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "claude-web/claude-haiku-4-5-20251001-medium",
+          "name": "claude-web/claude-haiku-4-5-20251001-medium",
+          "contextWindow": 200000,
+          "maxInputTokens": 136000,
+          "maxOutputTokens": 64000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "claude-web/claude-haiku-4-5-20251001-high",
+          "name": "claude-web/claude-haiku-4-5-20251001-high",
+          "contextWindow": 200000,
+          "maxInputTokens": 136000,
+          "maxOutputTokens": 64000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "no-think/claude-web/claude-sonnet-5",
+          "name": "no-think/claude-web/claude-sonnet-5",
+          "contextWindow": 200000,
+          "maxInputTokens": 150000,
+          "maxOutputTokens": 50000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "no-think/claude-web/claude-sonnet-4-6",
+          "name": "no-think/claude-web/claude-sonnet-4-6",
+          "contextWindow": 200000,
+          "maxInputTokens": 150000,
+          "maxOutputTokens": 50000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "no-think/claude-web/claude-haiku-4-5-20251001",
+          "name": "no-think/claude-web/claude-haiku-4-5-20251001",
+          "contextWindow": 200000,
+          "maxInputTokens": 150000,
+          "maxOutputTokens": 50000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "no-think/claude-web/claude-sonnet-5-low",
+          "name": "no-think/claude-web/claude-sonnet-5-low",
+          "contextWindow": 200000,
+          "maxInputTokens": 150000,
+          "maxOutputTokens": 50000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "no-think/claude-web/claude-sonnet-5-medium",
+          "name": "no-think/claude-web/claude-sonnet-5-medium",
+          "contextWindow": 200000,
+          "maxInputTokens": 150000,
+          "maxOutputTokens": 50000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "no-think/claude-web/claude-sonnet-5-high",
+          "name": "no-think/claude-web/claude-sonnet-5-high",
+          "contextWindow": 200000,
+          "maxInputTokens": 150000,
+          "maxOutputTokens": 50000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "no-think/claude-web/claude-sonnet-5-xhigh",
+          "name": "no-think/claude-web/claude-sonnet-5-xhigh",
+          "contextWindow": 200000,
+          "maxInputTokens": 150000,
+          "maxOutputTokens": 50000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "no-think/claude-web/claude-sonnet-4-6-low",
+          "name": "no-think/claude-web/claude-sonnet-4-6-low",
+          "contextWindow": 200000,
+          "maxInputTokens": 150000,
+          "maxOutputTokens": 50000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "no-think/claude-web/claude-sonnet-4-6-medium",
+          "name": "no-think/claude-web/claude-sonnet-4-6-medium",
+          "contextWindow": 200000,
+          "maxInputTokens": 150000,
+          "maxOutputTokens": 50000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "no-think/claude-web/claude-sonnet-4-6-high",
+          "name": "no-think/claude-web/claude-sonnet-4-6-high",
+          "contextWindow": 200000,
+          "maxInputTokens": 150000,
+          "maxOutputTokens": 50000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "no-think/claude-web/claude-haiku-4-5-20251001-low",
+          "name": "no-think/claude-web/claude-haiku-4-5-20251001-low",
+          "contextWindow": 200000,
+          "maxInputTokens": 150000,
+          "maxOutputTokens": 50000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "no-think/claude-web/claude-haiku-4-5-20251001-medium",
+          "name": "no-think/claude-web/claude-haiku-4-5-20251001-medium",
+          "contextWindow": 200000,
+          "maxInputTokens": 150000,
+          "maxOutputTokens": 50000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": true
+        },
+        {
+          "id": "no-think/claude-web/claude-haiku-4-5-20251001-high",
+          "name": "no-think/claude-web/claude-haiku-4-5-20251001-high",
+          "contextWindow": 200000,
+          "maxInputTokens": 150000,
+          "maxOutputTokens": 50000,
+          "input": [
+            "text",
+            "image"
+          ],
+          "supportsToolCalls": true
+        }
+      ]
+    }
+  }
+}
