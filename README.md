@@ -95,21 +95,23 @@ hf download --repo-type dataset spiritbuun/turboquant-tcq-kv-cache --local-dir s
 
 The `parse_ini()` in `scripts/generate-json-copilot.sh` and `scripts/generate-json-pi.sh` understands a few **commented** pseudo-parameters per model section. They are never passed to `llama-server` (they stay commented in `router.ini`) and only affect the generated Copilot/pi JSON:
 
-| Hint                              | Example                                                 | Effect                                                                                                                                                                                       |
-| --------------------------------- | ------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `dummy-ctx-size`                  | `; dummy-ctx-size = 65536`                              | Fallback ctx-size for `maxInputTokens`/`contextWindow` when the preset has no real `ctx-size` (e.g. `--fit` presets).                                                                        |
-| `client-ctx-size`                 | `; client-ctx-size = 128000`                            | Overrides the reported client context size (e.g. `fit = on` with a capped window).                                                                                                           |
-| `client-reasoning-efforts`        | `; client-reasoning-efforts = xhigh, medium, low, none` | Supported `reasoning_effort` values advertised in the generated JSON (Copilot `supportsReasoningEffort`, pi `thinkingLevelMap`; `none` maps to pi `off`). Falls back to `low, medium, high`. |
-| `client-reasoning-effort-default` | `; client-reasoning-effort-default = xhigh`             | Default `reasoningEffort` (Copilot `settings`). Must be one of the listed efforts; otherwise the first listed effort (or `high`) is used.                                                    |
+| Hint | Example | Effect |
+| --- | --- | --- |
+| `dummy-ctx-size` | `; dummy-ctx-size = 65536` | Fallback ctx-size for `maxInputTokens`/`contextWindow` when the preset has no real `ctx-size` (e.g. `--fit` presets). |
+| `client-ctx-size` | `; client-ctx-size = 128000` | Overrides the reported client context size (e.g. `fit = on` with a capped window). |
+| `client-reasoning-efforts` | `; client-reasoning-efforts = xhigh, medium, low, none` | Supported `reasoning_effort` values advertised in the generated JSON (Copilot `supportsReasoningEffort`, pi `thinkingLevelMap`; `none` maps to pi `off`). Falls back to `low, medium, high`. |
+| `client-reasoning-effort-default` | `; client-reasoning-effort-default = xhigh` | Default `reasoningEffort` (Copilot `settings`). Must be one of the listed efforts; otherwise the first listed effort (or `high`) is used. |
+| `client-vision` | `; client-vision = true` | Advertises vision for models with a built-in vision encoder that needs no separate `mmproj` file (e.g. Qwen3.8-27B). Overrides the auto-detected `mmproj` line; `false` forces text-only. Absent — vision derived from a live `mmproj` line. |
 
 Example (from `llama-cpp/router/1-Qwen3.8-27B.ini`):
 
 ```ini
 [Qwen3.8_27B-Q4KM-128K-MTP_Vision]
 ctx-size = 131072
-; client-ctx-size = 128000
+; client-ctx-size = 131072
 ; client-reasoning-efforts = xhigh, medium, low, none
 ; client-reasoning-effort-default = xhigh
+; client-vision = true
 ```
 
 Regenerate the JSON with `serve.sh` (or `scripts/generate-config-json.sh`) after editing a `router/*.ini`.

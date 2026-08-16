@@ -184,7 +184,7 @@
         "name": "Qwen3.8_27B-Q4KM-128K-MTP_Vision",
         "url": "http://172.16.1.110:10005/v1/chat/completions",
         "toolCalling": true,
-        "vision": false,
+        "vision": true,
         "streaming": true,
         "apiType": "chat-completions",
         "editTools": [
@@ -202,15 +202,15 @@
         ],
         "reasoningEffortFormat": "chat-completions",
         "zeroDataRetentionEnabled": false,
-        "maxInputTokens": 96000,
-        "maxOutputTokens": 32000
+        "maxInputTokens": 98304,
+        "maxOutputTokens": 32768
       },
       {
         "id": "Qwen3.8_27B-UDQ4KXL-128K-MTP_Vision",
         "name": "Qwen3.8_27B-UDQ4KXL-128K-MTP_Vision",
         "url": "http://172.16.1.110:10005/v1/chat/completions",
         "toolCalling": true,
-        "vision": false,
+        "vision": true,
         "streaming": true,
         "apiType": "chat-completions",
         "editTools": [
@@ -228,8 +228,8 @@
         ],
         "reasoningEffortFormat": "chat-completions",
         "zeroDataRetentionEnabled": false,
-        "maxInputTokens": 96000,
-        "maxOutputTokens": 32000
+        "maxInputTokens": 98304,
+        "maxOutputTokens": 32768
       },
       {
         "id": "Ornith1.0_35B-HAIC-168K-q8_MTP_Vision",

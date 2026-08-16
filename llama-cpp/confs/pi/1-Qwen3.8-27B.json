@@ -10,10 +10,11 @@
           "name": "Qwen3.8_27B-Q4KM-128K-MTP_Vision",
           "reasoning": true,
           "input": [
-            "text"
+            "text",
+            "image"
           ],
-          "contextWindow": 128000,
-          "maxTokens": 32000,
+          "contextWindow": 131072,
+          "maxTokens": 32768,
           "thinkingLevelMap": {
             "minimal": null,
             "low": "low",
@@ -35,10 +36,11 @@
           "name": "Qwen3.8_27B-UDQ4KXL-128K-MTP_Vision",
           "reasoning": true,
           "input": [
-            "text"
+            "text",
+            "image"
           ],
-          "contextWindow": 128000,
-          "maxTokens": 32000,
+          "contextWindow": 131072,
+          "maxTokens": 32768,
           "thinkingLevelMap": {
             "minimal": null,
             "low": "low",

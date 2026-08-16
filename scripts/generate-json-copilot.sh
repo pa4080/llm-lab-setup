@@ -28,12 +28,20 @@ INI_BASENAME="$(basename "${INI_FILE%.ini}")"
 SERVER_NAME="$LOCAL_SERVER_NAME $INI_BASENAME"
 
 # ── Parse INI into JSONL (one JSON object per section) ─────────────
-# Each line: { "id": "<section>", "ctxSize": <number>, "hasMmproj": <bool> }
+# Each line: { "id": "<section>", "ctxSize": <number>, "hasMmproj": <bool>,
+#              "clientVision": <bool>, "reasoningEfforts": "<csv>",
+#              "reasoningEffortDefault": "<value>" }
 #
 # A commented-out `; dummy-ctx-size = N` acts as a fallback ctx-size used only
 # for JSON generation (maxInputTokens/maxOutputTokens), for presets that have
 # no real ctx-size because --fit auto-sizes it at runtime (e.g. VBR "MAXCTX"
 # presets). It is never passed to llama-server (stays commented in router.ini).
+#
+# A commented-out `; client-vision = true|false` overrides the vision
+# capability advertised in the generated JSON (Copilot `vision`, pi `input`),
+# for presets whose GGUF has a built-in vision encoder and therefore carries
+# no `mmproj` line (e.g. Qwen3.8-27B). Without the hint, vision is derived
+# from a live `mmproj` line in the section. It is never passed to llama-server.
 #
 # A commented-out `; client-reasoning-efforts = a, b, c` list overrides the
 # supported reasoning_effort values in the generated JSON, and
@@ -41,7 +49,7 @@ SERVER_NAME="$LOCAL_SERVER_NAME $INI_BASENAME"
 # (Copilot) / maps the effort names in the thinkingLevelMap (pi). Both stay
 # commented, so they are never passed to llama-server.
 parse_ini() {
-	local sec="" ctx_size=0 dummy_ctx_size=0 has_mmproj=false reasoning_efforts="" reasoning_effort_default=""
+	local sec="" ctx_size=0 dummy_ctx_size=0 has_mmproj=false eff_vision="false" reasoning_efforts="" reasoning_effort_default="" client_vision=""
 
 	while IFS= read -r line; do
 		line="${line//$'\r'/}"                     # strip \r
@@ -55,6 +63,16 @@ parse_ini() {
 
 		if [[ "$line" =~ ^[[:space:]]*\;[[:space:]]*client-ctx-size[[:space:]]*=[[:space:]]*([0-9]+) ]]; then
 			client_ctx_size="${BASH_REMATCH[1]}"
+			continue
+		fi
+
+		# Commented-out client-vision hint (true|false): overrides the
+		# mmproj-derived vision flag for built-in-vision GGUFs.
+		if [[ "$line" =~ ^[[:space:]]*\;[[:space:]]*client-vision[[:space:]]*=(.*)$ ]]; then
+			client_vision="${BASH_REMATCH[1]}"
+			client_vision="${client_vision%%\;*}"  # strip trailing `; comment`
+			client_vision="${client_vision#"${client_vision%%[![:space:]]*}"}" # trim leading
+			client_vision="${client_vision%"${client_vision##*[![:space:]]}"}" # trim trailing
 			continue
 		fi
 
@@ -90,8 +108,12 @@ parse_ini() {
 			[[ "$new_sec" == "*" ]] && continue           # skip [*] defaults
 			# Emit previous section (if any)
 			if [[ -n "$sec" ]]; then
-				printf '{"id":"%s","ctxSize":%d,"hasMmproj":%s,"reasoningEfforts":"%s","reasoningEffortDefault":"%s"}\n' \
-					"$sec" "$(( ctx_size > 0 ? (client_ctx_size > 0 ? client_ctx_size : ctx_size) : dummy_ctx_size ))" "$has_mmproj" "$reasoning_efforts" "$reasoning_effort_default"
+				eff_vision="$has_mmproj"
+				if [[ "$client_vision" == "true" || "$client_vision" == "false" ]]; then
+					eff_vision="$client_vision"
+				fi
+				printf '{"id":"%s","ctxSize":%d,"hasMmproj":%s,"clientVision":"%s","reasoningEfforts":"%s","reasoningEffortDefault":"%s"}\n' \
+					"$sec" "$(( ctx_size > 0 ? (client_ctx_size > 0 ? client_ctx_size : ctx_size) : dummy_ctx_size ))" "$has_mmproj" "$eff_vision" "$reasoning_efforts" "$reasoning_effort_default"
 			fi
 			sec="$new_sec"
 			ctx_size=0
@@ -100,6 +122,7 @@ parse_ini() {
 			has_mmproj=false
 			reasoning_efforts=""
 			reasoning_effort_default=""
+			client_vision=""
 			continue
 		fi
 
@@ -123,8 +146,12 @@ parse_ini() {
 
 	# Emit last section
 	if [[ -n "$sec" ]]; then
-		printf '{"id":"%s","ctxSize":%d,"hasMmproj":%s,"reasoningEfforts":"%s","reasoningEffortDefault":"%s"}\n' \
-			"$sec" "$(( ctx_size > 0 ? (client_ctx_size > 0 ? client_ctx_size : ctx_size) : dummy_ctx_size ))" "$has_mmproj" "$reasoning_efforts" "$reasoning_effort_default"
+		eff_vision="$has_mmproj"
+		if [[ "$client_vision" == "true" || "$client_vision" == "false" ]]; then
+			eff_vision="$client_vision"
+		fi
+		printf '{"id":"%s","ctxSize":%d,"hasMmproj":%s,"clientVision":"%s","reasoningEfforts":"%s","reasoningEffortDefault":"%s"}\n' \
+			"$sec" "$(( ctx_size > 0 ? (client_ctx_size > 0 ? client_ctx_size : ctx_size) : dummy_ctx_size ))" "$has_mmproj" "$eff_vision" "$reasoning_efforts" "$reasoning_effort_default"
 	fi
 }
 
@@ -150,6 +177,7 @@ parse_ini | jq -s \
 		| { id: .id,
 		    ctxSize: .ctxSize,
 		    hasMmproj: .hasMmproj,
+		    clientVision: .clientVision,
 		    resolvedEfforts: $resolved_efforts,
 		    effortDefault: ( if $default != "" and ($resolved_efforts | index($default)) then $default
 		                      elif ($efforts | length) > 0 then ($resolved_efforts | .[0])
@@ -165,7 +193,7 @@ parse_ini | jq -s \
 				name:                  .id,
 				url:                   $url,
 				toolCalling:           true,
-				vision:                .hasMmproj,
+				vision:                (.clientVision == "true"),
 				streaming:             true,
 				apiType:               "chat-completions",
 				editTools:             [
