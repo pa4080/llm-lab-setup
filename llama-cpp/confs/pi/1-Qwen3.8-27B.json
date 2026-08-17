@@ -6,8 +6,8 @@
       "apiKey": "${input:chat.lm.secret.-4b1abccd}",
       "models": [
         {
-          "id": "Qwen3.8_27B-Q4KM-128K-MTP_Vision",
-          "name": "Qwen3.8_27B-Q4KM-128K-MTP_Vision",
+          "id": "Qwen3.8-27B-Q4KM-128K_MTP_Vision_q8",
+          "name": "Qwen3.8-27B-Q4KM-128K_MTP_Vision_q8",
           "reasoning": true,
           "input": [
             "text",
@@ -32,8 +32,34 @@
           }
         },
         {
-          "id": "Qwen3.8_27B-UDQ4KXL-128K-MTP_Vision",
-          "name": "Qwen3.8_27B-UDQ4KXL-128K-MTP_Vision",
+          "id": "Qwen3.8-27B-Q4KM-196K_MTP_Vision_q4",
+          "name": "Qwen3.8-27B-Q4KM-196K_MTP_Vision_q4",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 200704,
+          "maxTokens": 50176,
+          "thinkingLevelMap": {
+            "minimal": null,
+            "low": "low",
+            "medium": "medium",
+            "high": null,
+            "xhigh": "xhigh",
+            "max": null,
+            "off": "none"
+          },
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          }
+        },
+        {
+          "id": "Qwen3.8-27B-UDQ4KXL-128K_MTP_Vision_q8",
+          "name": "Qwen3.8-27B-UDQ4KXL-128K_MTP_Vision_q8",
           "reasoning": true,
           "input": [
             "text",

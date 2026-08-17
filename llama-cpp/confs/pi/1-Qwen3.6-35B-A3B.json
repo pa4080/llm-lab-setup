@@ -6,15 +6,15 @@
       "apiKey": "${input:chat.lm.secret.-4b1abccd}",
       "models": [
         {
-          "id": "Qwen3.6_35B-A3B-IQ4NL-196K-q4_MTP_Vision",
-          "name": "Qwen3.6_35B-A3B-IQ4NL-196K-q4_MTP_Vision",
+          "id": "Qwen3.6-35B-A3B-IQ4NL-196K_MTP_Vision_q8",
+          "name": "Qwen3.6-35B-A3B-IQ4NL-196K_MTP_Vision_q8",
           "reasoning": true,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 196000,
-          "maxTokens": 49000,
+          "contextWindow": 200704,
+          "maxTokens": 50176,
           "thinkingLevelMap": {
             "minimal": null,
             "low": "low",
@@ -30,39 +30,15 @@
           }
         },
         {
-          "id": "Qwen3.6_35B-A3B-IQ4NL-256K-q4_MTP_Vision",
-          "name": "Qwen3.6_35B-A3B-IQ4NL-256K-q4_MTP_Vision",
+          "id": "Qwen3.6-35B-A3B-IQ4NL-256K_MTP_Vision_q4",
+          "name": "Qwen3.6-35B-A3B-IQ4NL-256K_MTP_Vision_q4",
           "reasoning": true,
           "input": [
             "text",
             "image"
           ],
-          "contextWindow": 256000,
-          "maxTokens": 64000,
-          "thinkingLevelMap": {
-            "minimal": null,
-            "low": "low",
-            "medium": "medium",
-            "high": "high",
-            "max": null
-          },
-          "cost": {
-            "input": 0,
-            "output": 0,
-            "cacheRead": 0,
-            "cacheWrite": 0
-          }
-        },
-        {
-          "id": "Qwen3.6_35B-A3B-IQ4NL-256K-q4_Vision",
-          "name": "Qwen3.6_35B-A3B-IQ4NL-256K-q4_Vision",
-          "reasoning": true,
-          "input": [
-            "text",
-            "image"
-          ],
-          "contextWindow": 256000,
-          "maxTokens": 64000,
+          "contextWindow": 262144,
+          "maxTokens": 65536,
           "thinkingLevelMap": {
             "minimal": null,
             "low": "low",

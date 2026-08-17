@@ -4,8 +4,8 @@
   "apiKey": "${input:chat.lm.secret.-4b1abccd}",
   "models": [
     {
-      "id": "Ornith1.0_35B-HAIC-168K-q8_MTP_Vision",
-      "name": "Ornith1.0_35B-HAIC-168K-q8_MTP_Vision",
+      "id": "Ornith1.0-35B-HAIC-196K_MTP_Vision_q8",
+      "name": "Ornith1.0-35B-HAIC-196K_MTP_Vision_q8",
       "url": "http://172.16.1.110:10005/v1/chat/completions",
       "toolCalling": true,
       "vision": true,
@@ -25,40 +25,12 @@
       ],
       "reasoningEffortFormat": "chat-completions",
       "zeroDataRetentionEnabled": false,
-      "maxInputTokens": 126000,
-      "maxOutputTokens": 42000
-    },
-    {
-      "id": "Ornith1.0_35B-HAIC-256K-q8_Vision",
-      "name": "Ornith1.0_35B-HAIC-256K-q8_Vision",
-      "url": "http://172.16.1.110:10005/v1/chat/completions",
-      "toolCalling": true,
-      "vision": true,
-      "streaming": true,
-      "apiType": "chat-completions",
-      "editTools": [
-        "apply-patch",
-        "code-rewrite",
-        "find-replace",
-        "multi-find-replace"
-      ],
-      "thinking": true,
-      "supportsReasoningEffort": [
-        "low",
-        "medium",
-        "high"
-      ],
-      "reasoningEffortFormat": "chat-completions",
-      "zeroDataRetentionEnabled": false,
-      "maxInputTokens": 192000,
-      "maxOutputTokens": 64000
+      "maxInputTokens": 150528,
+      "maxOutputTokens": 50176
     }
   ],
   "settings": {
-    "Ornith1.0_35B-HAIC-168K-q8_MTP_Vision": {
-      "reasoningEffort": "high"
-    },
-    "Ornith1.0_35B-HAIC-256K-q8_Vision": {
+    "Ornith1.0-35B-HAIC-196K_MTP_Vision_q8": {
       "reasoningEffort": "high"
     }
   }

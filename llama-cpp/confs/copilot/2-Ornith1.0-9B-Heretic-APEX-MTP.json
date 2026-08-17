@@ -4,8 +4,8 @@
   "apiKey": "${input:chat.lm.secret.-4b1abccd}",
   "models": [
     {
-      "id": "Ornith1.0_9B-HAIC-256K-q8_MTP_Vision",
-      "name": "Ornith1.0_9B-HAIC-256K-q8_MTP_Vision",
+      "id": "Ornith1.0-9B-HAIC-256K_MTP_Vision_q8",
+      "name": "Ornith1.0-9B-HAIC-256K_MTP_Vision_q8",
       "url": "http://172.16.1.110:10005/v1/chat/completions",
       "toolCalling": true,
       "vision": true,
@@ -25,12 +25,12 @@
       ],
       "reasoningEffortFormat": "chat-completions",
       "zeroDataRetentionEnabled": false,
-      "maxInputTokens": 192000,
-      "maxOutputTokens": 64000
+      "maxInputTokens": 196608,
+      "maxOutputTokens": 65536
     },
     {
-      "id": "Ornith1.0_9B-HAIC-512K-q4_MTP_Vision",
-      "name": "Ornith1.0_9B-HAIC-512K-q4_MTP_Vision",
+      "id": "Ornith1.0-9B-HAIC-512K-MTP_Vision_q4",
+      "name": "Ornith1.0-9B-HAIC-512K-MTP_Vision_q4",
       "url": "http://172.16.1.110:10005/v1/chat/completions",
       "toolCalling": true,
       "vision": true,
@@ -50,15 +50,15 @@
       ],
       "reasoningEffortFormat": "chat-completions",
       "zeroDataRetentionEnabled": false,
-      "maxInputTokens": 384000,
-      "maxOutputTokens": 128000
+      "maxInputTokens": 393216,
+      "maxOutputTokens": 131072
     }
   ],
   "settings": {
-    "Ornith1.0_9B-HAIC-256K-q8_MTP_Vision": {
+    "Ornith1.0-9B-HAIC-256K_MTP_Vision_q8": {
       "reasoningEffort": "high"
     },
-    "Ornith1.0_9B-HAIC-512K-q4_MTP_Vision": {
+    "Ornith1.0-9B-HAIC-512K-MTP_Vision_q4": {
       "reasoningEffort": "high"
     }
   }
