@@ -41,3 +41,4 @@ services:
       --no-warmup
       --cache-ram 65536
       --cache-reuse 4096
+      --ui-mcp-proxy

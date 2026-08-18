@@ -507,7 +507,7 @@
                                         enable in untrusted environments (default: no tools)
                                         specify "all" to enable all tools
                                         available tools: read_file, file_glob_search, grep_search,
-                                        exec_shell_command, write_file, edit_file, get_datetime, get_info
+                                        exec_shell_command, write_file, edit_file, get_info
                                         note: for security reasons, this will limit --cors-origins to
                                         localhost by default
                                         (env: LLAMA_ARG_TOOLS)
